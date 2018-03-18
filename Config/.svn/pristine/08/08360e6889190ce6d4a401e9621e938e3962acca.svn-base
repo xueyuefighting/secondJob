@@ -1,1 +1,0 @@
-根路径【/SCF】应与本地应用（tomcat或workspace或eclipse）放在同一个磁盘分区。
