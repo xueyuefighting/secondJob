@@ -1,0 +1,41 @@
+package com.yonyou.scf.common.util;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
+/**
+ * 金额格式工具类
+ * 
+ * <pre>
+ * Modify Information:
+ * Author       Date        Description
+ * ============ =========== ============================
+ * shengsu		2017-03-16	Create this file
+ * 
+ * </pre>
+ * 
+ */
+public class AmountFormat {
+
+	private static DecimalFormat df = new DecimalFormat("##,###,###,##0.00");
+
+	public static String fen2Yuan(long fen) {
+		double yuan = fen * 1.0 / 100;
+		return df.format(yuan);
+	}
+
+	public static String fen2Yuan(int fen) {
+		double yuan = fen * 1.0 / 100;
+		return df.format(yuan);
+	}
+
+	public static long yuan2Fen(double amount) {
+		if (amount == 0) {
+			return 0;
+		} else {
+			return new BigDecimal(amount * 100).setScale(2,
+					BigDecimal.ROUND_HALF_UP).longValue();
+		}
+	}
+
+}

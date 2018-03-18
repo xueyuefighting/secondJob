@@ -1,0 +1,42 @@
+#####################primaryDataSource##################################
+spring.primary.datasource.url = jdbc:mysql://192.168.16.246:3306/test2
+spring.primary.datasource.username = test1
+spring.primary.datasource.password = yonyou
+spring.primary.datasource.driverClassName = com.mysql.jdbc.Driver
+spring.primary.datasource.max-active=20
+spring.primary.datasource.max-idle=8
+spring.primary.datasource.min-idle=8
+spring.primary.datasource.initial-size=10
+#springBatch.notification.datasource.type=10
+
+#####################secondaryDataSource##################################
+spring.secondary.datasource.url = jdbc:mysql://192.168.16.245:3306/financetest1
+spring.secondary.datasource.username = financetest111
+spring.secondary.datasource.password = yonyou
+spring.secondary.datasource.driverClassName = com.mysql.jdbc.Driver
+spring.secondary.datasource.max-active=20
+spring.secondary.datasource.max-idle=8
+spring.secondary.datasource.min-idle=8
+spring.secondary.datasource.initial-size=10
+
+#########################logger###############################
+logging.level.com.yonyou.timerTask = debug
+
+############LFbank batch rule#########
+LBbank.batch.time.interval=2,4,14  
+
+##############notification Scheduler config######
+notification.scheduler.config.start = true
+notification.scheduler.config.intervalTime = 5 
+notification.scheduler.job.name=sendNotificationJob
+notification.scheduler.job.groupName=sendNotification
+notification.scheduler.trigger.name=sendNotificationTrigger
+notification.scheduler.trigger.groupName=sendNotification
+
+##############CreditScannningJobAndTrigger########
+scanningCredit.scheduler.config.start = true
+scanningCredit.scheduler.job.name=scanningCreditJob
+scanningCredit.scheduler.job.groupName=scanningCreditJobGroup
+scanningCredit.scheduler.trigger.name=scanningCreditTrigger
+scanningCredit.scheduler.trigger.groupName=scanningCreditTriggerGroup
+

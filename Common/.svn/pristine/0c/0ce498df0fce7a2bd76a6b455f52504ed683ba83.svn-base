@@ -1,0 +1,179 @@
+package com.yonyou.scf.common.input;
+
+import java.io.Serializable;
+
+/**
+ * 借据合同--太平鸟
+ * @author zhangjlm
+ *
+ */
+public class JJContractBean implements Serializable {
+
+	private static final long serialVersionUID = 5880879785945689213L;
+	
+	private String financeId;//融资申请id  （没有空着）
+	private String creditId;//授信id
+	private String secondCompanyName;//借款方企业名称
+	private String wayOfGuarantee;//产品表中，担保方式
+	private String purposes;//借款用途
+	private String monthRate;//月费率``
+	private String loanCompanyBackAcc;//借款企业回款 账号
+	private String loanCompanyBackBank;//借款企业回款 开户行
+	private String loanAmount;//借款金额
+	private String loadDate;//融资申请日期／借款日期  'yyyyMMdd'
+	private String endDate;//融资申请日期+产品的单笔借款期限  'yyyyMMdd'
+	private String secondeLegalPersonName;//借款企业的法人（个人的时候空着）
+	
+	private String JKContractNo;//借款合同编号
+	private String BZContractNo;//担保合同  以逗号分割
+	private String jJContractNo;//借据合同编号
+	private String currentYear;//当前年 *
+	private String currentMonth;//当前月 *
+	private String currentDay;//当前日 *
+	public String getFinanceId() {
+		return financeId;
+	}
+	public void setFinanceId(String financeId) {
+		this.financeId = financeId;
+	}
+	public String getCreditId() {
+		return creditId;
+	}
+	public void setCreditId(String creditId) {
+		this.creditId = creditId;
+	}
+	public String getSecondCompanyName() {
+		return secondCompanyName;
+	}
+	public void setSecondCompanyName(String secondCompanyName) {
+		this.secondCompanyName = secondCompanyName;
+	}
+	public String getWayOfGuarantee() {
+		return wayOfGuarantee;
+	}
+	public void setWayOfGuarantee(String wayOfGuarantee) {
+		this.wayOfGuarantee = wayOfGuarantee;
+	}
+	public String getPurposes() {
+		return purposes;
+	}
+	public void setPurposes(String purposes) {
+		this.purposes = purposes;
+	}
+	public String getMonthRate() {
+		return monthRate;
+	}
+	public void setMonthRate(String monthRate) {
+		this.monthRate = monthRate;
+	}
+	public String getLoanCompanyBackAcc() {
+		return loanCompanyBackAcc;
+	}
+	public void setLoanCompanyBackAcc(String loanCompanyBackAcc) {
+		this.loanCompanyBackAcc = loanCompanyBackAcc;
+	}
+	public String getLoanCompanyBackBank() {
+		return loanCompanyBackBank;
+	}
+	public void setLoanCompanyBackBank(String loanCompanyBackBank) {
+		this.loanCompanyBackBank = loanCompanyBackBank;
+	}
+	public String getLoanAmount() {
+		return loanAmount;
+	}
+	public void setLoanAmount(String loanAmount) {
+		this.loanAmount = loanAmount;
+	}
+	public String getJKContractNo() {
+		return JKContractNo;
+	}
+	public void setJKContractNo(String jKContractNo) {
+		JKContractNo = jKContractNo;
+	}
+	public String getBZContractNo() {
+		return BZContractNo;
+	}
+	public void setBZContractNo(String bZContractNo) {
+		BZContractNo = bZContractNo;
+	}
+	public String getLoadDate() {
+		return loadDate;
+	}
+	public void setLoadDate(String loadDate) {
+		this.loadDate = loadDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getSecondeLegalPersonName() {
+		return secondeLegalPersonName;
+	}
+	public void setSecondeLegalPersonName(String secondeLegalPersonName) {
+		this.secondeLegalPersonName = secondeLegalPersonName;
+	}
+	public String getjJContractNo() {
+		return jJContractNo;
+	}
+	public void setjJContractNo(String jJContractNo) {
+		this.jJContractNo = jJContractNo;
+	}
+	public String getCurrentYear() {
+		return currentYear;
+	}
+	public void setCurrentYear(String currentYear) {
+		this.currentYear = currentYear;
+	}
+	public String getCurrentMonth() {
+		return currentMonth;
+	}
+	public void setCurrentMonth(String currentMonth) {
+		this.currentMonth = currentMonth;
+	}
+	public String getCurrentDay() {
+		return currentDay;
+	}
+	public void setCurrentDay(String currentDay) {
+		this.currentDay = currentDay;
+	}
+	@Override
+	public String toString() {
+		return "JJContractBean [financeId=" + financeId + ", creditId=" + creditId + ", secondCompanyName="
+				+ secondCompanyName + ", wayOfGuarantee=" + wayOfGuarantee + ", purposes=" + purposes + ", monthRate="
+				+ monthRate + ", loanCompanyBackAcc=" + loanCompanyBackAcc + ", loanCompanyBackBank="
+				+ loanCompanyBackBank + ", loanAmount=" + loanAmount + ", JKContractNo=" + JKContractNo
+				+ ", BZContractNo=" + BZContractNo + ", loadDate=" + loadDate + ", endDate=" + endDate
+				+ ", secondeLegalPersonName=" + secondeLegalPersonName + ", jJContractNo=" + jJContractNo
+				+ ", currentYear=" + currentYear + ", currentMonth=" + currentMonth + ", currentDay=" + currentDay
+				+ "]";
+	}
+	public JJContractBean(String financeId, String creditId, String secondCompanyName, String wayOfGuarantee,
+			String purposes, String monthRate, String loanCompanyBackAcc, String loanCompanyBackBank, String loanAmount,
+			String jKContractNo, String bZContractNo, String loadDate, String endDate, String secondeLegalPersonName,
+			String jJContractNo, String currentYear, String currentMonth, String currentDay) {
+		super();
+		this.financeId = financeId;
+		this.creditId = creditId;
+		this.secondCompanyName = secondCompanyName;
+		this.wayOfGuarantee = wayOfGuarantee;
+		this.purposes = purposes;
+		this.monthRate = monthRate;
+		this.loanCompanyBackAcc = loanCompanyBackAcc;
+		this.loanCompanyBackBank = loanCompanyBackBank;
+		this.loanAmount = loanAmount;
+		JKContractNo = jKContractNo;
+		BZContractNo = bZContractNo;
+		this.loadDate = loadDate;
+		this.endDate = endDate;
+		this.secondeLegalPersonName = secondeLegalPersonName;
+		this.jJContractNo = jJContractNo;
+		this.currentYear = currentYear;
+		this.currentMonth = currentMonth;
+		this.currentDay = currentDay;
+	}
+	public JJContractBean() {
+	}
+	
+}

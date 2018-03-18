@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.userFace.mapper.RoleHMapper" >
+  
+  <!-- 角色列表检索 -->
+  <select id="getRoleInfoList" resultType="java.util.Map" parameterType="map">
+	select 
+	role.id as id
+	role.name as roleName,
+	company_info.user_id as userId,
+	company_info.company_name as userName,
+	role.user_role as userRole,
+	role.status as status,
+	role.create_time as creatTime
+	from role,company_info
+	where role.user_id=company_info.user_id
+	<if test="roleName != null">
+		AND role.name = #{roleName,jdbcType=VARCHAR}
+	</if>
+	<if test="userRole != null">
+		AND role.user_role = #{userRole,jdbcType=VARCHAR}
+	</if>
+	<if test="status != null">
+		AND role.status = #{status,jdbcType=VARCHAR}
+	</if>
+	<if test="userName != null">
+		AND company_info.company_name = #{userName,jdbcType=VARCHAR}
+	</if>
+	order by role.create_time desc
+  </select>
+  
+  <!-- 用操作员ID换可用的业务角色 -->
+    <select id="getUserRoleInfoListByOpId" resultType="java.util.Map" parameterType="map">
+	  SELECT
+	    distinct role.user_role as userRole,
+	    role.user_id as userId
+	FROM
+	    operator_role_relationship,
+	    role
+	WHERE
+	    operator_role_relationship.role = role.id
+	    and operator_role_relationship.operator_id = #{operatorId,jdbcType=VARCHAR}
+	    and role.status = '0'
+	order by role.user_role
+	</select>
+	
+  <!-- 用操作员ID+业务角色换可用的角色 -->
+    <select id="getRoleInfoListByOpIdAndUserRole" resultType="java.util.Map" parameterType="map">
+	  SELECT
+	    role.id as id,
+	    role.name as name
+	FROM
+	    operator_role_relationship,
+	    role
+	WHERE
+	    operator_role_relationship.role = role.id
+	    and operator_role_relationship.operator_id = #{operatorId,jdbcType=VARCHAR}
+	    and role.user_role = #{userRole,jdbcType=VARCHAR}
+	    and role.status = '0'
+	order by role.id
+	</select>
+  
+  <!-- 针对单个人取得所属企业 业务类型和角色 -->
+  <select id="getRoleList4Op" resultType="java.util.Map" parameterType="map">
+	SELECT
+	    role.id                   AS id,
+	    role.name                 AS roleName,
+	    company_info.user_id      AS userId,
+	    company_info.company_name AS userName,
+	    role.user_role            AS userRole,
+	    role.status               AS status,
+	    role.create_time          AS creatTime,
+	    role.is_admin             AS isAdmin
+	FROM
+	    operator_role_relationship,
+	    role,
+	    company_info
+	WHERE
+    role.user_id=company_info.user_id
+    and operator_role_relationship.role = role.id
+	<if test="operatorId != null">
+		and operator_role_relationship.operator_id = #{operatorId,jdbcType=VARCHAR}
+	</if>
+	order by role.is_admin
+  </select>
+  
+  <!-- 菜单列表检索 -->
+  <select id="getMenuInfoList" resultType="java.util.Map" parameterType="map">
+		select
+		menu.menu_id as menu_id,
+		menu.name as menu_name,
+		menu.parent_id as parent_id,
+		authority.status as status
+		from menu,authority
+		where
+		menu.menu_id=authority.menu_id
+		and authority.role =#{roleId,jdbcType=VARCHAR}
+		order by menu.parent_id,menu.order1
+  </select>
+  
+    <!-- 操作员列表检索 -->
+  <select id="getOpInfoList" resultType="java.util.Map" parameterType="map">
+	select operator.operator_id as operatorId,operator.name as operatorName,
+	role.user_id as userId,company_info.company_name as userName,
+	role.user_role as userRole,role.id as roleId,
+	role.name as roleName,operator.phone as phone,operator.status as status
+	from operator,operator_role_relationship,role,company_info
+	where
+	operator.operator_id = operator_role_relationship.operator_id
+	and operator_role_relationship.role = role.user_role
+	and role.user_id = company_info.company_name
+	<if test="roleName != null">
+		AND role.name = #{roleName,jdbcType=VARCHAR}
+	</if>
+	<if test="operatorName != null">
+		AND operator.name = #{operatorName,jdbcType=VARCHAR}
+	</if>
+	<if test="phone != null">
+		AND operator.phone = #{phone,jdbcType=VARCHAR}
+	</if>
+	<if test="userRole != null">
+		AND role.user_role = #{userRole,jdbcType=VARCHAR}
+	</if>
+	<if test="status != null">
+		AND operator.status = #{status,jdbcType=VARCHAR}
+	</if>
+	<if test="userName != null">
+		AND company_info.company_name = #{userName,jdbcType=VARCHAR}
+	</if>
+	order by operator.create_time,operator.operator_id,role.id desc
+  </select>
+  
+      <!-- 操作员列表检索2 -->
+  <select id="getAdminOpInfoList" resultType="java.util.Map" parameterType="map">
+	select operator.operator_id as operatorId,
+	operator.name as operatorName,
+	role.user_id as userId,
+	role.user_role as userRole,role.id as roleId,
+	role.name as roleName,operator.phone as phone,operator.email as email,
+	operator.status as status
+	from operator,operator_role_relationship,role
+	where
+	operator.operator_id = operator_role_relationship.operator_id
+	and operator_role_relationship.role = role.user_role
+	and role.is_admin = '0'
+	<if test="companyId != null">
+		AND role.user_id = #{companyId,jdbcType=VARCHAR}
+	</if>
+	order by operator.create_time,operator.operator_id,role.id desc
+  </select>
+  
+  <!-- 操作员列表检索3 -->
+  <select id="getAdminOpInfoList3" resultType="java.util.Map" parameterType="map">
+	select operator.operator_id as operatorId,
+	operator.name as operatorName,
+	role.user_id as userId,
+	role.user_role as userRole,role.id as roleId,
+	role.name as roleName,operator.phone as phone,operator.email as email,
+	operator.status as status
+	from operator,operator_role_relationship,role
+	where
+	operator.operator_id = operator_role_relationship.operator_id
+	and operator_role_relationship.role = role.user_role
+	<if test="companyId != null">
+		AND role.user_id = #{companyId,jdbcType=VARCHAR}
+	</if>
+	<if test="userRole != null">
+		AND role.user_role = #{userRole,jdbcType=VARCHAR}
+	</if>
+	order by role.id
+  </select>
+  
+	<insert id="addAuthorityRecordBatch" useGeneratedKeys="false" parameterType="java.util.List">  
+	  <![CDATA[ 
+	    insert into t_train_record (`id`,`role`,menu_id,`status`,create_time,create_user)  
+	    values 
+	    <foreach collection="list" item="item" index="index" separator="," > 
+	        (#{item.id},#{item.role},#{item.menuId},#{item.status},#{item.createTime},#{item.createUser}) 
+	    </foreach> 
+		]]> 
+	</insert> 
+  
+</mapper>

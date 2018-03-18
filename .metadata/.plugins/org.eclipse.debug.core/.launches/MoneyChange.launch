@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/contract/src/test/java/com/yonyou/scf/Gateway/MoneyChange.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.yonyou.scf.Gateway.MoneyChange"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="contract"/>
+</launchConfiguration>

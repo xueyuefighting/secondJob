@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.WorkflowMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.Workflow" >
+    <id column="node_id" property="nodeId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="CHAR" />
+    <result column="child_flg" property="childFlg" jdbcType="CHAR" />
+    <result column="fa_id" property="faId" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user_id" property="updateUserId" jdbcType="BIGINT" />
+    <result column="enable" property="enable" jdbcType="CHAR" />
+    <result column="same_level" property="sameLevel" jdbcType="BIGINT" />
+    <result column="wk_id" property="wkId" jdbcType="BIGINT" />
+    <result column="invalid" property="invalid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    node_id, name, order_no, child_flg, fa_id, create_time, create_user_id, update_time, 
+    update_user_id, enable, same_level, wk_id, invalid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.WorkflowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from workflow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from workflow
+    where node_id = #{nodeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from workflow
+    where node_id = #{nodeId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.WorkflowExample" >
+    delete from workflow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.Workflow" >
+    insert into workflow (node_id, name, order_no, 
+      child_flg, fa_id, create_time, 
+      create_user_id, update_time, update_user_id, 
+      enable, same_level, wk_id, 
+      invalid)
+    values (#{nodeId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{orderNo,jdbcType=CHAR}, 
+      #{childFlg,jdbcType=CHAR}, #{faId,jdbcType=BIGINT}, #{createTime,jdbcType=VARCHAR}, 
+      #{createUserId,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR}, #{updateUserId,jdbcType=BIGINT}, 
+      #{enable,jdbcType=CHAR}, #{sameLevel,jdbcType=BIGINT}, #{wkId,jdbcType=BIGINT}, 
+      #{invalid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.Workflow" >
+    insert into workflow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nodeId != null" >
+        node_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="childFlg != null" >
+        child_flg,
+      </if>
+      <if test="faId != null" >
+        fa_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+      <if test="sameLevel != null" >
+        same_level,
+      </if>
+      <if test="wkId != null" >
+        wk_id,
+      </if>
+      <if test="invalid != null" >
+        invalid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="childFlg != null" >
+        #{childFlg,jdbcType=CHAR},
+      </if>
+      <if test="faId != null" >
+        #{faId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=CHAR},
+      </if>
+      <if test="sameLevel != null" >
+        #{sameLevel,jdbcType=BIGINT},
+      </if>
+      <if test="wkId != null" >
+        #{wkId,jdbcType=BIGINT},
+      </if>
+      <if test="invalid != null" >
+        #{invalid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.WorkflowExample" resultType="java.lang.Integer" >
+    select count(*) from workflow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update workflow
+    <set >
+      <if test="record.nodeId != null" >
+        node_id = #{record.nodeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=CHAR},
+      </if>
+      <if test="record.childFlg != null" >
+        child_flg = #{record.childFlg,jdbcType=CHAR},
+      </if>
+      <if test="record.faId != null" >
+        fa_id = #{record.faId,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserId != null" >
+        create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUserId != null" >
+        update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="record.enable != null" >
+        enable = #{record.enable,jdbcType=CHAR},
+      </if>
+      <if test="record.sameLevel != null" >
+        same_level = #{record.sameLevel,jdbcType=BIGINT},
+      </if>
+      <if test="record.wkId != null" >
+        wk_id = #{record.wkId,jdbcType=BIGINT},
+      </if>
+      <if test="record.invalid != null" >
+        invalid = #{record.invalid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update workflow
+    set node_id = #{record.nodeId,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      order_no = #{record.orderNo,jdbcType=CHAR},
+      child_flg = #{record.childFlg,jdbcType=CHAR},
+      fa_id = #{record.faId,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      create_user_id = #{record.createUserId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      update_user_id = #{record.updateUserId,jdbcType=BIGINT},
+      enable = #{record.enable,jdbcType=CHAR},
+      same_level = #{record.sameLevel,jdbcType=BIGINT},
+      wk_id = #{record.wkId,jdbcType=BIGINT},
+      invalid = #{record.invalid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.Workflow" >
+    update workflow
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=CHAR},
+      </if>
+      <if test="childFlg != null" >
+        child_flg = #{childFlg,jdbcType=CHAR},
+      </if>
+      <if test="faId != null" >
+        fa_id = #{faId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUserId != null" >
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=CHAR},
+      </if>
+      <if test="sameLevel != null" >
+        same_level = #{sameLevel,jdbcType=BIGINT},
+      </if>
+      <if test="wkId != null" >
+        wk_id = #{wkId,jdbcType=BIGINT},
+      </if>
+      <if test="invalid != null" >
+        invalid = #{invalid,jdbcType=CHAR},
+      </if>
+    </set>
+    where node_id = #{nodeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.Workflow" >
+    update workflow
+    set name = #{name,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=CHAR},
+      child_flg = #{childFlg,jdbcType=CHAR},
+      fa_id = #{faId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      enable = #{enable,jdbcType=CHAR},
+      same_level = #{sameLevel,jdbcType=BIGINT},
+      wk_id = #{wkId,jdbcType=BIGINT},
+      invalid = #{invalid,jdbcType=CHAR}
+    where node_id = #{nodeId,jdbcType=BIGINT}
+  </update>
+</mapper>

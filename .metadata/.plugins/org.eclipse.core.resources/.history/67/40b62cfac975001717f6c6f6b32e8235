@@ -1,0 +1,13 @@
+package ftp;
+
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.pool2.KeyedPooledObjectFactory;
+import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
+
+public class FTPClientPoolB extends GenericKeyedObjectPool<FTPClientConfiguration, FTPClient>{
+
+	public FTPClientPoolB(KeyedPooledObjectFactory<FTPClientConfiguration, FTPClient> factory) {
+		super(factory);
+	}
+
+}

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F640Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F640" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_num" property="busiNum" jdbcType="CHAR" />
+    <result column="mem_num" property="memNum" jdbcType="CHAR" />
+    <result column="imt_type" property="imtType" jdbcType="CHAR" />
+    <result column="start_num" property="startNum" jdbcType="INTEGER" />
+    <result column="query_num" property="queryNum" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="ptdwh" property="ptdwh" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="financeid" property="financeid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_num, mem_num, imt_type, start_num, query_num, total_num, ptdwh, cuowuxx, 
+    financeid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F640Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f640
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f640
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f640
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F640Example" >
+    delete from f640
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F640" >
+    insert into f640 (id, busi_num, mem_num, 
+      imt_type, start_num, query_num, 
+      total_num, ptdwh, cuowuxx, 
+      financeid)
+    values (#{id,jdbcType=BIGINT}, #{busiNum,jdbcType=CHAR}, #{memNum,jdbcType=CHAR}, 
+      #{imtType,jdbcType=CHAR}, #{startNum,jdbcType=INTEGER}, #{queryNum,jdbcType=INTEGER}, 
+      #{totalNum,jdbcType=INTEGER}, #{ptdwh,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, 
+      #{financeid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F640" >
+    insert into f640
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="imtType != null" >
+        imt_type,
+      </if>
+      <if test="startNum != null" >
+        start_num,
+      </if>
+      <if test="queryNum != null" >
+        query_num,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="financeid != null" >
+        financeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="imtType != null" >
+        #{imtType,jdbcType=CHAR},
+      </if>
+      <if test="startNum != null" >
+        #{startNum,jdbcType=INTEGER},
+      </if>
+      <if test="queryNum != null" >
+        #{queryNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="ptdwh != null" >
+        #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="financeid != null" >
+        #{financeid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F640Example" resultType="java.lang.Integer" >
+    select count(*) from f640
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f640
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=CHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=CHAR},
+      </if>
+      <if test="record.imtType != null" >
+        imt_type = #{record.imtType,jdbcType=CHAR},
+      </if>
+      <if test="record.startNum != null" >
+        start_num = #{record.startNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.queryNum != null" >
+        query_num = #{record.queryNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalNum != null" >
+        total_num = #{record.totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptdwh != null" >
+        ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeid != null" >
+        financeid = #{record.financeid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f640
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_num = #{record.busiNum,jdbcType=CHAR},
+      mem_num = #{record.memNum,jdbcType=CHAR},
+      imt_type = #{record.imtType,jdbcType=CHAR},
+      start_num = #{record.startNum,jdbcType=INTEGER},
+      query_num = #{record.queryNum,jdbcType=INTEGER},
+      total_num = #{record.totalNum,jdbcType=INTEGER},
+      ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      financeid = #{record.financeid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F640" >
+    update f640
+    <set >
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="imtType != null" >
+        imt_type = #{imtType,jdbcType=CHAR},
+      </if>
+      <if test="startNum != null" >
+        start_num = #{startNum,jdbcType=INTEGER},
+      </if>
+      <if test="queryNum != null" >
+        query_num = #{queryNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="financeid != null" >
+        financeid = #{financeid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F640" >
+    update f640
+    set busi_num = #{busiNum,jdbcType=CHAR},
+      mem_num = #{memNum,jdbcType=CHAR},
+      imt_type = #{imtType,jdbcType=CHAR},
+      start_num = #{startNum,jdbcType=INTEGER},
+      query_num = #{queryNum,jdbcType=INTEGER},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      financeid = #{financeid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

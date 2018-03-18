@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/3013/src/main/java/com/bjdreamtech/dmt/util/DMTPDFUtil.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.bjdreamtech.dmt.util.DMTPDFUtil"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="3013"/>
+</launchConfiguration>

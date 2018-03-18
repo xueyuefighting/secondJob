@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F625Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F625" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_num" property="busiNum" jdbcType="CHAR" />
+    <result column="vir_acc_type" property="virAccType" jdbcType="CHAR" />
+    <result column="mem_num" property="memNum" jdbcType="CHAR" />
+    <result column="query_date" property="queryDate" jdbcType="CHAR" />
+    <result column="balance" property="balance" jdbcType="BIGINT" />
+    <result column="useable_balance" property="useableBalance" jdbcType="BIGINT" />
+    <result column="ptdwh" property="ptdwh" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="role_type" property="roleType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_num, vir_acc_type, mem_num, query_date, balance, useable_balance, ptdwh, 
+    cuowuxx, role_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F625Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f625
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f625
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f625
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F625Example" >
+    delete from f625
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F625" >
+    insert into f625 (id, busi_num, vir_acc_type, 
+      mem_num, query_date, balance, 
+      useable_balance, ptdwh, cuowuxx, 
+      role_type)
+    values (#{id,jdbcType=BIGINT}, #{busiNum,jdbcType=CHAR}, #{virAccType,jdbcType=CHAR}, 
+      #{memNum,jdbcType=CHAR}, #{queryDate,jdbcType=CHAR}, #{balance,jdbcType=BIGINT}, 
+      #{useableBalance,jdbcType=BIGINT}, #{ptdwh,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, 
+      #{roleType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F625" >
+    insert into f625
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="virAccType != null" >
+        vir_acc_type,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="queryDate != null" >
+        query_date,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="useableBalance != null" >
+        useable_balance,
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="virAccType != null" >
+        #{virAccType,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="queryDate != null" >
+        #{queryDate,jdbcType=CHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="useableBalance != null" >
+        #{useableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="ptdwh != null" >
+        #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F625Example" resultType="java.lang.Integer" >
+    select count(*) from f625
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f625
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=CHAR},
+      </if>
+      <if test="record.virAccType != null" >
+        vir_acc_type = #{record.virAccType,jdbcType=CHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=CHAR},
+      </if>
+      <if test="record.queryDate != null" >
+        query_date = #{record.queryDate,jdbcType=CHAR},
+      </if>
+      <if test="record.balance != null" >
+        balance = #{record.balance,jdbcType=BIGINT},
+      </if>
+      <if test="record.useableBalance != null" >
+        useable_balance = #{record.useableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.ptdwh != null" >
+        ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f625
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_num = #{record.busiNum,jdbcType=CHAR},
+      vir_acc_type = #{record.virAccType,jdbcType=CHAR},
+      mem_num = #{record.memNum,jdbcType=CHAR},
+      query_date = #{record.queryDate,jdbcType=CHAR},
+      balance = #{record.balance,jdbcType=BIGINT},
+      useable_balance = #{record.useableBalance,jdbcType=BIGINT},
+      ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F625" >
+    update f625
+    <set >
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="virAccType != null" >
+        vir_acc_type = #{virAccType,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="queryDate != null" >
+        query_date = #{queryDate,jdbcType=CHAR},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="useableBalance != null" >
+        useable_balance = #{useableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F625" >
+    update f625
+    set busi_num = #{busiNum,jdbcType=CHAR},
+      vir_acc_type = #{virAccType,jdbcType=CHAR},
+      mem_num = #{memNum,jdbcType=CHAR},
+      query_date = #{queryDate,jdbcType=CHAR},
+      balance = #{balance,jdbcType=BIGINT},
+      useable_balance = #{useableBalance,jdbcType=BIGINT},
+      ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

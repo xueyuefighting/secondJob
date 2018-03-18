@@ -1,0 +1,4 @@
+springBatch.notification.zhang.url = url
+###springBatch.notification.zhang.sendContent = sendContent
+springBatch.notification.789789.url = url
+springBatch.notification.jin.sendContent = sendContent

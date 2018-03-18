@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F636Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F636" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_num" property="busiNum" jdbcType="CHAR" />
+    <result column="fee_type" property="feeType" jdbcType="CHAR" />
+    <result column="prescription" property="prescription" jdbcType="CHAR" />
+    <result column="channel" property="channel" jdbcType="CHAR" />
+    <result column="fee_model" property="feeModel" jdbcType="CHAR" />
+    <result column="money_amount" property="moneyAmount" jdbcType="BIGINT" />
+    <result column="fee_amount" property="feeAmount" jdbcType="BIGINT" />
+    <result column="fee_no" property="feeNo" jdbcType="CHAR" />
+    <result column="ptwdh" property="ptwdh" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="mem_num" property="memNum" jdbcType="VARCHAR" />
+    <result column="role_type" property="roleType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_num, fee_type, prescription, channel, fee_model, money_amount, fee_amount, 
+    fee_no, ptwdh, cuowuxx, mem_num, role_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F636Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f636
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f636
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f636
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F636Example" >
+    delete from f636
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F636" >
+    insert into f636 (id, busi_num, fee_type, 
+      prescription, channel, fee_model, 
+      money_amount, fee_amount, fee_no, 
+      ptwdh, cuowuxx, mem_num, 
+      role_type)
+    values (#{id,jdbcType=BIGINT}, #{busiNum,jdbcType=CHAR}, #{feeType,jdbcType=CHAR}, 
+      #{prescription,jdbcType=CHAR}, #{channel,jdbcType=CHAR}, #{feeModel,jdbcType=CHAR}, 
+      #{moneyAmount,jdbcType=BIGINT}, #{feeAmount,jdbcType=BIGINT}, #{feeNo,jdbcType=CHAR}, 
+      #{ptwdh,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, #{memNum,jdbcType=VARCHAR}, 
+      #{roleType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F636" >
+    insert into f636
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="feeType != null" >
+        fee_type,
+      </if>
+      <if test="prescription != null" >
+        prescription,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="feeModel != null" >
+        fee_model,
+      </if>
+      <if test="moneyAmount != null" >
+        money_amount,
+      </if>
+      <if test="feeAmount != null" >
+        fee_amount,
+      </if>
+      <if test="feeNo != null" >
+        fee_no,
+      </if>
+      <if test="ptwdh != null" >
+        ptwdh,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="feeType != null" >
+        #{feeType,jdbcType=CHAR},
+      </if>
+      <if test="prescription != null" >
+        #{prescription,jdbcType=CHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=CHAR},
+      </if>
+      <if test="feeModel != null" >
+        #{feeModel,jdbcType=CHAR},
+      </if>
+      <if test="moneyAmount != null" >
+        #{moneyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="feeAmount != null" >
+        #{feeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="feeNo != null" >
+        #{feeNo,jdbcType=CHAR},
+      </if>
+      <if test="ptwdh != null" >
+        #{ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F636Example" resultType="java.lang.Integer" >
+    select count(*) from f636
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f636
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=CHAR},
+      </if>
+      <if test="record.feeType != null" >
+        fee_type = #{record.feeType,jdbcType=CHAR},
+      </if>
+      <if test="record.prescription != null" >
+        prescription = #{record.prescription,jdbcType=CHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=CHAR},
+      </if>
+      <if test="record.feeModel != null" >
+        fee_model = #{record.feeModel,jdbcType=CHAR},
+      </if>
+      <if test="record.moneyAmount != null" >
+        money_amount = #{record.moneyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.feeAmount != null" >
+        fee_amount = #{record.feeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.feeNo != null" >
+        fee_no = #{record.feeNo,jdbcType=CHAR},
+      </if>
+      <if test="record.ptwdh != null" >
+        ptwdh = #{record.ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f636
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_num = #{record.busiNum,jdbcType=CHAR},
+      fee_type = #{record.feeType,jdbcType=CHAR},
+      prescription = #{record.prescription,jdbcType=CHAR},
+      channel = #{record.channel,jdbcType=CHAR},
+      fee_model = #{record.feeModel,jdbcType=CHAR},
+      money_amount = #{record.moneyAmount,jdbcType=BIGINT},
+      fee_amount = #{record.feeAmount,jdbcType=BIGINT},
+      fee_no = #{record.feeNo,jdbcType=CHAR},
+      ptwdh = #{record.ptwdh,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      mem_num = #{record.memNum,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F636" >
+    update f636
+    <set >
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="feeType != null" >
+        fee_type = #{feeType,jdbcType=CHAR},
+      </if>
+      <if test="prescription != null" >
+        prescription = #{prescription,jdbcType=CHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=CHAR},
+      </if>
+      <if test="feeModel != null" >
+        fee_model = #{feeModel,jdbcType=CHAR},
+      </if>
+      <if test="moneyAmount != null" >
+        money_amount = #{moneyAmount,jdbcType=BIGINT},
+      </if>
+      <if test="feeAmount != null" >
+        fee_amount = #{feeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="feeNo != null" >
+        fee_no = #{feeNo,jdbcType=CHAR},
+      </if>
+      <if test="ptwdh != null" >
+        ptwdh = #{ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F636" >
+    update f636
+    set busi_num = #{busiNum,jdbcType=CHAR},
+      fee_type = #{feeType,jdbcType=CHAR},
+      prescription = #{prescription,jdbcType=CHAR},
+      channel = #{channel,jdbcType=CHAR},
+      fee_model = #{feeModel,jdbcType=CHAR},
+      money_amount = #{moneyAmount,jdbcType=BIGINT},
+      fee_amount = #{feeAmount,jdbcType=BIGINT},
+      fee_no = #{feeNo,jdbcType=CHAR},
+      ptwdh = #{ptwdh,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      mem_num = #{memNum,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

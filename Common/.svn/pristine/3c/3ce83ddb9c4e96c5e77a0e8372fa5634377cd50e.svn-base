@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.RepaymentDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.RepaymentDetails" >
+    <id column="rd_id" property="rdId" jdbcType="BIGINT" />
+    <result column="repay_id" property="repayId" jdbcType="BIGINT" />
+    <result column="rs_id" property="rsId" jdbcType="BIGINT" />
+    <result column="ib_id" property="ibId" jdbcType="BIGINT" />
+    <result column="agency_id" property="agencyId" jdbcType="BIGINT" />
+    <result column="capital_id" property="capitalId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="repayment_time" property="repaymentTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="effective" property="effective" jdbcType="VARCHAR" />
+    <result column="finance_id" property="financeId" jdbcType="BIGINT" />
+    <result column="principal_already" property="principalAlready" jdbcType="BIGINT" />
+    <result column="interest_already" property="interestAlready" jdbcType="BIGINT" />
+    <result column="service_charge_already" property="serviceChargeAlready" jdbcType="BIGINT" />
+    <result column="rollover_interest_already" property="rolloverInterestAlready" jdbcType="BIGINT" />
+    <result column="extension_service_fee_already" property="extensionServiceFeeAlready" jdbcType="BIGINT" />
+    <result column="overdue_interest_already" property="overdueInterestAlready" jdbcType="BIGINT" />
+    <result column="overdue_service_fee_already" property="overdueServiceFeeAlready" jdbcType="BIGINT" />
+    <result column="pre_repay_fee_already" property="preRepayFeeAlready" jdbcType="BIGINT" />
+    <result column="extension_fee_already" property="extensionFeeAlready" jdbcType="BIGINT" />
+    <result column="other_fee_already" property="otherFeeAlready" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    rd_id, repay_id, rs_id, ib_id, agency_id, capital_id, amount, currency, repayment_time, 
+    create_user, create_date, effective, finance_id, principal_already, interest_already, 
+    service_charge_already, rollover_interest_already, extension_service_fee_already, 
+    overdue_interest_already, overdue_service_fee_already, pre_repay_fee_already, extension_fee_already, 
+    other_fee_already
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.RepaymentDetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from repayment_details
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_details
+    where rd_id = #{rdId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from repayment_details
+    where rd_id = #{rdId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.RepaymentDetailsExample" >
+    delete from repayment_details
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.RepaymentDetails" >
+    insert into repayment_details (rd_id, repay_id, rs_id, 
+      ib_id, agency_id, capital_id, 
+      amount, currency, repayment_time, 
+      create_user, create_date, effective, 
+      finance_id, principal_already, interest_already, 
+      service_charge_already, rollover_interest_already, 
+      extension_service_fee_already, overdue_interest_already, 
+      overdue_service_fee_already, pre_repay_fee_already, 
+      extension_fee_already, other_fee_already)
+    values (#{rdId,jdbcType=BIGINT}, #{repayId,jdbcType=BIGINT}, #{rsId,jdbcType=BIGINT}, 
+      #{ibId,jdbcType=BIGINT}, #{agencyId,jdbcType=BIGINT}, #{capitalId,jdbcType=BIGINT}, 
+      #{amount,jdbcType=BIGINT}, #{currency,jdbcType=VARCHAR}, #{repaymentTime,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=BIGINT}, #{createDate,jdbcType=VARCHAR}, #{effective,jdbcType=VARCHAR}, 
+      #{financeId,jdbcType=BIGINT}, #{principalAlready,jdbcType=BIGINT}, #{interestAlready,jdbcType=BIGINT}, 
+      #{serviceChargeAlready,jdbcType=BIGINT}, #{rolloverInterestAlready,jdbcType=BIGINT}, 
+      #{extensionServiceFeeAlready,jdbcType=BIGINT}, #{overdueInterestAlready,jdbcType=BIGINT}, 
+      #{overdueServiceFeeAlready,jdbcType=BIGINT}, #{preRepayFeeAlready,jdbcType=BIGINT}, 
+      #{extensionFeeAlready,jdbcType=BIGINT}, #{otherFeeAlready,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.RepaymentDetails" >
+    insert into repayment_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rdId != null" >
+        rd_id,
+      </if>
+      <if test="repayId != null" >
+        repay_id,
+      </if>
+      <if test="rsId != null" >
+        rs_id,
+      </if>
+      <if test="ibId != null" >
+        ib_id,
+      </if>
+      <if test="agencyId != null" >
+        agency_id,
+      </if>
+      <if test="capitalId != null" >
+        capital_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="repaymentTime != null" >
+        repayment_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="effective != null" >
+        effective,
+      </if>
+      <if test="financeId != null" >
+        finance_id,
+      </if>
+      <if test="principalAlready != null" >
+        principal_already,
+      </if>
+      <if test="interestAlready != null" >
+        interest_already,
+      </if>
+      <if test="serviceChargeAlready != null" >
+        service_charge_already,
+      </if>
+      <if test="rolloverInterestAlready != null" >
+        rollover_interest_already,
+      </if>
+      <if test="extensionServiceFeeAlready != null" >
+        extension_service_fee_already,
+      </if>
+      <if test="overdueInterestAlready != null" >
+        overdue_interest_already,
+      </if>
+      <if test="overdueServiceFeeAlready != null" >
+        overdue_service_fee_already,
+      </if>
+      <if test="preRepayFeeAlready != null" >
+        pre_repay_fee_already,
+      </if>
+      <if test="extensionFeeAlready != null" >
+        extension_fee_already,
+      </if>
+      <if test="otherFeeAlready != null" >
+        other_fee_already,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rdId != null" >
+        #{rdId,jdbcType=BIGINT},
+      </if>
+      <if test="repayId != null" >
+        #{repayId,jdbcType=BIGINT},
+      </if>
+      <if test="rsId != null" >
+        #{rsId,jdbcType=BIGINT},
+      </if>
+      <if test="ibId != null" >
+        #{ibId,jdbcType=BIGINT},
+      </if>
+      <if test="agencyId != null" >
+        #{agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalId != null" >
+        #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentTime != null" >
+        #{repaymentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        #{financeId,jdbcType=BIGINT},
+      </if>
+      <if test="principalAlready != null" >
+        #{principalAlready,jdbcType=BIGINT},
+      </if>
+      <if test="interestAlready != null" >
+        #{interestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="serviceChargeAlready != null" >
+        #{serviceChargeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="rolloverInterestAlready != null" >
+        #{rolloverInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="extensionServiceFeeAlready != null" >
+        #{extensionServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="overdueInterestAlready != null" >
+        #{overdueInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="overdueServiceFeeAlready != null" >
+        #{overdueServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="preRepayFeeAlready != null" >
+        #{preRepayFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="extensionFeeAlready != null" >
+        #{extensionFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="otherFeeAlready != null" >
+        #{otherFeeAlready,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.RepaymentDetailsExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_details
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_details
+    <set >
+      <if test="record.rdId != null" >
+        rd_id = #{record.rdId,jdbcType=BIGINT},
+      </if>
+      <if test="record.repayId != null" >
+        repay_id = #{record.repayId,jdbcType=BIGINT},
+      </if>
+      <if test="record.rsId != null" >
+        rs_id = #{record.rsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.ibId != null" >
+        ib_id = #{record.ibId,jdbcType=BIGINT},
+      </if>
+      <if test="record.agencyId != null" >
+        agency_id = #{record.agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.capitalId != null" >
+        capital_id = #{record.capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentTime != null" >
+        repayment_time = #{record.repaymentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDate != null" >
+        create_date = #{record.createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effective != null" >
+        effective = #{record.effective,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeId != null" >
+        finance_id = #{record.financeId,jdbcType=BIGINT},
+      </if>
+      <if test="record.principalAlready != null" >
+        principal_already = #{record.principalAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.interestAlready != null" >
+        interest_already = #{record.interestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.serviceChargeAlready != null" >
+        service_charge_already = #{record.serviceChargeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.rolloverInterestAlready != null" >
+        rollover_interest_already = #{record.rolloverInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.extensionServiceFeeAlready != null" >
+        extension_service_fee_already = #{record.extensionServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.overdueInterestAlready != null" >
+        overdue_interest_already = #{record.overdueInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.overdueServiceFeeAlready != null" >
+        overdue_service_fee_already = #{record.overdueServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.preRepayFeeAlready != null" >
+        pre_repay_fee_already = #{record.preRepayFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.extensionFeeAlready != null" >
+        extension_fee_already = #{record.extensionFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="record.otherFeeAlready != null" >
+        other_fee_already = #{record.otherFeeAlready,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_details
+    set rd_id = #{record.rdId,jdbcType=BIGINT},
+      repay_id = #{record.repayId,jdbcType=BIGINT},
+      rs_id = #{record.rsId,jdbcType=BIGINT},
+      ib_id = #{record.ibId,jdbcType=BIGINT},
+      agency_id = #{record.agencyId,jdbcType=BIGINT},
+      capital_id = #{record.capitalId,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=BIGINT},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      repayment_time = #{record.repaymentTime,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      create_date = #{record.createDate,jdbcType=VARCHAR},
+      effective = #{record.effective,jdbcType=VARCHAR},
+      finance_id = #{record.financeId,jdbcType=BIGINT},
+      principal_already = #{record.principalAlready,jdbcType=BIGINT},
+      interest_already = #{record.interestAlready,jdbcType=BIGINT},
+      service_charge_already = #{record.serviceChargeAlready,jdbcType=BIGINT},
+      rollover_interest_already = #{record.rolloverInterestAlready,jdbcType=BIGINT},
+      extension_service_fee_already = #{record.extensionServiceFeeAlready,jdbcType=BIGINT},
+      overdue_interest_already = #{record.overdueInterestAlready,jdbcType=BIGINT},
+      overdue_service_fee_already = #{record.overdueServiceFeeAlready,jdbcType=BIGINT},
+      pre_repay_fee_already = #{record.preRepayFeeAlready,jdbcType=BIGINT},
+      extension_fee_already = #{record.extensionFeeAlready,jdbcType=BIGINT},
+      other_fee_already = #{record.otherFeeAlready,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.RepaymentDetails" >
+    update repayment_details
+    <set >
+      <if test="repayId != null" >
+        repay_id = #{repayId,jdbcType=BIGINT},
+      </if>
+      <if test="rsId != null" >
+        rs_id = #{rsId,jdbcType=BIGINT},
+      </if>
+      <if test="ibId != null" >
+        ib_id = #{ibId,jdbcType=BIGINT},
+      </if>
+      <if test="agencyId != null" >
+        agency_id = #{agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalId != null" >
+        capital_id = #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentTime != null" >
+        repayment_time = #{repaymentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        effective = #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="financeId != null" >
+        finance_id = #{financeId,jdbcType=BIGINT},
+      </if>
+      <if test="principalAlready != null" >
+        principal_already = #{principalAlready,jdbcType=BIGINT},
+      </if>
+      <if test="interestAlready != null" >
+        interest_already = #{interestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="serviceChargeAlready != null" >
+        service_charge_already = #{serviceChargeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="rolloverInterestAlready != null" >
+        rollover_interest_already = #{rolloverInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="extensionServiceFeeAlready != null" >
+        extension_service_fee_already = #{extensionServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="overdueInterestAlready != null" >
+        overdue_interest_already = #{overdueInterestAlready,jdbcType=BIGINT},
+      </if>
+      <if test="overdueServiceFeeAlready != null" >
+        overdue_service_fee_already = #{overdueServiceFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="preRepayFeeAlready != null" >
+        pre_repay_fee_already = #{preRepayFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="extensionFeeAlready != null" >
+        extension_fee_already = #{extensionFeeAlready,jdbcType=BIGINT},
+      </if>
+      <if test="otherFeeAlready != null" >
+        other_fee_already = #{otherFeeAlready,jdbcType=BIGINT},
+      </if>
+    </set>
+    where rd_id = #{rdId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.RepaymentDetails" >
+    update repayment_details
+    set repay_id = #{repayId,jdbcType=BIGINT},
+      rs_id = #{rsId,jdbcType=BIGINT},
+      ib_id = #{ibId,jdbcType=BIGINT},
+      agency_id = #{agencyId,jdbcType=BIGINT},
+      capital_id = #{capitalId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=BIGINT},
+      currency = #{currency,jdbcType=VARCHAR},
+      repayment_time = #{repaymentTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=VARCHAR},
+      effective = #{effective,jdbcType=VARCHAR},
+      finance_id = #{financeId,jdbcType=BIGINT},
+      principal_already = #{principalAlready,jdbcType=BIGINT},
+      interest_already = #{interestAlready,jdbcType=BIGINT},
+      service_charge_already = #{serviceChargeAlready,jdbcType=BIGINT},
+      rollover_interest_already = #{rolloverInterestAlready,jdbcType=BIGINT},
+      extension_service_fee_already = #{extensionServiceFeeAlready,jdbcType=BIGINT},
+      overdue_interest_already = #{overdueInterestAlready,jdbcType=BIGINT},
+      overdue_service_fee_already = #{overdueServiceFeeAlready,jdbcType=BIGINT},
+      pre_repay_fee_already = #{preRepayFeeAlready,jdbcType=BIGINT},
+      extension_fee_already = #{extensionFeeAlready,jdbcType=BIGINT},
+      other_fee_already = #{otherFeeAlready,jdbcType=BIGINT}
+    where rd_id = #{rdId,jdbcType=BIGINT}
+  </update>
+</mapper>

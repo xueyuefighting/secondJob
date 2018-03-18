@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F650Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F650" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="pay_id" property="payId" jdbcType="BIGINT" />
+    <result column="flag" property="flag" jdbcType="VARCHAR" />
+    <result column="busi_num" property="busiNum" jdbcType="VARCHAR" />
+    <result column="mem_num" property="memNum" jdbcType="VARCHAR" />
+    <result column="cfca_sn" property="cfcaSn" jdbcType="VARCHAR" />
+    <result column="cfca_dn" property="cfcaDn" jdbcType="VARCHAR" />
+    <result column="cfca_eff_date" property="cfcaEffDate" jdbcType="VARCHAR" />
+    <result column="ptwdh" property="ptwdh" jdbcType="VARCHAR" />
+    <result column="result" property="result" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pay_id, flag, busi_num, mem_num, cfca_sn, cfca_dn, cfca_eff_date, ptwdh, result, 
+    cuowuxx, pay_status, create_time, create_user, update_time, update_user
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F650Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f650
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f650
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f650
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F650Example" >
+    delete from f650
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F650" >
+    insert into f650 (id, pay_id, flag, 
+      busi_num, mem_num, cfca_sn, 
+      cfca_dn, cfca_eff_date, ptwdh, 
+      result, cuowuxx, pay_status, 
+      create_time, create_user, update_time, 
+      update_user)
+    values (#{id,jdbcType=BIGINT}, #{payId,jdbcType=BIGINT}, #{flag,jdbcType=VARCHAR}, 
+      #{busiNum,jdbcType=VARCHAR}, #{memNum,jdbcType=VARCHAR}, #{cfcaSn,jdbcType=VARCHAR}, 
+      #{cfcaDn,jdbcType=VARCHAR}, #{cfcaEffDate,jdbcType=VARCHAR}, #{ptwdh,jdbcType=VARCHAR}, 
+      #{result,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F650" >
+    insert into f650
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="cfcaSn != null" >
+        cfca_sn,
+      </if>
+      <if test="cfcaDn != null" >
+        cfca_dn,
+      </if>
+      <if test="cfcaEffDate != null" >
+        cfca_eff_date,
+      </if>
+      <if test="ptwdh != null" >
+        ptwdh,
+      </if>
+      <if test="result != null" >
+        result,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payId != null" >
+        #{payId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=VARCHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaSn != null" >
+        #{cfcaSn,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaDn != null" >
+        #{cfcaDn,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaEffDate != null" >
+        #{cfcaEffDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptwdh != null" >
+        #{ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F650Example" resultType="java.lang.Integer" >
+    select count(*) from f650
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f650
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.payId != null" >
+        pay_id = #{record.payId,jdbcType=BIGINT},
+      </if>
+      <if test="record.flag != null" >
+        flag = #{record.flag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfcaSn != null" >
+        cfca_sn = #{record.cfcaSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfcaDn != null" >
+        cfca_dn = #{record.cfcaDn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cfcaEffDate != null" >
+        cfca_eff_date = #{record.cfcaEffDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptwdh != null" >
+        ptwdh = #{record.ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.result != null" >
+        result = #{record.result,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payStatus != null" >
+        pay_status = #{record.payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f650
+    set id = #{record.id,jdbcType=BIGINT},
+      pay_id = #{record.payId,jdbcType=BIGINT},
+      flag = #{record.flag,jdbcType=VARCHAR},
+      busi_num = #{record.busiNum,jdbcType=VARCHAR},
+      mem_num = #{record.memNum,jdbcType=VARCHAR},
+      cfca_sn = #{record.cfcaSn,jdbcType=VARCHAR},
+      cfca_dn = #{record.cfcaDn,jdbcType=VARCHAR},
+      cfca_eff_date = #{record.cfcaEffDate,jdbcType=VARCHAR},
+      ptwdh = #{record.ptwdh,jdbcType=VARCHAR},
+      result = #{record.result,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      pay_status = #{record.payStatus,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F650" >
+    update f650
+    <set >
+      <if test="payId != null" >
+        pay_id = #{payId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=VARCHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaSn != null" >
+        cfca_sn = #{cfcaSn,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaDn != null" >
+        cfca_dn = #{cfcaDn,jdbcType=VARCHAR},
+      </if>
+      <if test="cfcaEffDate != null" >
+        cfca_eff_date = #{cfcaEffDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptwdh != null" >
+        ptwdh = #{ptwdh,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F650" >
+    update f650
+    set pay_id = #{payId,jdbcType=BIGINT},
+      flag = #{flag,jdbcType=VARCHAR},
+      busi_num = #{busiNum,jdbcType=VARCHAR},
+      mem_num = #{memNum,jdbcType=VARCHAR},
+      cfca_sn = #{cfcaSn,jdbcType=VARCHAR},
+      cfca_dn = #{cfcaDn,jdbcType=VARCHAR},
+      cfca_eff_date = #{cfcaEffDate,jdbcType=VARCHAR},
+      ptwdh = #{ptwdh,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

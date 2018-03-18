@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用友SCF</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="../../css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="../../css/binding.css" rel="stylesheet" />
+    <link href="../../css/binding2.css" rel="stylesheet" />
+    <link href="../../css/loading.css" rel="stylesheet" />
+      <link href="../../css/load.css" rel="stylesheet" />
+    <link href="../../css/confirm/scf.confirm.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />-->
+</head>
+<body onload="">
+     
+           
+    <div class="header">
+        <div class="lg">
+            <img id="" src="../../images/yonyouscf.png"><!-- id=serverLogoImg -->
+        </div>
+    <div class="denglu"></div>
+    </div>
+    <div id="wrapper">
+
+        <!-- /. NAV TOP  -->
+        <div id="dd"> 
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+               
+                <div class="page-header">
+                        <div class="biaot" style="margin-bottom:40px"><img src="../../images/act.png"><span class="shoux">账号激活</span><span class="tixing">请完善以下实名信息，完成身份验证。</span></span>
+                        </div> 
+<!--                     <div class="yanzhen">20170927zhou图片
+                            <img src="../../images/buzhou2.png">
+                        </div> -->
+                        <ul class="blank">
+                            <!--<li><input type="radio" name="Fruit">
+                            <img
+                                    src="../../images/gs.png"></li>
+                            <li><input type="radio" name="Fruit"><img
+                                    src="../../images/js.png"></li>
+                            <li><input type="radio" name="Fruit"><img
+                                    src="../../images/zg.png"></li>
+                            <li><input type="radio" name="Fruit"><img
+                                    src="../../images/bj.png"></li>
+                            <li class="yin"><input type="radio" name="Fruit"><img
+                                    src="../../images/gs.png"></li>
+                            <li class="yin"><input type="radio" name="Fruit"><img
+                                    src="../../images/js.png"></li>
+                            <li class="yin"><input type="radio" name="Fruit"><img
+                                    src="../../images/zg.png"></li>
+                            <li class="yin"><input type="radio" name="Fruit"><img
+                                    src="../../images/bj.png"></li>-->
+                        </ul>
+                        <!--<div class="xians">显示全部...</div>-->
+                        <div class="xians"></div>
+                        <!--廊坊银行-->
+                        <div id="UShield">
+                            <div id="udun">
+                                <div class="biaot1">绑定银行U盾(USBKey)
+                                    <span class="yiwen">如有疑问，请查看绑定</span>
+                                    <span><a href="UKeyBindStep.html" target="_blank">U盾操作手册。</a></span>
+                                </div>
+								 <table id="no1" class="dmt_condition_table" style="border: solid 1px #cccccc;background-color: white;padding: 20px;">
+									<input type="hidden" id="SelectCertResult" />
+									<ul class="buzhou value_hidden_usbk">
+										<li>步骤一、插入U盾，安装U盾驱动程序(如已安装请忽略)</li>
+										<li>步骤二、选择U盾对应的数字证书并输入密码</li>
+										<li> <input  type="hidden" id="CertInfoContent" />
+										<button id="bangd" onclick="selectUkey();">选择U盾对应证书</button></li>
+										<li>步骤三、<span id="viewUkeyName">查看</span> <span class="buquan1 qualification"></span></li>
+										<li><button id="bangd" onclick="bingUkey()">绑定U盾</button><span class="buquan1"></span></li>
+									</ul>
+								</table>
+                            </div>
+                        </div>
+
+                        <div id="contract"></div>
+
+                        <div id="nothing" class="jieguo" style="display:none;text-align:center;">
+                            <img src="../../images/scussc.png">
+                            <div class="tishi fn">目前暂无需要签署的合同</div>
+                        </div>
+
+                        <div id="success" class="jieguo" style="display:none;text-align:center;">
+                            <img src="../../images/scusscs.png">
+                            <div class="tishi fn" style="text-align:center">待资方审核通过后即可从  <a href="" class="btns" style="color:#50d3d8;">友云采</a> 发起融资申请。</div>
+                        </div>
+
+                        <div id="finish" class="jieguo" style="display:none;text-align:center;">
+                            <img src="../../images/scussc.png">
+                            <div class="tishi fn" style="text-align:center">待前准备已完成，请去<a href="" class="btns" style="color:#50d3d8;">友云采</a>发起融资</div>
+                        </div>
+
+
+
+
+                        <div class="prompt"><img src="../../images/xiaolba.png">操作提示：
+                            <p>1、支持的操作系统为Windows10</p>
+                            <p>2、支持的浏览器为IE11</p>
+                            
+                        </div>  
+                        <div class="fh"><a href="" class="buttons btns" >返回友云采</a></div> 
+          
+                </div>
+
+
+
+
+
+
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+    </div>
+    <div class="footer">
+        <div class="row">
+            <div class="footer-link">
+                <span>
+                  ©版权所有：<a href=" " target="_blank" style="color:#555">用友网络科技股份有限公司2017 </a >
+                </span>
+                <br>
+                京ICP备05007539号-7 京ICP证100714号 
+                <img alt="" src="../../css/images/police.png" style="display:inline;height:12px;" />京公网安备11010802021935号
+            </div>
+        </div>
+    </div>
+    <div class="binds">
+
+    </div>  
+    <div class="tank">
+        <div class="ti">
+            <img src="../../images/scuss.png">U盾绑定成功！
+        </div>
+        <button id="qd" onclick="onblank()">确定</button>
+    </div> 
+
+        
+
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../../js/lib/me/jquery-3.1.1.min.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../../js/lib/bootstrap/bootstrap.min.js"></script>
+     <script src="../../js/lib/common.js"></script>
+      <!-- CUSTOM SCRIPTS 
+    <script src="assets/js/custom.js"></script>-->
+    <script src="../../js/lib/lccbocx.js"></script>
+    <script src="../../js/lib/binding.js"></script>
+    <script src="../../js/lib/confirm/scf.confirm.js"></script>
+    <script type="text/javascript">
+    $('.xians').click(function(){
+        $('.yin').toggle(1000)
+    })
+    var wheight=$(document).height()+'px';
+    $('.binds').css('height',wheight);
+    //$("#bangd").click(function(){
+    //         $('.binds').show();
+    //         $('.tank').show(); 
+    //});
+
+    </script>
+    
+   
+</body>
+</html>

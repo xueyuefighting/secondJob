@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.RepaymentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.RepaymentInfo" >
+    <id column="repay_id" property="repayId" jdbcType="BIGINT" />
+    <result column="agency_id" property="agencyId" jdbcType="BIGINT" />
+    <result column="capital_id" property="capitalId" jdbcType="BIGINT" />
+    <result column="file_id" property="fileId" jdbcType="BIGINT" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="currency" property="currency" jdbcType="VARCHAR" />
+    <result column="repayment_date" property="repaymentDate" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="effective" property="effective" jdbcType="VARCHAR" />
+    <result column="repayment_no" property="repaymentNo" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="finance_id" property="financeId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    repay_id, agency_id, capital_id, file_id, amount, currency, repayment_date, create_user, 
+    create_time, effective, repayment_no, product_id, finance_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.RepaymentInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from repayment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from repayment_info
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from repayment_info
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.RepaymentInfoExample" >
+    delete from repayment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.RepaymentInfo" >
+    insert into repayment_info (repay_id, agency_id, capital_id, 
+      file_id, amount, currency, 
+      repayment_date, create_user, create_time, 
+      effective, repayment_no, product_id, 
+      finance_id)
+    values (#{repayId,jdbcType=BIGINT}, #{agencyId,jdbcType=BIGINT}, #{capitalId,jdbcType=BIGINT}, 
+      #{fileId,jdbcType=BIGINT}, #{amount,jdbcType=BIGINT}, #{currency,jdbcType=VARCHAR}, 
+      #{repaymentDate,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=VARCHAR}, 
+      #{effective,jdbcType=VARCHAR}, #{repaymentNo,jdbcType=VARCHAR}, #{productId,jdbcType=BIGINT}, 
+      #{financeId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.RepaymentInfo" >
+    insert into repayment_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repayId != null" >
+        repay_id,
+      </if>
+      <if test="agencyId != null" >
+        agency_id,
+      </if>
+      <if test="capitalId != null" >
+        capital_id,
+      </if>
+      <if test="fileId != null" >
+        file_id,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="effective != null" >
+        effective,
+      </if>
+      <if test="repaymentNo != null" >
+        repayment_no,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="financeId != null" >
+        finance_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repayId != null" >
+        #{repayId,jdbcType=BIGINT},
+      </if>
+      <if test="agencyId != null" >
+        #{agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalId != null" >
+        #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="fileId != null" >
+        #{fileId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentNo != null" >
+        #{repaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="financeId != null" >
+        #{financeId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.RepaymentInfoExample" resultType="java.lang.Integer" >
+    select count(*) from repayment_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update repayment_info
+    <set >
+      <if test="record.repayId != null" >
+        repay_id = #{record.repayId,jdbcType=BIGINT},
+      </if>
+      <if test="record.agencyId != null" >
+        agency_id = #{record.agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.capitalId != null" >
+        capital_id = #{record.capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="record.fileId != null" >
+        file_id = #{record.fileId,jdbcType=BIGINT},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentDate != null" >
+        repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effective != null" >
+        effective = #{record.effective,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentNo != null" >
+        repayment_no = #{record.repaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.financeId != null" >
+        finance_id = #{record.financeId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update repayment_info
+    set repay_id = #{record.repayId,jdbcType=BIGINT},
+      agency_id = #{record.agencyId,jdbcType=BIGINT},
+      capital_id = #{record.capitalId,jdbcType=BIGINT},
+      file_id = #{record.fileId,jdbcType=BIGINT},
+      amount = #{record.amount,jdbcType=BIGINT},
+      currency = #{record.currency,jdbcType=VARCHAR},
+      repayment_date = #{record.repaymentDate,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      effective = #{record.effective,jdbcType=VARCHAR},
+      repayment_no = #{record.repaymentNo,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=BIGINT},
+      finance_id = #{record.financeId,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.RepaymentInfo" >
+    update repayment_info
+    <set >
+      <if test="agencyId != null" >
+        agency_id = #{agencyId,jdbcType=BIGINT},
+      </if>
+      <if test="capitalId != null" >
+        capital_id = #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="fileId != null" >
+        file_id = #{fileId,jdbcType=BIGINT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentDate != null" >
+        repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        effective = #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentNo != null" >
+        repayment_no = #{repaymentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="financeId != null" >
+        finance_id = #{financeId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.RepaymentInfo" >
+    update repayment_info
+    set agency_id = #{agencyId,jdbcType=BIGINT},
+      capital_id = #{capitalId,jdbcType=BIGINT},
+      file_id = #{fileId,jdbcType=BIGINT},
+      amount = #{amount,jdbcType=BIGINT},
+      currency = #{currency,jdbcType=VARCHAR},
+      repayment_date = #{repaymentDate,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      effective = #{effective,jdbcType=VARCHAR},
+      repayment_no = #{repaymentNo,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=BIGINT},
+      finance_id = #{financeId,jdbcType=BIGINT}
+    where repay_id = #{repayId,jdbcType=BIGINT}
+  </update>
+</mapper>

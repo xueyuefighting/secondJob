@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.AccountsReceivablePoolMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.AccountsReceivablePool" >
+    <id column="arp_id" property="arpId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+    <result column="receive_code" property="receiveCode" jdbcType="VARCHAR" />
+    <result column="receive_total_amount" property="receiveTotalAmount" jdbcType="BIGINT" />
+    <result column="receive_balance" property="receiveBalance" jdbcType="BIGINT" />
+    <result column="agency_id" property="agencyId" jdbcType="VARCHAR" />
+    <result column="effective" property="effective" jdbcType="VARCHAR" />
+    <result column="in_datetime" property="inDatetime" jdbcType="VARCHAR" />
+    <result column="transfer" property="transfer" jdbcType="VARCHAR" />
+    <result column="invoice_date" property="invoiceDate" jdbcType="VARCHAR" />
+    <result column="expiry_date" property="expiryDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="pact_code" property="pactCode" jdbcType="VARCHAR" />
+    <result column="pact_start_date" property="pactStartDate" jdbcType="VARCHAR" />
+    <result column="pact_end_date" property="pactEndDate" jdbcType="VARCHAR" />
+    <result column="claims_lending" property="claimsLending" jdbcType="BIGINT" />
+    <result column="financing" property="financing" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="create_datetime" property="createDatetime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="update_datetime" property="updateDatetime" jdbcType="VARCHAR" />
+    <result column="invalid" property="invalid" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    arp_id, company_id, receive_code, receive_total_amount, receive_balance, agency_id, 
+    effective, in_datetime, transfer, invoice_date, expiry_date, status, pact_code, pact_start_date, 
+    pact_end_date, claims_lending, financing, create_user, create_datetime, update_user, 
+    update_datetime, invalid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePoolExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from accounts_receivable_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from accounts_receivable_pool
+    where arp_id = #{arpId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from accounts_receivable_pool
+    where arp_id = #{arpId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePoolExample" >
+    delete from accounts_receivable_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePool" >
+    insert into accounts_receivable_pool (arp_id, company_id, receive_code, 
+      receive_total_amount, receive_balance, agency_id, 
+      effective, in_datetime, transfer, 
+      invoice_date, expiry_date, status, 
+      pact_code, pact_start_date, pact_end_date, 
+      claims_lending, financing, create_user, 
+      create_datetime, update_user, update_datetime, 
+      invalid)
+    values (#{arpId,jdbcType=BIGINT}, #{companyId,jdbcType=VARCHAR}, #{receiveCode,jdbcType=VARCHAR}, 
+      #{receiveTotalAmount,jdbcType=BIGINT}, #{receiveBalance,jdbcType=BIGINT}, #{agencyId,jdbcType=VARCHAR}, 
+      #{effective,jdbcType=VARCHAR}, #{inDatetime,jdbcType=VARCHAR}, #{transfer,jdbcType=VARCHAR}, 
+      #{invoiceDate,jdbcType=VARCHAR}, #{expiryDate,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{pactCode,jdbcType=VARCHAR}, #{pactStartDate,jdbcType=VARCHAR}, #{pactEndDate,jdbcType=VARCHAR}, 
+      #{claimsLending,jdbcType=BIGINT}, #{financing,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, 
+      #{createDatetime,jdbcType=VARCHAR}, #{updateUser,jdbcType=BIGINT}, #{updateDatetime,jdbcType=VARCHAR}, 
+      #{invalid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePool" >
+    insert into accounts_receivable_pool
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arpId != null" >
+        arp_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="receiveCode != null" >
+        receive_code,
+      </if>
+      <if test="receiveTotalAmount != null" >
+        receive_total_amount,
+      </if>
+      <if test="receiveBalance != null" >
+        receive_balance,
+      </if>
+      <if test="agencyId != null" >
+        agency_id,
+      </if>
+      <if test="effective != null" >
+        effective,
+      </if>
+      <if test="inDatetime != null" >
+        in_datetime,
+      </if>
+      <if test="transfer != null" >
+        transfer,
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date,
+      </if>
+      <if test="expiryDate != null" >
+        expiry_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="pactCode != null" >
+        pact_code,
+      </if>
+      <if test="pactStartDate != null" >
+        pact_start_date,
+      </if>
+      <if test="pactEndDate != null" >
+        pact_end_date,
+      </if>
+      <if test="claimsLending != null" >
+        claims_lending,
+      </if>
+      <if test="financing != null" >
+        financing,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateDatetime != null" >
+        update_datetime,
+      </if>
+      <if test="invalid != null" >
+        invalid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arpId != null" >
+        #{arpId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCode != null" >
+        #{receiveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTotalAmount != null" >
+        #{receiveTotalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="receiveBalance != null" >
+        #{receiveBalance,jdbcType=BIGINT},
+      </if>
+      <if test="agencyId != null" >
+        #{agencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="inDatetime != null" >
+        #{inDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer != null" >
+        #{transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiryDate != null" >
+        #{expiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pactCode != null" >
+        #{pactCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pactStartDate != null" >
+        #{pactStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pactEndDate != null" >
+        #{pactEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="claimsLending != null" >
+        #{claimsLending,jdbcType=BIGINT},
+      </if>
+      <if test="financing != null" >
+        #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        #{createDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null" >
+        #{invalid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePoolExample" resultType="java.lang.Integer" >
+    select count(*) from accounts_receivable_pool
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update accounts_receivable_pool
+    <set >
+      <if test="record.arpId != null" >
+        arp_id = #{record.arpId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveCode != null" >
+        receive_code = #{record.receiveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTotalAmount != null" >
+        receive_total_amount = #{record.receiveTotalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.receiveBalance != null" >
+        receive_balance = #{record.receiveBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.agencyId != null" >
+        agency_id = #{record.agencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effective != null" >
+        effective = #{record.effective,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inDatetime != null" >
+        in_datetime = #{record.inDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transfer != null" >
+        transfer = #{record.transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceDate != null" >
+        invoice_date = #{record.invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expiryDate != null" >
+        expiry_date = #{record.expiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pactCode != null" >
+        pact_code = #{record.pactCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pactStartDate != null" >
+        pact_start_date = #{record.pactStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pactEndDate != null" >
+        pact_end_date = #{record.pactEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.claimsLending != null" >
+        claims_lending = #{record.claimsLending,jdbcType=BIGINT},
+      </if>
+      <if test="record.financing != null" >
+        financing = #{record.financing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.createDatetime != null" >
+        create_datetime = #{record.createDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateDatetime != null" >
+        update_datetime = #{record.updateDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalid != null" >
+        invalid = #{record.invalid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update accounts_receivable_pool
+    set arp_id = #{record.arpId,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=VARCHAR},
+      receive_code = #{record.receiveCode,jdbcType=VARCHAR},
+      receive_total_amount = #{record.receiveTotalAmount,jdbcType=BIGINT},
+      receive_balance = #{record.receiveBalance,jdbcType=BIGINT},
+      agency_id = #{record.agencyId,jdbcType=VARCHAR},
+      effective = #{record.effective,jdbcType=VARCHAR},
+      in_datetime = #{record.inDatetime,jdbcType=VARCHAR},
+      transfer = #{record.transfer,jdbcType=VARCHAR},
+      invoice_date = #{record.invoiceDate,jdbcType=VARCHAR},
+      expiry_date = #{record.expiryDate,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      pact_code = #{record.pactCode,jdbcType=VARCHAR},
+      pact_start_date = #{record.pactStartDate,jdbcType=VARCHAR},
+      pact_end_date = #{record.pactEndDate,jdbcType=VARCHAR},
+      claims_lending = #{record.claimsLending,jdbcType=BIGINT},
+      financing = #{record.financing,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      create_datetime = #{record.createDatetime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      update_datetime = #{record.updateDatetime,jdbcType=VARCHAR},
+      invalid = #{record.invalid,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePool" >
+    update accounts_receivable_pool
+    <set >
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveCode != null" >
+        receive_code = #{receiveCode,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTotalAmount != null" >
+        receive_total_amount = #{receiveTotalAmount,jdbcType=BIGINT},
+      </if>
+      <if test="receiveBalance != null" >
+        receive_balance = #{receiveBalance,jdbcType=BIGINT},
+      </if>
+      <if test="agencyId != null" >
+        agency_id = #{agencyId,jdbcType=VARCHAR},
+      </if>
+      <if test="effective != null" >
+        effective = #{effective,jdbcType=VARCHAR},
+      </if>
+      <if test="inDatetime != null" >
+        in_datetime = #{inDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="transfer != null" >
+        transfer = #{transfer,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expiryDate != null" >
+        expiry_date = #{expiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pactCode != null" >
+        pact_code = #{pactCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pactStartDate != null" >
+        pact_start_date = #{pactStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="pactEndDate != null" >
+        pact_end_date = #{pactEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="claimsLending != null" >
+        claims_lending = #{claimsLending,jdbcType=BIGINT},
+      </if>
+      <if test="financing != null" >
+        financing = #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createDatetime != null" >
+        create_datetime = #{createDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_datetime = #{updateDatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null" >
+        invalid = #{invalid,jdbcType=CHAR},
+      </if>
+    </set>
+    where arp_id = #{arpId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.AccountsReceivablePool" >
+    update accounts_receivable_pool
+    set company_id = #{companyId,jdbcType=VARCHAR},
+      receive_code = #{receiveCode,jdbcType=VARCHAR},
+      receive_total_amount = #{receiveTotalAmount,jdbcType=BIGINT},
+      receive_balance = #{receiveBalance,jdbcType=BIGINT},
+      agency_id = #{agencyId,jdbcType=VARCHAR},
+      effective = #{effective,jdbcType=VARCHAR},
+      in_datetime = #{inDatetime,jdbcType=VARCHAR},
+      transfer = #{transfer,jdbcType=VARCHAR},
+      invoice_date = #{invoiceDate,jdbcType=VARCHAR},
+      expiry_date = #{expiryDate,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      pact_code = #{pactCode,jdbcType=VARCHAR},
+      pact_start_date = #{pactStartDate,jdbcType=VARCHAR},
+      pact_end_date = #{pactEndDate,jdbcType=VARCHAR},
+      claims_lending = #{claimsLending,jdbcType=BIGINT},
+      financing = #{financing,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      create_datetime = #{createDatetime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_datetime = #{updateDatetime,jdbcType=VARCHAR},
+      invalid = #{invalid,jdbcType=CHAR}
+    where arp_id = #{arpId,jdbcType=BIGINT}
+  </update>
+</mapper>

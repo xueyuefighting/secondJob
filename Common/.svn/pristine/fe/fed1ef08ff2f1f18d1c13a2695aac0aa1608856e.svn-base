@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F640DetailMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F640Detail" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="f640_id" property="f640Id" jdbcType="BIGINT" />
+    <result column="imt_type" property="imtType" jdbcType="CHAR" />
+    <result column="cr_lmt_id" property="crLmtId" jdbcType="CHAR" />
+    <result column="contract_no" property="contractNo" jdbcType="CHAR" />
+    <result column="imt_amt" property="imtAmt" jdbcType="BIGINT" />
+    <result column="imt_amt_useable" property="imtAmtUseable" jdbcType="BIGINT" />
+    <result column="finance_scale" property="financeScale" jdbcType="BIGINT" />
+    <result column="currency" property="currency" jdbcType="CHAR" />
+    <result column="eff_day" property="effDay" jdbcType="VARCHAR" />
+    <result column="ex_day" property="exDay" jdbcType="VARCHAR" />
+    <result column="loan_term" property="loanTerm" jdbcType="INTEGER" />
+    <result column="ear_interest_rate" property="earInterestRate" jdbcType="BIGINT" />
+    <result column="penalty_rate" property="penaltyRate" jdbcType="BIGINT" />
+    <result column="ab_penalty_rate" property="abPenaltyRate" jdbcType="BIGINT" />
+    <result column="repay_mode" property="repayMode" jdbcType="CHAR" />
+    <result column="repay_acc_num" property="repayAccNum" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, f640_id, imt_type, cr_lmt_id, contract_no, imt_amt, imt_amt_useable, finance_scale, 
+    currency, eff_day, ex_day, loan_term, ear_interest_rate, penalty_rate, ab_penalty_rate, 
+    repay_mode, repay_acc_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F640DetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f640_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f640_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f640_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F640DetailExample" >
+    delete from f640_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F640Detail" >
+    insert into f640_detail (id, f640_id, imt_type, 
+      cr_lmt_id, contract_no, imt_amt, 
+      imt_amt_useable, finance_scale, currency, 
+      eff_day, ex_day, loan_term, 
+      ear_interest_rate, penalty_rate, ab_penalty_rate, 
+      repay_mode, repay_acc_num)
+    values (#{id,jdbcType=BIGINT}, #{f640Id,jdbcType=BIGINT}, #{imtType,jdbcType=CHAR}, 
+      #{crLmtId,jdbcType=CHAR}, #{contractNo,jdbcType=CHAR}, #{imtAmt,jdbcType=BIGINT}, 
+      #{imtAmtUseable,jdbcType=BIGINT}, #{financeScale,jdbcType=BIGINT}, #{currency,jdbcType=CHAR}, 
+      #{effDay,jdbcType=VARCHAR}, #{exDay,jdbcType=VARCHAR}, #{loanTerm,jdbcType=INTEGER}, 
+      #{earInterestRate,jdbcType=BIGINT}, #{penaltyRate,jdbcType=BIGINT}, #{abPenaltyRate,jdbcType=BIGINT}, 
+      #{repayMode,jdbcType=CHAR}, #{repayAccNum,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F640Detail" >
+    insert into f640_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="f640Id != null" >
+        f640_id,
+      </if>
+      <if test="imtType != null" >
+        imt_type,
+      </if>
+      <if test="crLmtId != null" >
+        cr_lmt_id,
+      </if>
+      <if test="contractNo != null" >
+        contract_no,
+      </if>
+      <if test="imtAmt != null" >
+        imt_amt,
+      </if>
+      <if test="imtAmtUseable != null" >
+        imt_amt_useable,
+      </if>
+      <if test="financeScale != null" >
+        finance_scale,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="effDay != null" >
+        eff_day,
+      </if>
+      <if test="exDay != null" >
+        ex_day,
+      </if>
+      <if test="loanTerm != null" >
+        loan_term,
+      </if>
+      <if test="earInterestRate != null" >
+        ear_interest_rate,
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate,
+      </if>
+      <if test="abPenaltyRate != null" >
+        ab_penalty_rate,
+      </if>
+      <if test="repayMode != null" >
+        repay_mode,
+      </if>
+      <if test="repayAccNum != null" >
+        repay_acc_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="f640Id != null" >
+        #{f640Id,jdbcType=BIGINT},
+      </if>
+      <if test="imtType != null" >
+        #{imtType,jdbcType=CHAR},
+      </if>
+      <if test="crLmtId != null" >
+        #{crLmtId,jdbcType=CHAR},
+      </if>
+      <if test="contractNo != null" >
+        #{contractNo,jdbcType=CHAR},
+      </if>
+      <if test="imtAmt != null" >
+        #{imtAmt,jdbcType=BIGINT},
+      </if>
+      <if test="imtAmtUseable != null" >
+        #{imtAmtUseable,jdbcType=BIGINT},
+      </if>
+      <if test="financeScale != null" >
+        #{financeScale,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=CHAR},
+      </if>
+      <if test="effDay != null" >
+        #{effDay,jdbcType=VARCHAR},
+      </if>
+      <if test="exDay != null" >
+        #{exDay,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerm != null" >
+        #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="earInterestRate != null" >
+        #{earInterestRate,jdbcType=BIGINT},
+      </if>
+      <if test="penaltyRate != null" >
+        #{penaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="abPenaltyRate != null" >
+        #{abPenaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="repayMode != null" >
+        #{repayMode,jdbcType=CHAR},
+      </if>
+      <if test="repayAccNum != null" >
+        #{repayAccNum,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F640DetailExample" resultType="java.lang.Integer" >
+    select count(*) from f640_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f640_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.f640Id != null" >
+        f640_id = #{record.f640Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.imtType != null" >
+        imt_type = #{record.imtType,jdbcType=CHAR},
+      </if>
+      <if test="record.crLmtId != null" >
+        cr_lmt_id = #{record.crLmtId,jdbcType=CHAR},
+      </if>
+      <if test="record.contractNo != null" >
+        contract_no = #{record.contractNo,jdbcType=CHAR},
+      </if>
+      <if test="record.imtAmt != null" >
+        imt_amt = #{record.imtAmt,jdbcType=BIGINT},
+      </if>
+      <if test="record.imtAmtUseable != null" >
+        imt_amt_useable = #{record.imtAmtUseable,jdbcType=BIGINT},
+      </if>
+      <if test="record.financeScale != null" >
+        finance_scale = #{record.financeScale,jdbcType=BIGINT},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=CHAR},
+      </if>
+      <if test="record.effDay != null" >
+        eff_day = #{record.effDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exDay != null" >
+        ex_day = #{record.exDay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loanTerm != null" >
+        loan_term = #{record.loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="record.earInterestRate != null" >
+        ear_interest_rate = #{record.earInterestRate,jdbcType=BIGINT},
+      </if>
+      <if test="record.penaltyRate != null" >
+        penalty_rate = #{record.penaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="record.abPenaltyRate != null" >
+        ab_penalty_rate = #{record.abPenaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="record.repayMode != null" >
+        repay_mode = #{record.repayMode,jdbcType=CHAR},
+      </if>
+      <if test="record.repayAccNum != null" >
+        repay_acc_num = #{record.repayAccNum,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f640_detail
+    set id = #{record.id,jdbcType=BIGINT},
+      f640_id = #{record.f640Id,jdbcType=BIGINT},
+      imt_type = #{record.imtType,jdbcType=CHAR},
+      cr_lmt_id = #{record.crLmtId,jdbcType=CHAR},
+      contract_no = #{record.contractNo,jdbcType=CHAR},
+      imt_amt = #{record.imtAmt,jdbcType=BIGINT},
+      imt_amt_useable = #{record.imtAmtUseable,jdbcType=BIGINT},
+      finance_scale = #{record.financeScale,jdbcType=BIGINT},
+      currency = #{record.currency,jdbcType=CHAR},
+      eff_day = #{record.effDay,jdbcType=VARCHAR},
+      ex_day = #{record.exDay,jdbcType=VARCHAR},
+      loan_term = #{record.loanTerm,jdbcType=INTEGER},
+      ear_interest_rate = #{record.earInterestRate,jdbcType=BIGINT},
+      penalty_rate = #{record.penaltyRate,jdbcType=BIGINT},
+      ab_penalty_rate = #{record.abPenaltyRate,jdbcType=BIGINT},
+      repay_mode = #{record.repayMode,jdbcType=CHAR},
+      repay_acc_num = #{record.repayAccNum,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F640Detail" >
+    update f640_detail
+    <set >
+      <if test="f640Id != null" >
+        f640_id = #{f640Id,jdbcType=BIGINT},
+      </if>
+      <if test="imtType != null" >
+        imt_type = #{imtType,jdbcType=CHAR},
+      </if>
+      <if test="crLmtId != null" >
+        cr_lmt_id = #{crLmtId,jdbcType=CHAR},
+      </if>
+      <if test="contractNo != null" >
+        contract_no = #{contractNo,jdbcType=CHAR},
+      </if>
+      <if test="imtAmt != null" >
+        imt_amt = #{imtAmt,jdbcType=BIGINT},
+      </if>
+      <if test="imtAmtUseable != null" >
+        imt_amt_useable = #{imtAmtUseable,jdbcType=BIGINT},
+      </if>
+      <if test="financeScale != null" >
+        finance_scale = #{financeScale,jdbcType=BIGINT},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=CHAR},
+      </if>
+      <if test="effDay != null" >
+        eff_day = #{effDay,jdbcType=VARCHAR},
+      </if>
+      <if test="exDay != null" >
+        ex_day = #{exDay,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTerm != null" >
+        loan_term = #{loanTerm,jdbcType=INTEGER},
+      </if>
+      <if test="earInterestRate != null" >
+        ear_interest_rate = #{earInterestRate,jdbcType=BIGINT},
+      </if>
+      <if test="penaltyRate != null" >
+        penalty_rate = #{penaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="abPenaltyRate != null" >
+        ab_penalty_rate = #{abPenaltyRate,jdbcType=BIGINT},
+      </if>
+      <if test="repayMode != null" >
+        repay_mode = #{repayMode,jdbcType=CHAR},
+      </if>
+      <if test="repayAccNum != null" >
+        repay_acc_num = #{repayAccNum,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F640Detail" >
+    update f640_detail
+    set f640_id = #{f640Id,jdbcType=BIGINT},
+      imt_type = #{imtType,jdbcType=CHAR},
+      cr_lmt_id = #{crLmtId,jdbcType=CHAR},
+      contract_no = #{contractNo,jdbcType=CHAR},
+      imt_amt = #{imtAmt,jdbcType=BIGINT},
+      imt_amt_useable = #{imtAmtUseable,jdbcType=BIGINT},
+      finance_scale = #{financeScale,jdbcType=BIGINT},
+      currency = #{currency,jdbcType=CHAR},
+      eff_day = #{effDay,jdbcType=VARCHAR},
+      ex_day = #{exDay,jdbcType=VARCHAR},
+      loan_term = #{loanTerm,jdbcType=INTEGER},
+      ear_interest_rate = #{earInterestRate,jdbcType=BIGINT},
+      penalty_rate = #{penaltyRate,jdbcType=BIGINT},
+      ab_penalty_rate = #{abPenaltyRate,jdbcType=BIGINT},
+      repay_mode = #{repayMode,jdbcType=CHAR},
+      repay_acc_num = #{repayAccNum,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

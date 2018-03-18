@@ -1,0 +1,335 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>scf.yonyou.com</groupId>
+	<artifactId>0000-Config</artifactId>
+	<version>SCF_v2.0</version>
+	<name>scf-config</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<url.repository>http://192.168.16.1:8089/repository</url.repository>
+		<project.encoding>UTF-8</project.encoding>
+		<project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+
+		<java.version>1.8</java.version> <!-- java编译版本 -->
+
+		<!-- Tools.version>1.0.0.02-RELEASE</Tools.version --> <!-- 1001-Tools -->
+        <Generator.version>2.0.0.1</Generator.version> <!-- Generator -->
+		<Common.version>2.0.0.2</Common.version> <!-- Common -->
+
+		<mavenCompilerPlugin.version>2.5</mavenCompilerPlugin.version>
+		<spring.version>4.2.5.RELEASE</spring.version> <!-- Spring Boot相关 -->
+		<springboot.version>1.3.3.RELEASE</springboot.version> <!-- Spring Boot相关 -->
+		<springloaded.version>1.2.5.RELEASE</springloaded.version> <!-- Spring Loaded署相关 -->
+		<mysql-connector.version>5.1.42</mysql-connector.version> <!-- mysql-connector-java -->
+		<mybatis-springboot.version>1.1.1</mybatis-springboot.version> <!-- mybatis-spring-boot-starter -->
+		<httpclient.version>4.5.1</httpclient.version><!-- httpclient -->
+		<httpcore.version>4.4.4</httpcore.version><!-- httpcore -->
+		<fastjson.version>1.2.6</fastjson.version><!-- fastjson -->
+		<druid.version>1.0.26</druid.version><!-- druid -->
+		<swagger.version>2.7.0</swagger.version><!-- swagger -->
+		<lombok.version>1.16.6</lombok.version><!-- lombok -->
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- dependency> <groupId>scf.yonyou.com</groupId> <artifactId>1001-Tools</artifactId> 
+				<version>${Tools.version}</version> </dependency -->
+            <dependency>
+                <groupId>scf.yonyou.com</groupId>
+                <artifactId>1001-Generator</artifactId>
+                <version>${Generator.version}</version>
+            </dependency>
+			<dependency>
+				<groupId>scf.yonyou.com</groupId>
+				<artifactId>1003-Common</artifactId>
+				<version>${Common.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-parent</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-springboot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-redis</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${springboot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-connector.version}</version>
+			</dependency>
+
+			<!-- 热部署相关 -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-devtools</artifactId>
+				<version>${springboot.version}</version>
+			</dependency>
+
+			<!-- httpclient -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+			<!-- httpcore -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcore.version}</version>
+			</dependency>
+
+			<!-- com.alibaba -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+			</dependency>
+
+
+			<!-- 生产环境需要把swagger2和对应UI注掉已不显示API文档 -->
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${mavenCompilerPlugin.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<testFailureIgnore>true</testFailureIgnore>
+						<encoding>${project.encoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin </artifactId>
+					<version>${springboot.version}</version>
+					<configuration>
+						<classifier>exec</classifier>
+						<executable>true</executable>
+						<layout>ZIP</layout>
+
+						<excludeGroupIds>
+							<!-- SCF 相关的jar -->
+							scf.yonyou.com,
+
+							<!-- Spring Boot 相关的jar -->
+							aopalliance,
+							ch.qos.logback,
+							com.fasterxml,
+							com.fasterxml.jackson.core,
+							commons-codec,
+							javax.servlet,
+							javax.validation,
+							mysql,
+							org.apache.httpcomponents,
+							org.apache.tomcat,
+							org.apache.tomcat.embed,
+							org.hibernate,
+							org.jboss.logging,
+							org.mybatis,
+							org.mybatis.spring.boot,
+							org.slf4j,
+							org.springframework,
+							org.springframework.boot,
+							org.yaml,
+
+							<!-- Redis、Mail 等 -->
+							org.springframework.retry,
+							org.springframework.amqp,
+							org.springframework.amqp,
+							com.sun.mail,
+							com.rabbitmq,
+							javax.activation,
+
+							<!-- Swagger 相关的jar -->
+							io.springfox,
+							io.swagger,
+							org.springframework.plugin,
+							org.springframework.hateoas,
+							org.mapstruct,
+							com.google.guava,
+							org.aspectj,
+
+							<!-- V2.0阶段追加 -->
+							org.apache.james,
+							net.bytebuddy,
+							commons-logging,
+							com.alibaba,
+							org.codehaus.groovy,
+							org.javassist,
+							ognl,
+							org.sonatype.oss,
+							org.reflections,
+							org.thymeleaf,
+							nz.net.ultraq.thymeleaf,
+							org.unbescape,
+
+							<!-- 发版前调整 -->
+							org.apache.commons,
+							redis.clients,
+							org.springframework.data,
+							org.projectlombok
+
+						</excludeGroupIds>
+					</configuration>
+					<dependencies>
+						<!--springloaded hotdeploy -->
+						<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>springloaded</artifactId>
+							<version>${springloaded.version}</version>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+							<configuration>
+								<classifier></classifier> <!-- 可执行的jar文件不要后缀，原始默认为exec -->
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<configuration>
+						<outputDirectory>target/lib</outputDirectory> <!-- 共通 lib/jar 路径/SCF/yonyou/lib -->
+						<excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
+						<stripVersion>false</stripVersion> <!-- 表示复制的jar文件去掉版本信息 -->
+						<excludeArtifactIds>springfox-swagger-ui</excludeArtifactIds><!-- 生产环境需要把swagger2和对应UI注掉已不显示API文档 -->
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.1</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal> <!-- 生成后缀为 -source.jar 的纯源代码压缩包 -->
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>Releases</name>
+			<url>${url.repository}/maven-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<name>Snapshot</name>
+			<url>${url.repository}/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

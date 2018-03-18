@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yonyou.scf.common.mapper.auto.ModifyPayAmountMapper">
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.ModifyPayAmount">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="interface_no" jdbcType="VARCHAR" property="interfaceNo" />
+    <result column="platform_id" jdbcType="VARCHAR" property="platformId" />
+    <result column="fund_id" jdbcType="VARCHAR" property="fundId" />
+    <result column="center_company_id" jdbcType="VARCHAR" property="centerCompanyId" />
+    <result column="fs_id" jdbcType="VARCHAR" property="fsId" />
+    <result column="financing_application_no" jdbcType="VARCHAR" property="financingApplicationNo" />
+    <result column="fs_managed_account_bank_id" jdbcType="VARCHAR" property="fsManagedAccountBankId" />
+    <result column="fs_managed_account_number" jdbcType="VARCHAR" property="fsManagedAccountNumber" />
+    <result column="pay_recevie_voucher_no" jdbcType="VARCHAR" property="payRecevieVoucherNo" />
+    <result column="modify_time" jdbcType="VARCHAR" property="modifyTime" />
+    <result column="modify_num" jdbcType="INTEGER" property="modifyNum" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, interface_no, platform_id, fund_id, center_company_id, fs_id, financing_application_no, 
+    fs_managed_account_bank_id, fs_managed_account_number, pay_recevie_voucher_no, modify_time, 
+    modify_num
+  </sql>
+  <select id="selectByExample" parameterType="com.yonyou.scf.common.entity.ModifyPayAmountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from modify_pay_amount
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from modify_pay_amount
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from modify_pay_amount
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.ModifyPayAmountExample">
+    delete from modify_pay_amount
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.ModifyPayAmount">
+    insert into modify_pay_amount (id, interface_no, platform_id, 
+      fund_id, center_company_id, fs_id, 
+      financing_application_no, fs_managed_account_bank_id, 
+      fs_managed_account_number, pay_recevie_voucher_no, 
+      modify_time, modify_num)
+    values (#{id,jdbcType=BIGINT}, #{interfaceNo,jdbcType=VARCHAR}, #{platformId,jdbcType=VARCHAR}, 
+      #{fundId,jdbcType=VARCHAR}, #{centerCompanyId,jdbcType=VARCHAR}, #{fsId,jdbcType=VARCHAR}, 
+      #{financingApplicationNo,jdbcType=VARCHAR}, #{fsManagedAccountBankId,jdbcType=VARCHAR}, 
+      #{fsManagedAccountNumber,jdbcType=VARCHAR}, #{payRecevieVoucherNo,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=VARCHAR}, #{modifyNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.ModifyPayAmount">
+    insert into modify_pay_amount
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="interfaceNo != null">
+        interface_no,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="fundId != null">
+        fund_id,
+      </if>
+      <if test="centerCompanyId != null">
+        center_company_id,
+      </if>
+      <if test="fsId != null">
+        fs_id,
+      </if>
+      <if test="financingApplicationNo != null">
+        financing_application_no,
+      </if>
+      <if test="fsManagedAccountBankId != null">
+        fs_managed_account_bank_id,
+      </if>
+      <if test="fsManagedAccountNumber != null">
+        fs_managed_account_number,
+      </if>
+      <if test="payRecevieVoucherNo != null">
+        pay_recevie_voucher_no,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyNum != null">
+        modify_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="interfaceNo != null">
+        #{interfaceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="fundId != null">
+        #{fundId,jdbcType=VARCHAR},
+      </if>
+      <if test="centerCompanyId != null">
+        #{centerCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="fsId != null">
+        #{fsId,jdbcType=VARCHAR},
+      </if>
+      <if test="financingApplicationNo != null">
+        #{financingApplicationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fsManagedAccountBankId != null">
+        #{fsManagedAccountBankId,jdbcType=VARCHAR},
+      </if>
+      <if test="fsManagedAccountNumber != null">
+        #{fsManagedAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payRecevieVoucherNo != null">
+        #{payRecevieVoucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyNum != null">
+        #{modifyNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.ModifyPayAmountExample" resultType="java.lang.Long">
+    select count(*) from modify_pay_amount
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update modify_pay_amount
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.interfaceNo != null">
+        interface_no = #{record.interfaceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformId != null">
+        platform_id = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fundId != null">
+        fund_id = #{record.fundId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerCompanyId != null">
+        center_company_id = #{record.centerCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fsId != null">
+        fs_id = #{record.fsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financingApplicationNo != null">
+        financing_application_no = #{record.financingApplicationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fsManagedAccountBankId != null">
+        fs_managed_account_bank_id = #{record.fsManagedAccountBankId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fsManagedAccountNumber != null">
+        fs_managed_account_number = #{record.fsManagedAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payRecevieVoucherNo != null">
+        pay_recevie_voucher_no = #{record.payRecevieVoucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyNum != null">
+        modify_num = #{record.modifyNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update modify_pay_amount
+    set id = #{record.id,jdbcType=BIGINT},
+      interface_no = #{record.interfaceNo,jdbcType=VARCHAR},
+      platform_id = #{record.platformId,jdbcType=VARCHAR},
+      fund_id = #{record.fundId,jdbcType=VARCHAR},
+      center_company_id = #{record.centerCompanyId,jdbcType=VARCHAR},
+      fs_id = #{record.fsId,jdbcType=VARCHAR},
+      financing_application_no = #{record.financingApplicationNo,jdbcType=VARCHAR},
+      fs_managed_account_bank_id = #{record.fsManagedAccountBankId,jdbcType=VARCHAR},
+      fs_managed_account_number = #{record.fsManagedAccountNumber,jdbcType=VARCHAR},
+      pay_recevie_voucher_no = #{record.payRecevieVoucherNo,jdbcType=VARCHAR},
+      modify_time = #{record.modifyTime,jdbcType=VARCHAR},
+      modify_num = #{record.modifyNum,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.ModifyPayAmount">
+    update modify_pay_amount
+    <set>
+      <if test="interfaceNo != null">
+        interface_no = #{interfaceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="fundId != null">
+        fund_id = #{fundId,jdbcType=VARCHAR},
+      </if>
+      <if test="centerCompanyId != null">
+        center_company_id = #{centerCompanyId,jdbcType=VARCHAR},
+      </if>
+      <if test="fsId != null">
+        fs_id = #{fsId,jdbcType=VARCHAR},
+      </if>
+      <if test="financingApplicationNo != null">
+        financing_application_no = #{financingApplicationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fsManagedAccountBankId != null">
+        fs_managed_account_bank_id = #{fsManagedAccountBankId,jdbcType=VARCHAR},
+      </if>
+      <if test="fsManagedAccountNumber != null">
+        fs_managed_account_number = #{fsManagedAccountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payRecevieVoucherNo != null">
+        pay_recevie_voucher_no = #{payRecevieVoucherNo,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyNum != null">
+        modify_num = #{modifyNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.ModifyPayAmount">
+    update modify_pay_amount
+    set interface_no = #{interfaceNo,jdbcType=VARCHAR},
+      platform_id = #{platformId,jdbcType=VARCHAR},
+      fund_id = #{fundId,jdbcType=VARCHAR},
+      center_company_id = #{centerCompanyId,jdbcType=VARCHAR},
+      fs_id = #{fsId,jdbcType=VARCHAR},
+      financing_application_no = #{financingApplicationNo,jdbcType=VARCHAR},
+      fs_managed_account_bank_id = #{fsManagedAccountBankId,jdbcType=VARCHAR},
+      fs_managed_account_number = #{fsManagedAccountNumber,jdbcType=VARCHAR},
+      pay_recevie_voucher_no = #{payRecevieVoucherNo,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=VARCHAR},
+      modify_num = #{modifyNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

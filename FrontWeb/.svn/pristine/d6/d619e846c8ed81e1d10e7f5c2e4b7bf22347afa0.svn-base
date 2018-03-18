@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+ <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>用友SCF</title>
+    <!-- <script src="resources/js/lib/me/gateway.js"></script> -->
+    <script src="../../js/lib/me/jquery-3.1.1.min.js"></script>
+    <script src="../../js/lib/me/jquery.base64.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../../js/lib/bootstrap/bootstrap.min.js"></script>
+    <script src="../../js/lib/common.js"></script>
+    <script src="../../js/lib/confirm/scf.confirm.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+			var str = getQueryString("txRequest");
+			str = $.base64.decode($.trim(str));
+			if(str==""){
+				alert("地址有误！");
+				return;
+			}
+			var $json = JSON.parse(str);
+			var PlatformId = $json.PlatformId;
+			var InterfaceNo = $json.InterfaceNo;
+			var UrlParam = $json.UrlParam;
+			var Version = $json.Version;
+			var SourceType = $json.SourceType;
+			var JsonMessage = $json.JsonMessage;
+			var $JsonMessage = JSON.parse(JsonMessage);
+			var FundID = $JsonMessage.FundID;
+			var UserRole = $JsonMessage.UserRole;
+			var ReturnURL = $JsonMessage.ReturnURL;
+			var MerchantUserID = $JsonMessage.MerchantUserID;
+			if(!UserRole || UserRole==""){
+			scf.confirm("用户类型有误", scf.confirm.typeEnum.error);
+				window.history.back();
+			}
+		
+			/*
+				当前登录用户身份信息验证----开始
+			*/
+		 var obj = {};
+		 obj.PlatformId = PlatformId;
+		 obj.InterfaceNo = InterfaceNo;
+		 obj.MerchantUserId = MerchantUserID;
+		 obj.UserRole = UserRole;
+		 obj.FundId = FundId;
+		 obj.TerminalSource = SourceType;
+		 var url = $server_IP+"/SERVICE/EMP/userVerifyInfo";
+		 var requestData = JSON.stringify(obj);
+		 $.ajax({
+				type:"POST",
+				url:url,
+				dataType:"JSON",
+				contentType:"application/json",
+				data:requestData,
+				asnyc:false,
+				success:function(data){
+					if(data){
+						//成功
+						if(data.Code!="2000" && data.Code!="9000"){
+							//scf.confirm(data.Message, scf.confirm.typeEnum.error);
+							//window.location.href="https://scf.yonyou.com";
+							window.open(encodeURI("error.html?info="+data.Message)
+									,"_self","location=no");
+							}
+						}
+					}else{
+						//scf.confirm("系统有误，请刷新页面后尝试", scf.confirm.typeEnum.error);
+						//window.location.href="https://scf.yonyou.com";
+						window.open(encodeURI("error.html?info="+data.Message)
+								,"_self","location=no");
+						}
+					},error:function(){
+						//scf.confirm("系统有误，请刷新页面后尝试", scf.confirm.typeEnum.error);
+						//window.location.href="https://scf.yonyou.com";
+						window.open(encodeURI("error.html?info="+data.Message)
+								,"_self","location=no");
+					}
+				});
+			
+		 /*
+			当前登录用户身份信息验证----结束
+		*/
+		
+		var url = "identity.html?";//Common.ProjectName+"/resources/u_scf/
+		if(UserRole==20){
+			url = "personalVerify.html?";//Common.ProjectName+"/resources/u_scf/
+		}
+		url+="PlatformId="+PlatformId+"&InterfaceNo="+InterfaceNo+"&ReturnURL="+ReturnURL+"&TerminalSource="+SourceType+"&FundID="+FundID+"&UserRole="+UserRole+
+		     "&MerchantUserID="+MerchantUserID;
+		window.open(encodeURI(url)
+				,"_self","location=no");
+		});
+function getQueryString(name) {
+	 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	 var r = window.location.search.substr(1).match(reg);
+	 if (r != null) return unescape(r[2]);
+	 return null;
+}
+    </script>
+</head>
+
+<body>
+<div></div>
+</body>
+</html>

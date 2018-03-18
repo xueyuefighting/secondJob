@@ -1,0 +1,12 @@
+1503552819108	Rename type 'MyInterceptor'
+1503552881952	Rename type 'MyWebAppConfigurer'
+1503552937366	Delete element
+1503557958498	Rename package 'com.yonyou.scf.gateway'
+1503557970636	Rename package 'com.yonyou.scf.gateway.config'
+1503557979056	Rename package 'com.yonyou.scf.gateway.constant'
+1503557989328	Rename package 'com.yonyou.scf.gateway.controller'
+1503557999156	Rename package 'com.yonyou.scf.gateway.filter'
+1503558015491	Rename package 'com.yonyou.scf.gateway.service'
+1503558026798	Rename package 'com.yonyou.scf.gateway.template'
+1503558037371	Rename package 'com.yonyou.scf.gateway.userAct'
+1503558048955	Rename package 'com.yonyou.scf.gateway.utilEntity'

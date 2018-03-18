@@ -1,0 +1,12 @@
+1508059576218	Extract method 'getFileEntity'
+1508140693361	Copy compilation unit
+1508215903696	Extract method 'saveOrUpdateFileEntity'
+1508233728614	Extract method 'financeConlist'
+1508492409247	Copy compilation unit
+1508492438778	Delete element
+1508559876832	Delete elements
+1508568282178	Extract method 'alreadyExistFIleInFTP'
+1508575250347	Copy compilation unit
+1508579307103	Extract method 'signWithParentFile'
+1508579778552	Extract method 'getFinanceRedisKey'
+1508581573013	Extract method 'getCreditRedisKeys'

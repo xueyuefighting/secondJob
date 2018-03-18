@@ -1,0 +1,7 @@
+package com.yonyou.scf.common.constant;
+
+public class SignBankConst {
+	public static final Long BL_BANK_CODE = 1L;//
+	public static final Long LF_BANK_CODE = 2L;//廊坊银行
+	public static final Long XD_BANK_CODE = 3L;//小贷公司
+}

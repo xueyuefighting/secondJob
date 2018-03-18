@@ -1,0 +1,5 @@
+package com.wyx.test;
+
+public class StaticClass {
+
+}

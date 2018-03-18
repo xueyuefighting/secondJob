@@ -1,0 +1,8 @@
+#You can find many more options like blow columns at http://blog.csdn.net/pml18710973036/article/details/65447682
+server.tomcat.max-threads=100
+
+
+server.port=55100
+server.context-path=/Customer
+server.tomcat.basedir=/SCF/base/Customer
+

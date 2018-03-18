@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用友SCF-身份验证</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="../../css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="../../css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+  
+    <!-- GOOGLE FONTS-->
+    <link href="../../css/loading.css" rel="stylesheet" />
+    <link href="../../css/confirm/scf.confirm.css" rel="stylesheet" />
+    <link href="../../css/identity.css" rel="stylesheet" />
+       <link href="../../css/load.css" rel="stylesheet" />
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="../../js/lib/me/jquery-3.1.1.min.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="../../js/lib/bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+     
+           
+    <div class="header">
+        <div class="lg">
+      	  <img src="../../images/yonyouscf.png">
+        </div>
+        <!-- <div class="denglu">上次登录时间：2017-04-01 16:30:08</div> -->
+    </div>        
+    <div id="wrapper">
+
+        <!-- /. NAV TOP  -->
+        <div id="dd"> 
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >
+               
+                <div class="page-header">
+                        <div class="biaot" ><img src="../../images/act.png"><span class="shoux">账号激活</span><span class="tixing">请完善以下实名信息，完成身份验证。</span></span>
+                        </div> 
+<!--                         <div class="yanzhen">20170927周改图片
+                            <img src="../../images/buzhou1.png">
+                        </div> -->
+                        <div class="prompt"><img src="../../images/xiaolba.png">操作提示：为了避免您的重复操作，有以下事项需要提前准备
+                            <p>1、融资账号激活需要使用银行U盾，请先<span class="hong">准备</span>好银行<span class="hong">U盾</span><br></p>
+                            <p>2、确保U盾驱动程序安装完成。</p><!-- <a  href="UKeyBindStep.html" class="cha" target="_blank">查看操作手册</a> -->
+                            
+                         </div>
+
+                         <div class="tian">请设置您在用友融资平台上的账户信息<span id="belowPlatform"></span>。</div>
+                         <ul class="info">
+                            <li style="position:relative;">
+                                <span class="mingt"><img src="../../images/xinx.png">融资平台管理员账号</span>
+                                <input id="zhangh" type="text"  class="userEventValid">
+                                <span class="buquan">4~18个字符，可使用字母、数字、下划线</span>
+                                <span class="userPrompt validMsg">用户名格式不正确</span>
+                            </li>
+                            <li style="position:relative;">
+                                <span class="mingt"><img src="../../images/xinx.png">融资平台管理员登录密码</span>
+                                <input id="password" type="password"  class="passEventValid"/>
+                                <span class="buquan">8-20个字符，至少包含数字、字母</span>
+                                <span class="passPrompt validMsg">密码格式不正确</span>
+                            </li>
+                            <li style="position:relative;">
+                                <span class="mingt"><img src="../../images/xinx.png">融资平台管理员确认密码</span>
+                                <input id="passwords" type="password"   onblur="confirmEvent()"/>
+                                <span class="passConfirm">密码不一致</span>
+                            </li>
+                        </ul>
+                         <div class="xu"></div>
+                         <div class="tian">请输入如下您在银行授信时使用的真实信息，进行身份验证</div>
+                         <ul class="info">
+                            <li class="validate">
+                                <span class="mingt"><img src="../../images/xinx.png">企业名称</span>
+                                <input id="ming" type="text">
+                                <span class="buquan">补全企业</span><span class="buquan">的全称</span>
+                               <!--  <span class="qcheng formInput"></span> -->
+                            </li>
+                            <li class="validate">
+                                <span class="mingt"><img src="../../images/xinx.png">统一社会信用代码</span>
+                                <input id="xinyong" type="text">
+                                <span class="buquan">如未三证合一，请输入组织机构代码</span>
+
+                            </li>
+                            <li class="yuliu">
+                                <img src="../../images/xinx.png">预留手机号码
+                                <span class="formInput telPhone"></span>
+                                此手机号为银行授信时预留联系手机号码
+                            </li>  
+                            <li class="yan">
+                                <span class="mingt">
+                                <img src="../../images/xinx.png">短信验证码
+                                </span>
+                                <input id="yanz" type="text"/>
+            <!--                     <a class="" name="sendPhoneMsg" onclick="sendPhoneMsg();"/>获取验证码</a> -->
+                               <input  value="获取验证码" id="bttn" class="Obtains" name="sendPhoneMsg" type="button"/>
+                            </li>                                                    
+                         </ul>
+
+                        <div  class="xiayi"><button onclick="loanNextStep();">下一步</button></div>
+
+                        
+                        <div class="prompt"><img src="../../images/xiaolba.png">关联方签署提示：
+        相关合同还需核心企业、担保方一同签署后方可生效，请耐心等待，我们会提示相关方尽快签署
+                         </div>
+                          <div class="fh"><a href="" class="buttons" style="cursor:pointer;" >返回友云采</a></div> 
+                </div>
+         <!-- /. PAGE WRAPPER  -->
+        </div>
+    </div>
+    <div class="footer">
+      
+    
+             <div class="row">
+                    <div class="footer-link">
+                        <span>
+                            ©版权所有：<a href=" " target="_blank" style="color:#555">用友网络科技股份有限公司2017 </a >
+                        </span>
+                        <br>
+                        京ICP备05007539号-7 京ICP证100714号 
+                        <img alt="" src="../../css/images/police.png" style="display:inline;height:12px;" />京公网安备11010802021935号
+                    </div>
+        </div>
+        </div>
+
+    <div class="prompt"></div>
+	<script src="../../js/lib/common.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="../../js/lib/custom.js"></script>
+    <script src="../../js/lib/confirm/scf.confirm.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var UserRole = Common.getQueryString("UserRole");
+            if(20==UserRole){
+                //优化的时候自动跳到核心企业页面
+                scf.confirm("用户信息不匹配，请核实后再登录", scf.confirm.typeEnum.error);
+                window.location.href="https://scf.yonyou.com";
+            }
+            
+            //Common.showLoading();
+            //Common.hideLoading();
+            
+            //var msg=  "用户信息不匹配，请核实后再登录";
+            //scf.confirm(msg, scf.confirm.typeEnum.info);
+            //scf.confirm(msg, scf.confirm.typeEnum.warning);
+            //scf.confirm(msg, scf.confirm.typeEnum.error);
+            //scf.confirm(msg, scf.confirm.typeEnum.success);
+
+        });
+        $("#bttn").click(function(){
+            sendPhoneMsg();
+        });
+     </script>
+</body>
+</html>

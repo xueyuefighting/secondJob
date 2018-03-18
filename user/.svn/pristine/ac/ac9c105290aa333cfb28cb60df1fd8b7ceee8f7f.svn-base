@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.user.mapper.hand.UserMapper" >
+  
+  <!-- 客户名称获取 -->
+  <select id="getUserNameList" resultType="Map" parameterType="map">
+	select company_info.company_name as userName,company_info.user_id as userId
+	from user_role,company_info
+	where user_role.user_style = #{user_style_company,jdbcType=VARCHAR} 
+	and user_role.user_id=company_info.user_id
+	union all
+	select user_info.user_name as userName,user_info.user_id as userId
+	from user_role,user_info
+	where user_role.user_style = #{user_style_person,jdbcType=VARCHAR} 
+	and user_role.user_id=user_info.user_id
+  </select>
+  
+  <!-- 证件号码获取 -->
+  <select id="getCredentialNumList" resultType="Map" parameterType="map">
+	select company_info.unified_social_credit_code as credentialNum,company_info.user_id as userId
+	from user_role,company_info
+	where user_role.user_style = #{user_style_company,jdbcType=VARCHAR} 
+	and user_role.user_id=company_info.user_id
+	union all
+	select user_info.credential_num as credentialNum,user_info.user_id as userId
+	from user_role,user_info
+	where user_role.user_style = #{user_style_person,jdbcType=VARCHAR} 
+	and user_role.user_id=user_info.user_id
+  </select>
+  
+  <!-- 客户信息检索 -->
+  <select id="getUserInfoList" resultType="Map" parameterType="map">
+	select company_info.company_name as userName,
+	company_info.user_id as userId,
+	company_info.unified_social_credit_code as credentialNum,
+	company_info.three_examinations_to_one as credentialType,
+	user_role.user_style as userType,
+	user_role.user_role as userRole,
+	user_role.create_time as creatTime,
+	company_info.enable_status as status
+	from user_role,company_info
+	where user_role.user_style = #{userType,jdbcType=VARCHAR} 
+	and user_role.user_role = #{userRole,jdbcType=VARCHAR} 
+	and company_info.company_name = #{credentialNum,jdbcType=VARCHAR} 
+	and company_info.unified_social_credit_code = #{credentialType,jdbcType=VARCHAR}
+	and user_role.user_id=company_info.user_id
+	
+	union all
+	
+	select user_info.user_name as userName,
+	user_info.user_id as userId,
+	user_info.credential_num as credentialNum, 
+	user_info.credential_type as credentialType,
+	user_role.user_style as userType,
+	user_role.user_role as userRole,
+	user_role.create_time as creatTime,
+	user_info.enable_status as status
+	from user_role,user_info
+	where user_role.user_style = #{userType,jdbcType=VARCHAR} 
+	and user_role.user_role = #{userRole,jdbcType=VARCHAR}
+	and user_info.user_name = #{credentialNum,jdbcType=VARCHAR}
+	and user_info.credential_num = #{credentialType,jdbcType=VARCHAR}
+	and user_role.user_id=user_info.user_id
+  </select>
+  
+</mapper>

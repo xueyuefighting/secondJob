@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F638Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F638" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_num" property="busiNum" jdbcType="CHAR" />
+    <result column="mem_num" property="memNum" jdbcType="CHAR" />
+    <result column="fcs_serial_num" property="fcsSerialNum" jdbcType="CHAR" />
+    <result column="busi_serial_num" property="busiSerialNum" jdbcType="CHAR" />
+    <result column="repayment_type" property="repaymentType" jdbcType="CHAR" />
+    <result column="repayment_mode" property="repaymentMode" jdbcType="CHAR" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+    <result column="ysqianxi" property="ysqianxi" jdbcType="BIGINT" />
+    <result column="filed1" property="filed1" jdbcType="CHAR" />
+    <result column="principal" property="principal" jdbcType="BIGINT" />
+    <result column="interest" property="interest" jdbcType="BIGINT" />
+    <result column="debit_interest" property="debitInterest" jdbcType="BIGINT" />
+    <result column="penalty_interest" property="penaltyInterest" jdbcType="BIGINT" />
+    <result column="cost" property="cost" jdbcType="BIGINT" />
+    <result column="result_amount" property="resultAmount" jdbcType="BIGINT" />
+    <result column="ptdwh" property="ptdwh" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="financeid" property="financeid" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_num, mem_num, fcs_serial_num, busi_serial_num, repayment_type, repayment_mode, 
+    amount, ysqianxi, filed1, principal, interest, debit_interest, penalty_interest, 
+    cost, result_amount, ptdwh, cuowuxx, financeid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F638Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f638
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f638
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f638
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F638Example" >
+    delete from f638
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F638" >
+    insert into f638 (id, busi_num, mem_num, 
+      fcs_serial_num, busi_serial_num, repayment_type, 
+      repayment_mode, amount, ysqianxi, 
+      filed1, principal, interest, 
+      debit_interest, penalty_interest, cost, 
+      result_amount, ptdwh, cuowuxx, 
+      financeid)
+    values (#{id,jdbcType=BIGINT}, #{busiNum,jdbcType=CHAR}, #{memNum,jdbcType=CHAR}, 
+      #{fcsSerialNum,jdbcType=CHAR}, #{busiSerialNum,jdbcType=CHAR}, #{repaymentType,jdbcType=CHAR}, 
+      #{repaymentMode,jdbcType=CHAR}, #{amount,jdbcType=BIGINT}, #{ysqianxi,jdbcType=BIGINT}, 
+      #{filed1,jdbcType=CHAR}, #{principal,jdbcType=BIGINT}, #{interest,jdbcType=BIGINT}, 
+      #{debitInterest,jdbcType=BIGINT}, #{penaltyInterest,jdbcType=BIGINT}, #{cost,jdbcType=BIGINT}, 
+      #{resultAmount,jdbcType=BIGINT}, #{ptdwh,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, 
+      #{financeid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F638" >
+    insert into f638
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="fcsSerialNum != null" >
+        fcs_serial_num,
+      </if>
+      <if test="busiSerialNum != null" >
+        busi_serial_num,
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type,
+      </if>
+      <if test="repaymentMode != null" >
+        repayment_mode,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="ysqianxi != null" >
+        ysqianxi,
+      </if>
+      <if test="filed1 != null" >
+        filed1,
+      </if>
+      <if test="principal != null" >
+        principal,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="debitInterest != null" >
+        debit_interest,
+      </if>
+      <if test="penaltyInterest != null" >
+        penalty_interest,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="resultAmount != null" >
+        result_amount,
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="financeid != null" >
+        financeid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="fcsSerialNum != null" >
+        #{fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="busiSerialNum != null" >
+        #{busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="repaymentType != null" >
+        #{repaymentType,jdbcType=CHAR},
+      </if>
+      <if test="repaymentMode != null" >
+        #{repaymentMode,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="ysqianxi != null" >
+        #{ysqianxi,jdbcType=BIGINT},
+      </if>
+      <if test="filed1 != null" >
+        #{filed1,jdbcType=CHAR},
+      </if>
+      <if test="principal != null" >
+        #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="debitInterest != null" >
+        #{debitInterest,jdbcType=BIGINT},
+      </if>
+      <if test="penaltyInterest != null" >
+        #{penaltyInterest,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=BIGINT},
+      </if>
+      <if test="resultAmount != null" >
+        #{resultAmount,jdbcType=BIGINT},
+      </if>
+      <if test="ptdwh != null" >
+        #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="financeid != null" >
+        #{financeid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F638Example" resultType="java.lang.Integer" >
+    select count(*) from f638
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f638
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=CHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=CHAR},
+      </if>
+      <if test="record.fcsSerialNum != null" >
+        fcs_serial_num = #{record.fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="record.busiSerialNum != null" >
+        busi_serial_num = #{record.busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="record.repaymentType != null" >
+        repayment_type = #{record.repaymentType,jdbcType=CHAR},
+      </if>
+      <if test="record.repaymentMode != null" >
+        repayment_mode = #{record.repaymentMode,jdbcType=CHAR},
+      </if>
+      <if test="record.amount != null" >
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.ysqianxi != null" >
+        ysqianxi = #{record.ysqianxi,jdbcType=BIGINT},
+      </if>
+      <if test="record.filed1 != null" >
+        filed1 = #{record.filed1,jdbcType=CHAR},
+      </if>
+      <if test="record.principal != null" >
+        principal = #{record.principal,jdbcType=BIGINT},
+      </if>
+      <if test="record.interest != null" >
+        interest = #{record.interest,jdbcType=BIGINT},
+      </if>
+      <if test="record.debitInterest != null" >
+        debit_interest = #{record.debitInterest,jdbcType=BIGINT},
+      </if>
+      <if test="record.penaltyInterest != null" >
+        penalty_interest = #{record.penaltyInterest,jdbcType=BIGINT},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=BIGINT},
+      </if>
+      <if test="record.resultAmount != null" >
+        result_amount = #{record.resultAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.ptdwh != null" >
+        ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financeid != null" >
+        financeid = #{record.financeid,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f638
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_num = #{record.busiNum,jdbcType=CHAR},
+      mem_num = #{record.memNum,jdbcType=CHAR},
+      fcs_serial_num = #{record.fcsSerialNum,jdbcType=CHAR},
+      busi_serial_num = #{record.busiSerialNum,jdbcType=CHAR},
+      repayment_type = #{record.repaymentType,jdbcType=CHAR},
+      repayment_mode = #{record.repaymentMode,jdbcType=CHAR},
+      amount = #{record.amount,jdbcType=BIGINT},
+      ysqianxi = #{record.ysqianxi,jdbcType=BIGINT},
+      filed1 = #{record.filed1,jdbcType=CHAR},
+      principal = #{record.principal,jdbcType=BIGINT},
+      interest = #{record.interest,jdbcType=BIGINT},
+      debit_interest = #{record.debitInterest,jdbcType=BIGINT},
+      penalty_interest = #{record.penaltyInterest,jdbcType=BIGINT},
+      cost = #{record.cost,jdbcType=BIGINT},
+      result_amount = #{record.resultAmount,jdbcType=BIGINT},
+      ptdwh = #{record.ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      financeid = #{record.financeid,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F638" >
+    update f638
+    <set >
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="fcsSerialNum != null" >
+        fcs_serial_num = #{fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="busiSerialNum != null" >
+        busi_serial_num = #{busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="repaymentType != null" >
+        repayment_type = #{repaymentType,jdbcType=CHAR},
+      </if>
+      <if test="repaymentMode != null" >
+        repayment_mode = #{repaymentMode,jdbcType=CHAR},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="ysqianxi != null" >
+        ysqianxi = #{ysqianxi,jdbcType=BIGINT},
+      </if>
+      <if test="filed1 != null" >
+        filed1 = #{filed1,jdbcType=CHAR},
+      </if>
+      <if test="principal != null" >
+        principal = #{principal,jdbcType=BIGINT},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=BIGINT},
+      </if>
+      <if test="debitInterest != null" >
+        debit_interest = #{debitInterest,jdbcType=BIGINT},
+      </if>
+      <if test="penaltyInterest != null" >
+        penalty_interest = #{penaltyInterest,jdbcType=BIGINT},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=BIGINT},
+      </if>
+      <if test="resultAmount != null" >
+        result_amount = #{resultAmount,jdbcType=BIGINT},
+      </if>
+      <if test="ptdwh != null" >
+        ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="financeid != null" >
+        financeid = #{financeid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F638" >
+    update f638
+    set busi_num = #{busiNum,jdbcType=CHAR},
+      mem_num = #{memNum,jdbcType=CHAR},
+      fcs_serial_num = #{fcsSerialNum,jdbcType=CHAR},
+      busi_serial_num = #{busiSerialNum,jdbcType=CHAR},
+      repayment_type = #{repaymentType,jdbcType=CHAR},
+      repayment_mode = #{repaymentMode,jdbcType=CHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      ysqianxi = #{ysqianxi,jdbcType=BIGINT},
+      filed1 = #{filed1,jdbcType=CHAR},
+      principal = #{principal,jdbcType=BIGINT},
+      interest = #{interest,jdbcType=BIGINT},
+      debit_interest = #{debitInterest,jdbcType=BIGINT},
+      penalty_interest = #{penaltyInterest,jdbcType=BIGINT},
+      cost = #{cost,jdbcType=BIGINT},
+      result_amount = #{resultAmount,jdbcType=BIGINT},
+      ptdwh = #{ptdwh,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      financeid = #{financeid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

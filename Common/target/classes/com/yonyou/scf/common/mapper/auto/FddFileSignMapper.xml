@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.FddFileSignMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.FddFileSign" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="transaction_id" property="transactionId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="SMALLINT" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="client_role" property="clientRole" jdbcType="SMALLINT" />
+    <result column="fdd_customer_id" property="fddCustomerId" jdbcType="VARCHAR" />
+    <result column="contract_id" property="contractId" jdbcType="VARCHAR" />
+    <result column="doc_title" property="docTitle" jdbcType="VARCHAR" />
+    <result column="sign_keyword" property="signKeyword" jdbcType="VARCHAR" />
+    <result column="return_url" property="returnUrl" jdbcType="VARCHAR" />
+    <result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="is_automated" property="isAutomated" jdbcType="SMALLINT" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="fdd_result" property="fddResult" jdbcType="VARCHAR" />
+    <result column="fdd_code" property="fddCode" jdbcType="VARCHAR" />
+    <result column="fdd_msg" property="fddMsg" jdbcType="VARCHAR" />
+    <result column="fdd_url" property="fddUrl" jdbcType="VARCHAR" />
+    <result column="fdd_download_url" property="fddDownloadUrl" jdbcType="VARCHAR" />
+    <result column="fdd_viewpdf_url" property="fddViewpdfUrl" jdbcType="VARCHAR" />
+    <result column="fdd_result_code" property="fddResultCode" jdbcType="VARCHAR" />
+    <result column="fdd_result_desc" property="fddResultDesc" jdbcType="VARCHAR" />
+    <result column="fdd_timestamp" property="fddTimestamp" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="callback_url" property="callbackUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, transaction_id, customer_id, customer_type, email, mobile, client_role, fdd_customer_id, 
+    contract_id, doc_title, sign_keyword, return_url, notify_url, is_automated, status, 
+    fdd_result, fdd_code, fdd_msg, fdd_url, fdd_download_url, fdd_viewpdf_url, fdd_result_code, 
+    fdd_result_desc, fdd_timestamp, create_time, create_user, update_time, update_user, 
+    callback_url
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.FddFileSignExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from fdd_file_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fdd_file_sign
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fdd_file_sign
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.FddFileSignExample" >
+    delete from fdd_file_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.FddFileSign" >
+    insert into fdd_file_sign (id, transaction_id, customer_id, 
+      customer_type, email, mobile, 
+      client_role, fdd_customer_id, contract_id, 
+      doc_title, sign_keyword, return_url, 
+      notify_url, is_automated, status, 
+      fdd_result, fdd_code, fdd_msg, 
+      fdd_url, fdd_download_url, fdd_viewpdf_url, 
+      fdd_result_code, fdd_result_desc, fdd_timestamp, 
+      create_time, create_user, update_time, 
+      update_user, callback_url)
+    values (#{id,jdbcType=BIGINT}, #{transactionId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{customerType,jdbcType=SMALLINT}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{clientRole,jdbcType=SMALLINT}, #{fddCustomerId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, 
+      #{docTitle,jdbcType=VARCHAR}, #{signKeyword,jdbcType=VARCHAR}, #{returnUrl,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{isAutomated,jdbcType=SMALLINT}, #{status,jdbcType=SMALLINT}, 
+      #{fddResult,jdbcType=VARCHAR}, #{fddCode,jdbcType=VARCHAR}, #{fddMsg,jdbcType=VARCHAR}, 
+      #{fddUrl,jdbcType=VARCHAR}, #{fddDownloadUrl,jdbcType=VARCHAR}, #{fddViewpdfUrl,jdbcType=VARCHAR}, 
+      #{fddResultCode,jdbcType=VARCHAR}, #{fddResultDesc,jdbcType=VARCHAR}, #{fddTimestamp,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=BIGINT}, #{callbackUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.FddFileSign" >
+    insert into fdd_file_sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="transactionId != null" >
+        transaction_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="clientRole != null" >
+        client_role,
+      </if>
+      <if test="fddCustomerId != null" >
+        fdd_customer_id,
+      </if>
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="docTitle != null" >
+        doc_title,
+      </if>
+      <if test="signKeyword != null" >
+        sign_keyword,
+      </if>
+      <if test="returnUrl != null" >
+        return_url,
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url,
+      </if>
+      <if test="isAutomated != null" >
+        is_automated,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fddResult != null" >
+        fdd_result,
+      </if>
+      <if test="fddCode != null" >
+        fdd_code,
+      </if>
+      <if test="fddMsg != null" >
+        fdd_msg,
+      </if>
+      <if test="fddUrl != null" >
+        fdd_url,
+      </if>
+      <if test="fddDownloadUrl != null" >
+        fdd_download_url,
+      </if>
+      <if test="fddViewpdfUrl != null" >
+        fdd_viewpdf_url,
+      </if>
+      <if test="fddResultCode != null" >
+        fdd_result_code,
+      </if>
+      <if test="fddResultDesc != null" >
+        fdd_result_desc,
+      </if>
+      <if test="fddTimestamp != null" >
+        fdd_timestamp,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="callbackUrl != null" >
+        callback_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="transactionId != null" >
+        #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=SMALLINT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="clientRole != null" >
+        #{clientRole,jdbcType=SMALLINT},
+      </if>
+      <if test="fddCustomerId != null" >
+        #{fddCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="docTitle != null" >
+        #{docTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="signKeyword != null" >
+        #{signKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutomated != null" >
+        #{isAutomated,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="fddResult != null" >
+        #{fddResult,jdbcType=VARCHAR},
+      </if>
+      <if test="fddCode != null" >
+        #{fddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fddMsg != null" >
+        #{fddMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="fddUrl != null" >
+        #{fddUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddDownloadUrl != null" >
+        #{fddDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddViewpdfUrl != null" >
+        #{fddViewpdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddResultCode != null" >
+        #{fddResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fddResultDesc != null" >
+        #{fddResultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fddTimestamp != null" >
+        #{fddTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="callbackUrl != null" >
+        #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.FddFileSignExample" resultType="java.lang.Integer" >
+    select count(*) from fdd_file_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update fdd_file_sign
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.transactionId != null" >
+        transaction_id = #{record.transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerId != null" >
+        customer_id = #{record.customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customerType != null" >
+        customer_type = #{record.customerType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null" >
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientRole != null" >
+        client_role = #{record.clientRole,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fddCustomerId != null" >
+        fdd_customer_id = #{record.fddCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractId != null" >
+        contract_id = #{record.contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.docTitle != null" >
+        doc_title = #{record.docTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signKeyword != null" >
+        sign_keyword = #{record.signKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.returnUrl != null" >
+        return_url = #{record.returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notifyUrl != null" >
+        notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAutomated != null" >
+        is_automated = #{record.isAutomated,jdbcType=SMALLINT},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=SMALLINT},
+      </if>
+      <if test="record.fddResult != null" >
+        fdd_result = #{record.fddResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddCode != null" >
+        fdd_code = #{record.fddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddMsg != null" >
+        fdd_msg = #{record.fddMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddUrl != null" >
+        fdd_url = #{record.fddUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddDownloadUrl != null" >
+        fdd_download_url = #{record.fddDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddViewpdfUrl != null" >
+        fdd_viewpdf_url = #{record.fddViewpdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddResultCode != null" >
+        fdd_result_code = #{record.fddResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddResultDesc != null" >
+        fdd_result_desc = #{record.fddResultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fddTimestamp != null" >
+        fdd_timestamp = #{record.fddTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.callbackUrl != null" >
+        callback_url = #{record.callbackUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update fdd_file_sign
+    set id = #{record.id,jdbcType=BIGINT},
+      transaction_id = #{record.transactionId,jdbcType=VARCHAR},
+      customer_id = #{record.customerId,jdbcType=VARCHAR},
+      customer_type = #{record.customerType,jdbcType=SMALLINT},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      client_role = #{record.clientRole,jdbcType=SMALLINT},
+      fdd_customer_id = #{record.fddCustomerId,jdbcType=VARCHAR},
+      contract_id = #{record.contractId,jdbcType=VARCHAR},
+      doc_title = #{record.docTitle,jdbcType=VARCHAR},
+      sign_keyword = #{record.signKeyword,jdbcType=VARCHAR},
+      return_url = #{record.returnUrl,jdbcType=VARCHAR},
+      notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+      is_automated = #{record.isAutomated,jdbcType=SMALLINT},
+      status = #{record.status,jdbcType=SMALLINT},
+      fdd_result = #{record.fddResult,jdbcType=VARCHAR},
+      fdd_code = #{record.fddCode,jdbcType=VARCHAR},
+      fdd_msg = #{record.fddMsg,jdbcType=VARCHAR},
+      fdd_url = #{record.fddUrl,jdbcType=VARCHAR},
+      fdd_download_url = #{record.fddDownloadUrl,jdbcType=VARCHAR},
+      fdd_viewpdf_url = #{record.fddViewpdfUrl,jdbcType=VARCHAR},
+      fdd_result_code = #{record.fddResultCode,jdbcType=VARCHAR},
+      fdd_result_desc = #{record.fddResultDesc,jdbcType=VARCHAR},
+      fdd_timestamp = #{record.fddTimestamp,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      callback_url = #{record.callbackUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.FddFileSign" >
+    update fdd_file_sign
+    <set >
+      <if test="transactionId != null" >
+        transaction_id = #{transactionId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=SMALLINT},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="clientRole != null" >
+        client_role = #{clientRole,jdbcType=SMALLINT},
+      </if>
+      <if test="fddCustomerId != null" >
+        fdd_customer_id = #{fddCustomerId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        contract_id = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="docTitle != null" >
+        doc_title = #{docTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="signKeyword != null" >
+        sign_keyword = #{signKeyword,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        return_url = #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="isAutomated != null" >
+        is_automated = #{isAutomated,jdbcType=SMALLINT},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="fddResult != null" >
+        fdd_result = #{fddResult,jdbcType=VARCHAR},
+      </if>
+      <if test="fddCode != null" >
+        fdd_code = #{fddCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fddMsg != null" >
+        fdd_msg = #{fddMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="fddUrl != null" >
+        fdd_url = #{fddUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddDownloadUrl != null" >
+        fdd_download_url = #{fddDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddViewpdfUrl != null" >
+        fdd_viewpdf_url = #{fddViewpdfUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="fddResultCode != null" >
+        fdd_result_code = #{fddResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fddResultDesc != null" >
+        fdd_result_desc = #{fddResultDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fddTimestamp != null" >
+        fdd_timestamp = #{fddTimestamp,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="callbackUrl != null" >
+        callback_url = #{callbackUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.FddFileSign" >
+    update fdd_file_sign
+    set transaction_id = #{transactionId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=SMALLINT},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      client_role = #{clientRole,jdbcType=SMALLINT},
+      fdd_customer_id = #{fddCustomerId,jdbcType=VARCHAR},
+      contract_id = #{contractId,jdbcType=VARCHAR},
+      doc_title = #{docTitle,jdbcType=VARCHAR},
+      sign_keyword = #{signKeyword,jdbcType=VARCHAR},
+      return_url = #{returnUrl,jdbcType=VARCHAR},
+      notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      is_automated = #{isAutomated,jdbcType=SMALLINT},
+      status = #{status,jdbcType=SMALLINT},
+      fdd_result = #{fddResult,jdbcType=VARCHAR},
+      fdd_code = #{fddCode,jdbcType=VARCHAR},
+      fdd_msg = #{fddMsg,jdbcType=VARCHAR},
+      fdd_url = #{fddUrl,jdbcType=VARCHAR},
+      fdd_download_url = #{fddDownloadUrl,jdbcType=VARCHAR},
+      fdd_viewpdf_url = #{fddViewpdfUrl,jdbcType=VARCHAR},
+      fdd_result_code = #{fddResultCode,jdbcType=VARCHAR},
+      fdd_result_desc = #{fddResultDesc,jdbcType=VARCHAR},
+      fdd_timestamp = #{fddTimestamp,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      callback_url = #{callbackUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

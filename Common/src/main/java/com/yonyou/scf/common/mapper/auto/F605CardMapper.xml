@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F605CardMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F605Card" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="f605_id" property="f605Id" jdbcType="BIGINT" />
+    <result column="bind_open_bank" property="bindOpenBank" jdbcType="VARCHAR" />
+    <result column="bind_open_org_num" property="bindOpenOrgNum" jdbcType="CHAR" />
+    <result column="bind_open_bank_name" property="bindOpenBankName" jdbcType="VARCHAR" />
+    <result column="bind_acc_num" property="bindAccNum" jdbcType="CHAR" />
+    <result column="bind_acc_name" property="bindAccName" jdbcType="VARCHAR" />
+    <result column="is_cross_line" property="isCrossLine" jdbcType="CHAR" />
+    <result column="origin_bind_open_bank" property="originBindOpenBank" jdbcType="VARCHAR" />
+    <result column="origin_bind_open_org_num" property="originBindOpenOrgNum" jdbcType="CHAR" />
+    <result column="origin_bind_open_bank_name" property="originBindOpenBankName" jdbcType="VARCHAR" />
+    <result column="origin_bind_acc_num" property="originBindAccNum" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, f605_id, bind_open_bank, bind_open_org_num, bind_open_bank_name, bind_acc_num, 
+    bind_acc_name, is_cross_line, origin_bind_open_bank, origin_bind_open_org_num, origin_bind_open_bank_name, 
+    origin_bind_acc_num
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F605CardExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f605_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f605_card
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f605_card
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F605CardExample" >
+    delete from f605_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F605Card" >
+    insert into f605_card (id, f605_id, bind_open_bank, 
+      bind_open_org_num, bind_open_bank_name, bind_acc_num, 
+      bind_acc_name, is_cross_line, origin_bind_open_bank, 
+      origin_bind_open_org_num, origin_bind_open_bank_name, 
+      origin_bind_acc_num)
+    values (#{id,jdbcType=BIGINT}, #{f605Id,jdbcType=BIGINT}, #{bindOpenBank,jdbcType=VARCHAR}, 
+      #{bindOpenOrgNum,jdbcType=CHAR}, #{bindOpenBankName,jdbcType=VARCHAR}, #{bindAccNum,jdbcType=CHAR}, 
+      #{bindAccName,jdbcType=VARCHAR}, #{isCrossLine,jdbcType=CHAR}, #{originBindOpenBank,jdbcType=VARCHAR}, 
+      #{originBindOpenOrgNum,jdbcType=CHAR}, #{originBindOpenBankName,jdbcType=VARCHAR}, 
+      #{originBindAccNum,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F605Card" >
+    insert into f605_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="f605Id != null" >
+        f605_id,
+      </if>
+      <if test="bindOpenBank != null" >
+        bind_open_bank,
+      </if>
+      <if test="bindOpenOrgNum != null" >
+        bind_open_org_num,
+      </if>
+      <if test="bindOpenBankName != null" >
+        bind_open_bank_name,
+      </if>
+      <if test="bindAccNum != null" >
+        bind_acc_num,
+      </if>
+      <if test="bindAccName != null" >
+        bind_acc_name,
+      </if>
+      <if test="isCrossLine != null" >
+        is_cross_line,
+      </if>
+      <if test="originBindOpenBank != null" >
+        origin_bind_open_bank,
+      </if>
+      <if test="originBindOpenOrgNum != null" >
+        origin_bind_open_org_num,
+      </if>
+      <if test="originBindOpenBankName != null" >
+        origin_bind_open_bank_name,
+      </if>
+      <if test="originBindAccNum != null" >
+        origin_bind_acc_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="f605Id != null" >
+        #{f605Id,jdbcType=BIGINT},
+      </if>
+      <if test="bindOpenBank != null" >
+        #{bindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="bindOpenOrgNum != null" >
+        #{bindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="bindOpenBankName != null" >
+        #{bindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindAccNum != null" >
+        #{bindAccNum,jdbcType=CHAR},
+      </if>
+      <if test="bindAccName != null" >
+        #{bindAccName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCrossLine != null" >
+        #{isCrossLine,jdbcType=CHAR},
+      </if>
+      <if test="originBindOpenBank != null" >
+        #{originBindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="originBindOpenOrgNum != null" >
+        #{originBindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="originBindOpenBankName != null" >
+        #{originBindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="originBindAccNum != null" >
+        #{originBindAccNum,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F605CardExample" resultType="java.lang.Integer" >
+    select count(*) from f605_card
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f605_card
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.f605Id != null" >
+        f605_id = #{record.f605Id,jdbcType=BIGINT},
+      </if>
+      <if test="record.bindOpenBank != null" >
+        bind_open_bank = #{record.bindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindOpenOrgNum != null" >
+        bind_open_org_num = #{record.bindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="record.bindOpenBankName != null" >
+        bind_open_bank_name = #{record.bindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindAccNum != null" >
+        bind_acc_num = #{record.bindAccNum,jdbcType=CHAR},
+      </if>
+      <if test="record.bindAccName != null" >
+        bind_acc_name = #{record.bindAccName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCrossLine != null" >
+        is_cross_line = #{record.isCrossLine,jdbcType=CHAR},
+      </if>
+      <if test="record.originBindOpenBank != null" >
+        origin_bind_open_bank = #{record.originBindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originBindOpenOrgNum != null" >
+        origin_bind_open_org_num = #{record.originBindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="record.originBindOpenBankName != null" >
+        origin_bind_open_bank_name = #{record.originBindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.originBindAccNum != null" >
+        origin_bind_acc_num = #{record.originBindAccNum,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f605_card
+    set id = #{record.id,jdbcType=BIGINT},
+      f605_id = #{record.f605Id,jdbcType=BIGINT},
+      bind_open_bank = #{record.bindOpenBank,jdbcType=VARCHAR},
+      bind_open_org_num = #{record.bindOpenOrgNum,jdbcType=CHAR},
+      bind_open_bank_name = #{record.bindOpenBankName,jdbcType=VARCHAR},
+      bind_acc_num = #{record.bindAccNum,jdbcType=CHAR},
+      bind_acc_name = #{record.bindAccName,jdbcType=VARCHAR},
+      is_cross_line = #{record.isCrossLine,jdbcType=CHAR},
+      origin_bind_open_bank = #{record.originBindOpenBank,jdbcType=VARCHAR},
+      origin_bind_open_org_num = #{record.originBindOpenOrgNum,jdbcType=CHAR},
+      origin_bind_open_bank_name = #{record.originBindOpenBankName,jdbcType=VARCHAR},
+      origin_bind_acc_num = #{record.originBindAccNum,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F605Card" >
+    update f605_card
+    <set >
+      <if test="f605Id != null" >
+        f605_id = #{f605Id,jdbcType=BIGINT},
+      </if>
+      <if test="bindOpenBank != null" >
+        bind_open_bank = #{bindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="bindOpenOrgNum != null" >
+        bind_open_org_num = #{bindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="bindOpenBankName != null" >
+        bind_open_bank_name = #{bindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bindAccNum != null" >
+        bind_acc_num = #{bindAccNum,jdbcType=CHAR},
+      </if>
+      <if test="bindAccName != null" >
+        bind_acc_name = #{bindAccName,jdbcType=VARCHAR},
+      </if>
+      <if test="isCrossLine != null" >
+        is_cross_line = #{isCrossLine,jdbcType=CHAR},
+      </if>
+      <if test="originBindOpenBank != null" >
+        origin_bind_open_bank = #{originBindOpenBank,jdbcType=VARCHAR},
+      </if>
+      <if test="originBindOpenOrgNum != null" >
+        origin_bind_open_org_num = #{originBindOpenOrgNum,jdbcType=CHAR},
+      </if>
+      <if test="originBindOpenBankName != null" >
+        origin_bind_open_bank_name = #{originBindOpenBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="originBindAccNum != null" >
+        origin_bind_acc_num = #{originBindAccNum,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F605Card" >
+    update f605_card
+    set f605_id = #{f605Id,jdbcType=BIGINT},
+      bind_open_bank = #{bindOpenBank,jdbcType=VARCHAR},
+      bind_open_org_num = #{bindOpenOrgNum,jdbcType=CHAR},
+      bind_open_bank_name = #{bindOpenBankName,jdbcType=VARCHAR},
+      bind_acc_num = #{bindAccNum,jdbcType=CHAR},
+      bind_acc_name = #{bindAccName,jdbcType=VARCHAR},
+      is_cross_line = #{isCrossLine,jdbcType=CHAR},
+      origin_bind_open_bank = #{originBindOpenBank,jdbcType=VARCHAR},
+      origin_bind_open_org_num = #{originBindOpenOrgNum,jdbcType=CHAR},
+      origin_bind_open_bank_name = #{originBindOpenBankName,jdbcType=VARCHAR},
+      origin_bind_acc_num = #{originBindAccNum,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

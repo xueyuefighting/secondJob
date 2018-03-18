@@ -1,0 +1,27 @@
+package com.yonyou.scf.common.constant;
+
+import java.io.Serializable;
+
+/*
+ * 合同模版 通用静态类
+ * @author zhangjlm
+ *
+ */
+public class ContractConstant implements Serializable {
+
+	private static final long serialVersionUID = 7631942678452298255L;
+	
+	public static final String CONTRACT_BLHT_TYPE = "10";//保理合同类型
+	public static final String CONTRACT_BLHT_TYPE_KEY = "bLContractNo";//保理合同类型
+	public static final String CONTRACT_DJ_TYPE = "20";//保理登记类型
+	public static final String CONTRACT_DJ_TYPE_KEY = "dJcontractNo";//保理登记类型
+	public static final String CONTRACT_TZ_TYPE = "21";//保理通知类型
+	public static final String CONTRACT_TZ_TYPE_KEY = "tZcontractNo";//保理通知类型
+	
+	
+	public static final String IS_SAVE_NO = "0";//0- 没有保存签署记录（确认页面传） 1-已保存签署记录（待办）
+	public static final String IS_SAVE_YES = "1";//0- 没有保存签署记录（确认页面传） 1-已保存签署记录（待办）
+	public static final String IS_SAVE_RESULT_OK = "ok";//确认页面是否全部签署完 ok-已全部签署  no-没有全部签署
+	public static final String IS_SAVE_RESULT_NO = "no";//确认页面是否全部签署完 ok-已全部签署  no-没有全部签署
+	
+}

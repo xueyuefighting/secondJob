@@ -1,0 +1,94 @@
+package com.yonyou.scf.user.controller;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.yonyou.scf.common.input.SCF921002Input;
+import com.yonyou.scf.common.output.SCF921002Output;
+import com.yonyou.scf.user.service.CommonService;
+import com.yonyou.scf.user.service.UserService;
+ 
+@RestController
+@RequestMapping("/user")
+@Api(value = "各类API接口", description = "v1.0 测试用")
+public class UserController {
+	
+    @Resource
+    private UserService userService;
+    
+    @Resource
+    private CommonService commonService;
+    
+   
+    @ApiOperation(value="客户档案信息初始化页面", notes="v1.0 测试用")
+    @RequestMapping(value="/SCF921001",method = RequestMethod.GET)
+    public Map<String,Map<String,Object>> SCF921001(){
+        return userService.SCF921001();
+    }
+    
+    @ApiOperation(value="客户档案查询", notes="v1.0 测试用")
+    @RequestMapping(value="/SCF921002",method = RequestMethod.GET)
+    public List<SCF921002Output> SCF921002(@ApiParam("SCF921002输入报文/JSON/BODY") @RequestBody SCF921002Input input){
+        return userService.SCF921002(input);
+    }
+    
+    @ApiOperation(value="通过关联查询(专用，只能从借款方检索对应核心企业,id,3,1)", notes="v1.0 测试用")
+    @RequestMapping(value="/SCF921002/{userId}/{roleType}/{roleType2}",method = RequestMethod.GET)
+	public Map<String, Object> SCF931007(
+			@ApiParam("借款方ID") @PathVariable Long userId,
+			@ApiParam("借款方标识=3") @PathVariable String roleType,
+			@ApiParam("核心企业标识=1") @PathVariable String roleType2) {
+		return commonService.SCF931007(userId, roleType, roleType2);
+	}
+ 
+//    @ApiOperation(value="增加5个人,名字都尼玛是'杜瑞'", notes="v1.0 测试用")
+//    @RequestMapping(value="/EMP/ADDTEST",method = RequestMethod.POST)
+//    public String addEmpTest(){
+//        
+//        return userService.addEmpTest();
+//    }
+//    
+//    @ApiOperation(value="增加人员", notes="v1.0 测试用")
+//    @RequestMapping(value="/EMP",method = RequestMethod.POST)
+//    public ResultBean addEmpTest(@ApiParam("人员信息/JSON/BODY") @RequestBody @Valid User user,
+//    		BindingResult result){
+//		
+//    	ResultBean rb = new ResultBean(result);
+//    	if (!"error".equals(rb.getStatus()))
+//    		rb.setStatus(userService.addEmp(user));
+//        return rb;
+//    }
+//    
+//    @ApiOperation(value="修改人员", notes="v1.0 测试用")
+//    @RequestMapping(value="/EMP",method = RequestMethod.PUT)
+//    public ResultBean updEmpTest(@ApiParam("人员信息/JSON/BODY") @RequestBody @Valid User user,
+//    		BindingResult result){
+//		
+//    	ResultBean rb = new ResultBean(result);
+//    	if (!"error".equals(rb.getStatus()))
+//    		rb.setStatus(userService.updEmp(user));
+//        return rb;
+//    }
+//    
+//    @ApiOperation(value="删除人员BY ID", notes="v1.0 测试用")
+//    @RequestMapping(value="/EMP/{id}",method = RequestMethod.DELETE)
+//    public String delEmp(@ApiParam("人员ID") @PathVariable int id){
+//		
+//    	//本机调试用信息打印
+//    	Logger.print(id);
+//        return userService.delEmp(id);
+//    }
+   
+}

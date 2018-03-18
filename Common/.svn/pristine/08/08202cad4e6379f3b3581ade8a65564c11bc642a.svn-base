@@ -1,0 +1,42 @@
+package com.yonyou.scf.common.util;
+
+
+import com.yonyou.scf.common.constant.FinanceConst;
+import com.yonyou.scf.common.constant.URLConst;
+import com.yonyou.scf.common.util.net.HttpClientUtil;
+
+public class OperateUtil {
+//	public static String getUserName(String Id){
+//		String userName="";
+//		try {
+//			userName = HttpClientUtil.post(URLConst.URL_CUSTOMER+"/0001/"
+//							+ Id, new Object());
+//					//.get("http://localhost:6602/user/0001/"
+////					.get(URLConst.URL_CUSTOMER+"/0001/"
+////							+ Id);
+//			if(userName.contains("\"status\":404")){
+//				userName="No Found";
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return userName;
+//	}
+	public static String getCapitalNo(Long capitalId){
+		String capitalNo ="";
+		String capitalIdStr ="";
+		try {
+			capitalIdStr = capitalId.toString();
+			if(capitalIdStr.equals("2")){
+				capitalNo=FinanceConst.capital_No_02;
+			}else if(capitalIdStr.equals("1")){
+				capitalNo=FinanceConst.capital_No_01;
+			}else if(capitalIdStr.equals("3")){
+				capitalNo=FinanceConst.capital_No_03;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return capitalNo;
+	}
+}

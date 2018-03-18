@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular JS + Spring MVC test</title>
+    <link href="../css/jquery-ui.css" rel="stylesheet">
+    <script src="../js/lib/me/jquery-3.1.1.min.js"></script>
+    <script src="../js/lib/me/jquery-ui.js"></script>
+    <script src="../js/lib/bootstrap/bootstrap.js"></script>
+    <script src="../js/lib/bootstrap/bootstrap.min.js"></script>
+   	<script src="../js/lib/me/formList.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body style="background-color: #fff;">
+
+
+<div style="    margin-left: 206px;"><img alt="用友logo" src="/resources/images/yonyou.png"/></div>
+<div id="confirm-result" title="友情提示" style="display:none;">
+	 <p style="margin-left: 88px;">
+    	<span id="confirm-tips"></span>
+	 </p>
+</div>
+<table id="html-table-su" style="width: 1389px;margin: auto;margin-top: 80px;">
+	<tr>
+		<td style="width: 315px;"></td>
+		<td style="text-align: center;">平台名称</td>
+		<td style="width: 31px;">
+			<input type="text" class="queryFeild" name="platformId" value=""/>
+		</td>
+		<td style="text-align: center;width: 223px;">核心企业名称</td>
+		<td>
+			<input type="text" class="queryFeild" name="centerCompanyName" value=""/>
+		</td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr style="height: 68px;">
+		<td colspan="3" style="text-align:right;"><button id="queryData">查询</button></td>
+		<td ><button style="margin-left: 52px;" id="resetting">重置</button></td>
+		<td colspan="3"></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td>当前第：<span id="currentPage">x</span> 页 共 <span id="totalPG">xx</span> 页</td>
+		<td><button id="_pageFirst">首页</button>&nbsp;<button id="_pageUp">上一页</button>&nbsp;<button  id="_pageDown">下一页</button>&nbsp;&nbsp;<button  id="_pageEnd">末&nbsp;页</button></td>
+	</tr>
+</table>  
+<table id="html-table" style="width: 1389px;margin: auto;margin-top: 80px;background-color:rgba(24, 24, 29, 0.21);border-collapse:separate; border-spacing:43px;">  
+	<tr style="text-align: center;" id="firstChild">
+		<td>序号</td>
+		<td>提交时间</td>	
+		<td>平台名称</td>	
+		<td>核心企业名称</td>	
+		<td>经销商名称</td>	
+		<td>联系人</td>	
+		<td>手机</td>	
+		<td>邮箱地址</td>	
+	</tr> 
+</table>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.Product" >
+    <id column="product_id" property="productId" jdbcType="BIGINT" />
+    <result column="mode" property="mode" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="capital_id" property="capitalId" jdbcType="BIGINT" />
+    <result column="company_id" property="companyId" jdbcType="BIGINT" />
+    <result column="product_rate" property="productRate" jdbcType="INTEGER" />
+    <result column="finance_rate" property="financeRate" jdbcType="INTEGER" />
+    <result column="service_rate" property="serviceRate" jdbcType="INTEGER" />
+    <result column="product_use_amount" property="productUseAmount" jdbcType="BIGINT" />
+    <result column="product_credit_amount" property="productCreditAmount" jdbcType="BIGINT" />
+    <result column="min_finance_money" property="minFinanceMoney" jdbcType="BIGINT" />
+    <result column="min_finance_day" property="minFinanceDay" jdbcType="INTEGER" />
+    <result column="max_finance_day" property="maxFinanceDay" jdbcType="INTEGER" />
+    <result column="transfer_period" property="transferPeriod" jdbcType="INTEGER" />
+    <result column="repay_type" property="repayType" jdbcType="VARCHAR" />
+    <result column="isdelay" property="isdelay" jdbcType="VARCHAR" />
+    <result column="extend_day" property="extendDay" jdbcType="INTEGER" />
+    <result column="extension_charge_rate" property="extensionChargeRate" jdbcType="INTEGER" />
+    <result column="prepayment_charge_rate" property="prepaymentChargeRate" jdbcType="INTEGER" />
+    <result column="continuation_float_rate" property="continuationFloatRate" jdbcType="INTEGER" />
+    <result column="overdue_float_rate" property="overdueFloatRate" jdbcType="INTEGER" />
+    <result column="continuation_rate" property="continuationRate" jdbcType="INTEGER" />
+    <result column="overdue_rate" property="overdueRate" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="platform_id" property="platformId" jdbcType="VARCHAR" />
+    <result column="is_frozen_own_funds" property="isFrozenOwnFunds" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+    <result column="monthly_rate" property="monthlyRate" jdbcType="INTEGER" />
+    <result column="margin_rate" property="marginRate" jdbcType="INTEGER" />
+    <result column="way_of_guarantee" property="wayOfGuarantee" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    product_id, mode, product_name, capital_id, company_id, product_rate, finance_rate, 
+    service_rate, product_use_amount, product_credit_amount, min_finance_money, min_finance_day, 
+    max_finance_day, transfer_period, repay_type, isdelay, extend_day, extension_charge_rate, 
+    prepayment_charge_rate, continuation_float_rate, overdue_float_rate, continuation_rate, 
+    overdue_rate, status, platform_id, is_frozen_own_funds, create_time, create_user, 
+    update_time, update_user, monthly_rate, margin_rate, way_of_guarantee
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where product_id = #{productId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from product
+    where product_id = #{productId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.ProductExample" >
+    delete from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.Product" >
+    insert into product (product_id, mode, product_name, 
+      capital_id, company_id, product_rate, 
+      finance_rate, service_rate, product_use_amount, 
+      product_credit_amount, min_finance_money, min_finance_day, 
+      max_finance_day, transfer_period, repay_type, 
+      isdelay, extend_day, extension_charge_rate, 
+      prepayment_charge_rate, continuation_float_rate, 
+      overdue_float_rate, continuation_rate, overdue_rate, 
+      status, platform_id, is_frozen_own_funds, 
+      create_time, create_user, update_time, 
+      update_user, monthly_rate, margin_rate, 
+      way_of_guarantee)
+    values (#{productId,jdbcType=BIGINT}, #{mode,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{capitalId,jdbcType=BIGINT}, #{companyId,jdbcType=BIGINT}, #{productRate,jdbcType=INTEGER}, 
+      #{financeRate,jdbcType=INTEGER}, #{serviceRate,jdbcType=INTEGER}, #{productUseAmount,jdbcType=BIGINT}, 
+      #{productCreditAmount,jdbcType=BIGINT}, #{minFinanceMoney,jdbcType=BIGINT}, #{minFinanceDay,jdbcType=INTEGER}, 
+      #{maxFinanceDay,jdbcType=INTEGER}, #{transferPeriod,jdbcType=INTEGER}, #{repayType,jdbcType=VARCHAR}, 
+      #{isdelay,jdbcType=VARCHAR}, #{extendDay,jdbcType=INTEGER}, #{extensionChargeRate,jdbcType=INTEGER}, 
+      #{prepaymentChargeRate,jdbcType=INTEGER}, #{continuationFloatRate,jdbcType=INTEGER}, 
+      #{overdueFloatRate,jdbcType=INTEGER}, #{continuationRate,jdbcType=INTEGER}, #{overdueRate,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{platformId,jdbcType=VARCHAR}, #{isFrozenOwnFunds,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=BIGINT}, #{monthlyRate,jdbcType=INTEGER}, #{marginRate,jdbcType=INTEGER}, 
+      #{wayOfGuarantee,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="mode != null" >
+        mode,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="capitalId != null" >
+        capital_id,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="productRate != null" >
+        product_rate,
+      </if>
+      <if test="financeRate != null" >
+        finance_rate,
+      </if>
+      <if test="serviceRate != null" >
+        service_rate,
+      </if>
+      <if test="productUseAmount != null" >
+        product_use_amount,
+      </if>
+      <if test="productCreditAmount != null" >
+        product_credit_amount,
+      </if>
+      <if test="minFinanceMoney != null" >
+        min_finance_money,
+      </if>
+      <if test="minFinanceDay != null" >
+        min_finance_day,
+      </if>
+      <if test="maxFinanceDay != null" >
+        max_finance_day,
+      </if>
+      <if test="transferPeriod != null" >
+        transfer_period,
+      </if>
+      <if test="repayType != null" >
+        repay_type,
+      </if>
+      <if test="isdelay != null" >
+        isdelay,
+      </if>
+      <if test="extendDay != null" >
+        extend_day,
+      </if>
+      <if test="extensionChargeRate != null" >
+        extension_charge_rate,
+      </if>
+      <if test="prepaymentChargeRate != null" >
+        prepayment_charge_rate,
+      </if>
+      <if test="continuationFloatRate != null" >
+        continuation_float_rate,
+      </if>
+      <if test="overdueFloatRate != null" >
+        overdue_float_rate,
+      </if>
+      <if test="continuationRate != null" >
+        continuation_rate,
+      </if>
+      <if test="overdueRate != null" >
+        overdue_rate,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="platformId != null" >
+        platform_id,
+      </if>
+      <if test="isFrozenOwnFunds != null" >
+        is_frozen_own_funds,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="monthlyRate != null" >
+        monthly_rate,
+      </if>
+      <if test="marginRate != null" >
+        margin_rate,
+      </if>
+      <if test="wayOfGuarantee != null" >
+        way_of_guarantee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productId != null" >
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="mode != null" >
+        #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalId != null" >
+        #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="productRate != null" >
+        #{productRate,jdbcType=INTEGER},
+      </if>
+      <if test="financeRate != null" >
+        #{financeRate,jdbcType=INTEGER},
+      </if>
+      <if test="serviceRate != null" >
+        #{serviceRate,jdbcType=INTEGER},
+      </if>
+      <if test="productUseAmount != null" >
+        #{productUseAmount,jdbcType=BIGINT},
+      </if>
+      <if test="productCreditAmount != null" >
+        #{productCreditAmount,jdbcType=BIGINT},
+      </if>
+      <if test="minFinanceMoney != null" >
+        #{minFinanceMoney,jdbcType=BIGINT},
+      </if>
+      <if test="minFinanceDay != null" >
+        #{minFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxFinanceDay != null" >
+        #{maxFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="transferPeriod != null" >
+        #{transferPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="repayType != null" >
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelay != null" >
+        #{isdelay,jdbcType=VARCHAR},
+      </if>
+      <if test="extendDay != null" >
+        #{extendDay,jdbcType=INTEGER},
+      </if>
+      <if test="extensionChargeRate != null" >
+        #{extensionChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="prepaymentChargeRate != null" >
+        #{prepaymentChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="continuationFloatRate != null" >
+        #{continuationFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="overdueFloatRate != null" >
+        #{overdueFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="continuationRate != null" >
+        #{continuationRate,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRate != null" >
+        #{overdueRate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="isFrozenOwnFunds != null" >
+        #{isFrozenOwnFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="monthlyRate != null" >
+        #{monthlyRate,jdbcType=INTEGER},
+      </if>
+      <if test="marginRate != null" >
+        #{marginRate,jdbcType=INTEGER},
+      </if>
+      <if test="wayOfGuarantee != null" >
+        #{wayOfGuarantee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update product
+    <set >
+      <if test="record.productId != null" >
+        product_id = #{record.productId,jdbcType=BIGINT},
+      </if>
+      <if test="record.mode != null" >
+        mode = #{record.mode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.capitalId != null" >
+        capital_id = #{record.capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="record.companyId != null" >
+        company_id = #{record.companyId,jdbcType=BIGINT},
+      </if>
+      <if test="record.productRate != null" >
+        product_rate = #{record.productRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.financeRate != null" >
+        finance_rate = #{record.financeRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceRate != null" >
+        service_rate = #{record.serviceRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.productUseAmount != null" >
+        product_use_amount = #{record.productUseAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.productCreditAmount != null" >
+        product_credit_amount = #{record.productCreditAmount,jdbcType=BIGINT},
+      </if>
+      <if test="record.minFinanceMoney != null" >
+        min_finance_money = #{record.minFinanceMoney,jdbcType=BIGINT},
+      </if>
+      <if test="record.minFinanceDay != null" >
+        min_finance_day = #{record.minFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxFinanceDay != null" >
+        max_finance_day = #{record.maxFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.transferPeriod != null" >
+        transfer_period = #{record.transferPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="record.repayType != null" >
+        repay_type = #{record.repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelay != null" >
+        isdelay = #{record.isdelay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extendDay != null" >
+        extend_day = #{record.extendDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.extensionChargeRate != null" >
+        extension_charge_rate = #{record.extensionChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.prepaymentChargeRate != null" >
+        prepayment_charge_rate = #{record.prepaymentChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.continuationFloatRate != null" >
+        continuation_float_rate = #{record.continuationFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueFloatRate != null" >
+        overdue_float_rate = #{record.overdueFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.continuationRate != null" >
+        continuation_rate = #{record.continuationRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.overdueRate != null" >
+        overdue_rate = #{record.overdueRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformId != null" >
+        platform_id = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isFrozenOwnFunds != null" >
+        is_frozen_own_funds = #{record.isFrozenOwnFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.monthlyRate != null" >
+        monthly_rate = #{record.monthlyRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.marginRate != null" >
+        margin_rate = #{record.marginRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.wayOfGuarantee != null" >
+        way_of_guarantee = #{record.wayOfGuarantee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update product
+    set product_id = #{record.productId,jdbcType=BIGINT},
+      mode = #{record.mode,jdbcType=VARCHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      capital_id = #{record.capitalId,jdbcType=BIGINT},
+      company_id = #{record.companyId,jdbcType=BIGINT},
+      product_rate = #{record.productRate,jdbcType=INTEGER},
+      finance_rate = #{record.financeRate,jdbcType=INTEGER},
+      service_rate = #{record.serviceRate,jdbcType=INTEGER},
+      product_use_amount = #{record.productUseAmount,jdbcType=BIGINT},
+      product_credit_amount = #{record.productCreditAmount,jdbcType=BIGINT},
+      min_finance_money = #{record.minFinanceMoney,jdbcType=BIGINT},
+      min_finance_day = #{record.minFinanceDay,jdbcType=INTEGER},
+      max_finance_day = #{record.maxFinanceDay,jdbcType=INTEGER},
+      transfer_period = #{record.transferPeriod,jdbcType=INTEGER},
+      repay_type = #{record.repayType,jdbcType=VARCHAR},
+      isdelay = #{record.isdelay,jdbcType=VARCHAR},
+      extend_day = #{record.extendDay,jdbcType=INTEGER},
+      extension_charge_rate = #{record.extensionChargeRate,jdbcType=INTEGER},
+      prepayment_charge_rate = #{record.prepaymentChargeRate,jdbcType=INTEGER},
+      continuation_float_rate = #{record.continuationFloatRate,jdbcType=INTEGER},
+      overdue_float_rate = #{record.overdueFloatRate,jdbcType=INTEGER},
+      continuation_rate = #{record.continuationRate,jdbcType=INTEGER},
+      overdue_rate = #{record.overdueRate,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=VARCHAR},
+      platform_id = #{record.platformId,jdbcType=VARCHAR},
+      is_frozen_own_funds = #{record.isFrozenOwnFunds,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      monthly_rate = #{record.monthlyRate,jdbcType=INTEGER},
+      margin_rate = #{record.marginRate,jdbcType=INTEGER},
+      way_of_guarantee = #{record.wayOfGuarantee,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.Product" >
+    update product
+    <set >
+      <if test="mode != null" >
+        mode = #{mode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalId != null" >
+        capital_id = #{capitalId,jdbcType=BIGINT},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="productRate != null" >
+        product_rate = #{productRate,jdbcType=INTEGER},
+      </if>
+      <if test="financeRate != null" >
+        finance_rate = #{financeRate,jdbcType=INTEGER},
+      </if>
+      <if test="serviceRate != null" >
+        service_rate = #{serviceRate,jdbcType=INTEGER},
+      </if>
+      <if test="productUseAmount != null" >
+        product_use_amount = #{productUseAmount,jdbcType=BIGINT},
+      </if>
+      <if test="productCreditAmount != null" >
+        product_credit_amount = #{productCreditAmount,jdbcType=BIGINT},
+      </if>
+      <if test="minFinanceMoney != null" >
+        min_finance_money = #{minFinanceMoney,jdbcType=BIGINT},
+      </if>
+      <if test="minFinanceDay != null" >
+        min_finance_day = #{minFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxFinanceDay != null" >
+        max_finance_day = #{maxFinanceDay,jdbcType=INTEGER},
+      </if>
+      <if test="transferPeriod != null" >
+        transfer_period = #{transferPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="repayType != null" >
+        repay_type = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelay != null" >
+        isdelay = #{isdelay,jdbcType=VARCHAR},
+      </if>
+      <if test="extendDay != null" >
+        extend_day = #{extendDay,jdbcType=INTEGER},
+      </if>
+      <if test="extensionChargeRate != null" >
+        extension_charge_rate = #{extensionChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="prepaymentChargeRate != null" >
+        prepayment_charge_rate = #{prepaymentChargeRate,jdbcType=INTEGER},
+      </if>
+      <if test="continuationFloatRate != null" >
+        continuation_float_rate = #{continuationFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="overdueFloatRate != null" >
+        overdue_float_rate = #{overdueFloatRate,jdbcType=INTEGER},
+      </if>
+      <if test="continuationRate != null" >
+        continuation_rate = #{continuationRate,jdbcType=INTEGER},
+      </if>
+      <if test="overdueRate != null" >
+        overdue_rate = #{overdueRate,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null" >
+        platform_id = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="isFrozenOwnFunds != null" >
+        is_frozen_own_funds = #{isFrozenOwnFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="monthlyRate != null" >
+        monthly_rate = #{monthlyRate,jdbcType=INTEGER},
+      </if>
+      <if test="marginRate != null" >
+        margin_rate = #{marginRate,jdbcType=INTEGER},
+      </if>
+      <if test="wayOfGuarantee != null" >
+        way_of_guarantee = #{wayOfGuarantee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where product_id = #{productId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.Product" >
+    update product
+    set mode = #{mode,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      capital_id = #{capitalId,jdbcType=BIGINT},
+      company_id = #{companyId,jdbcType=BIGINT},
+      product_rate = #{productRate,jdbcType=INTEGER},
+      finance_rate = #{financeRate,jdbcType=INTEGER},
+      service_rate = #{serviceRate,jdbcType=INTEGER},
+      product_use_amount = #{productUseAmount,jdbcType=BIGINT},
+      product_credit_amount = #{productCreditAmount,jdbcType=BIGINT},
+      min_finance_money = #{minFinanceMoney,jdbcType=BIGINT},
+      min_finance_day = #{minFinanceDay,jdbcType=INTEGER},
+      max_finance_day = #{maxFinanceDay,jdbcType=INTEGER},
+      transfer_period = #{transferPeriod,jdbcType=INTEGER},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      isdelay = #{isdelay,jdbcType=VARCHAR},
+      extend_day = #{extendDay,jdbcType=INTEGER},
+      extension_charge_rate = #{extensionChargeRate,jdbcType=INTEGER},
+      prepayment_charge_rate = #{prepaymentChargeRate,jdbcType=INTEGER},
+      continuation_float_rate = #{continuationFloatRate,jdbcType=INTEGER},
+      overdue_float_rate = #{overdueFloatRate,jdbcType=INTEGER},
+      continuation_rate = #{continuationRate,jdbcType=INTEGER},
+      overdue_rate = #{overdueRate,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      platform_id = #{platformId,jdbcType=VARCHAR},
+      is_frozen_own_funds = #{isFrozenOwnFunds,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      monthly_rate = #{monthlyRate,jdbcType=INTEGER},
+      margin_rate = #{marginRate,jdbcType=INTEGER},
+      way_of_guarantee = #{wayOfGuarantee,jdbcType=VARCHAR}
+    where product_id = #{productId,jdbcType=BIGINT}
+  </update>
+</mapper>

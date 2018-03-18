@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.AllApiListMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.AllApiList" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="api_id" property="apiId" jdbcType="VARCHAR" />
+    <result column="api_name" property="apiName" jdbcType="VARCHAR" />
+    <result column="api_type" property="apiType" jdbcType="SMALLINT" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="tx_code" property="txCode" jdbcType="VARCHAR" />
+    <result column="tx_name" property="txName" jdbcType="VARCHAR" />
+    <result column="tx_mode" property="txMode" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, api_id, api_name, api_type, project_id, project_name, tx_code, tx_name, tx_mode
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.AllApiListExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from all_api_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from all_api_list
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from all_api_list
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.AllApiListExample" >
+    delete from all_api_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.AllApiList" >
+    insert into all_api_list (id, api_id, api_name, 
+      api_type, project_id, project_name, 
+      tx_code, tx_name, tx_mode
+      )
+    values (#{id,jdbcType=BIGINT}, #{apiId,jdbcType=VARCHAR}, #{apiName,jdbcType=VARCHAR}, 
+      #{apiType,jdbcType=SMALLINT}, #{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, 
+      #{txCode,jdbcType=VARCHAR}, #{txName,jdbcType=VARCHAR}, #{txMode,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.AllApiList" >
+    insert into all_api_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="apiId != null" >
+        api_id,
+      </if>
+      <if test="apiName != null" >
+        api_name,
+      </if>
+      <if test="apiType != null" >
+        api_type,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="txCode != null" >
+        tx_code,
+      </if>
+      <if test="txName != null" >
+        tx_name,
+      </if>
+      <if test="txMode != null" >
+        tx_mode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="apiId != null" >
+        #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null" >
+        #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="apiType != null" >
+        #{apiType,jdbcType=SMALLINT},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="txCode != null" >
+        #{txCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txName != null" >
+        #{txName,jdbcType=VARCHAR},
+      </if>
+      <if test="txMode != null" >
+        #{txMode,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.AllApiListExample" resultType="java.lang.Integer" >
+    select count(*) from all_api_list
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update all_api_list
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.apiId != null" >
+        api_id = #{record.apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiName != null" >
+        api_name = #{record.apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiType != null" >
+        api_type = #{record.apiType,jdbcType=SMALLINT},
+      </if>
+      <if test="record.projectId != null" >
+        project_id = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectName != null" >
+        project_name = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txCode != null" >
+        tx_code = #{record.txCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txName != null" >
+        tx_name = #{record.txName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.txMode != null" >
+        tx_mode = #{record.txMode,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update all_api_list
+    set id = #{record.id,jdbcType=BIGINT},
+      api_id = #{record.apiId,jdbcType=VARCHAR},
+      api_name = #{record.apiName,jdbcType=VARCHAR},
+      api_type = #{record.apiType,jdbcType=SMALLINT},
+      project_id = #{record.projectId,jdbcType=VARCHAR},
+      project_name = #{record.projectName,jdbcType=VARCHAR},
+      tx_code = #{record.txCode,jdbcType=VARCHAR},
+      tx_name = #{record.txName,jdbcType=VARCHAR},
+      tx_mode = #{record.txMode,jdbcType=SMALLINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.AllApiList" >
+    update all_api_list
+    <set >
+      <if test="apiId != null" >
+        api_id = #{apiId,jdbcType=VARCHAR},
+      </if>
+      <if test="apiName != null" >
+        api_name = #{apiName,jdbcType=VARCHAR},
+      </if>
+      <if test="apiType != null" >
+        api_type = #{apiType,jdbcType=SMALLINT},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="txCode != null" >
+        tx_code = #{txCode,jdbcType=VARCHAR},
+      </if>
+      <if test="txName != null" >
+        tx_name = #{txName,jdbcType=VARCHAR},
+      </if>
+      <if test="txMode != null" >
+        tx_mode = #{txMode,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.AllApiList" >
+    update all_api_list
+    set api_id = #{apiId,jdbcType=VARCHAR},
+      api_name = #{apiName,jdbcType=VARCHAR},
+      api_type = #{apiType,jdbcType=SMALLINT},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      tx_code = #{txCode,jdbcType=VARCHAR},
+      tx_name = #{txName,jdbcType=VARCHAR},
+      tx_mode = #{txMode,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

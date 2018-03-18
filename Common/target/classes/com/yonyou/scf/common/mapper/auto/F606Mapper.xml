@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.F606Mapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.F606" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="busi_num" property="busiNum" jdbcType="CHAR" />
+    <result column="currency" property="currency" jdbcType="CHAR" />
+    <result column="busi_serial_num" property="busiSerialNum" jdbcType="CHAR" />
+    <result column="mem_num" property="memNum" jdbcType="CHAR" />
+    <result column="acc_num" property="accNum" jdbcType="CHAR" />
+    <result column="ammount" property="ammount" jdbcType="BIGINT" />
+    <result column="time" property="time" jdbcType="CHAR" />
+    <result column="is_crosss_line" property="isCrosssLine" jdbcType="CHAR" />
+    <result column="fee_no" property="feeNo" jdbcType="CHAR" />
+    <result column="fee" property="fee" jdbcType="BIGINT" />
+    <result column="to_acc_num" property="toAccNum" jdbcType="CHAR" />
+    <result column="fcs_serial_num" property="fcsSerialNum" jdbcType="CHAR" />
+    <result column="ptcwh" property="ptcwh" jdbcType="VARCHAR" />
+    <result column="cuowuxx" property="cuowuxx" jdbcType="VARCHAR" />
+    <result column="role_type" property="roleType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, busi_num, currency, busi_serial_num, mem_num, acc_num, ammount, time, is_crosss_line, 
+    fee_no, fee, to_acc_num, fcs_serial_num, ptcwh, cuowuxx, role_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.F606Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from f606
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from f606
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from f606
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.F606Example" >
+    delete from f606
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.F606" >
+    insert into f606 (id, busi_num, currency, 
+      busi_serial_num, mem_num, acc_num, 
+      ammount, time, is_crosss_line, 
+      fee_no, fee, to_acc_num, fcs_serial_num, 
+      ptcwh, cuowuxx, role_type
+      )
+    values (#{id,jdbcType=BIGINT}, #{busiNum,jdbcType=CHAR}, #{currency,jdbcType=CHAR}, 
+      #{busiSerialNum,jdbcType=CHAR}, #{memNum,jdbcType=CHAR}, #{accNum,jdbcType=CHAR}, 
+      #{ammount,jdbcType=BIGINT}, #{time,jdbcType=CHAR}, #{isCrosssLine,jdbcType=CHAR}, 
+      #{feeNo,jdbcType=CHAR}, #{fee,jdbcType=BIGINT}, #{toAccNum,jdbcType=CHAR}, #{fcsSerialNum,jdbcType=CHAR}, 
+      #{ptcwh,jdbcType=VARCHAR}, #{cuowuxx,jdbcType=VARCHAR}, #{roleType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.F606" >
+    insert into f606
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="busiNum != null" >
+        busi_num,
+      </if>
+      <if test="currency != null" >
+        currency,
+      </if>
+      <if test="busiSerialNum != null" >
+        busi_serial_num,
+      </if>
+      <if test="memNum != null" >
+        mem_num,
+      </if>
+      <if test="accNum != null" >
+        acc_num,
+      </if>
+      <if test="ammount != null" >
+        ammount,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="isCrosssLine != null" >
+        is_crosss_line,
+      </if>
+      <if test="feeNo != null" >
+        fee_no,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="toAccNum != null" >
+        to_acc_num,
+      </if>
+      <if test="fcsSerialNum != null" >
+        fcs_serial_num,
+      </if>
+      <if test="ptcwh != null" >
+        ptcwh,
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx,
+      </if>
+      <if test="roleType != null" >
+        role_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="busiNum != null" >
+        #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=CHAR},
+      </if>
+      <if test="busiSerialNum != null" >
+        #{busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="accNum != null" >
+        #{accNum,jdbcType=CHAR},
+      </if>
+      <if test="ammount != null" >
+        #{ammount,jdbcType=BIGINT},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=CHAR},
+      </if>
+      <if test="isCrosssLine != null" >
+        #{isCrosssLine,jdbcType=CHAR},
+      </if>
+      <if test="feeNo != null" >
+        #{feeNo,jdbcType=CHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=BIGINT},
+      </if>
+      <if test="toAccNum != null" >
+        #{toAccNum,jdbcType=CHAR},
+      </if>
+      <if test="fcsSerialNum != null" >
+        #{fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="ptcwh != null" >
+        #{ptcwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.F606Example" resultType="java.lang.Integer" >
+    select count(*) from f606
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update f606
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.busiNum != null" >
+        busi_num = #{record.busiNum,jdbcType=CHAR},
+      </if>
+      <if test="record.currency != null" >
+        currency = #{record.currency,jdbcType=CHAR},
+      </if>
+      <if test="record.busiSerialNum != null" >
+        busi_serial_num = #{record.busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="record.memNum != null" >
+        mem_num = #{record.memNum,jdbcType=CHAR},
+      </if>
+      <if test="record.accNum != null" >
+        acc_num = #{record.accNum,jdbcType=CHAR},
+      </if>
+      <if test="record.ammount != null" >
+        ammount = #{record.ammount,jdbcType=BIGINT},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=CHAR},
+      </if>
+      <if test="record.isCrosssLine != null" >
+        is_crosss_line = #{record.isCrosssLine,jdbcType=CHAR},
+      </if>
+      <if test="record.feeNo != null" >
+        fee_no = #{record.feeNo,jdbcType=CHAR},
+      </if>
+      <if test="record.fee != null" >
+        fee = #{record.fee,jdbcType=BIGINT},
+      </if>
+      <if test="record.toAccNum != null" >
+        to_acc_num = #{record.toAccNum,jdbcType=CHAR},
+      </if>
+      <if test="record.fcsSerialNum != null" >
+        fcs_serial_num = #{record.fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="record.ptcwh != null" >
+        ptcwh = #{record.ptcwh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuowuxx != null" >
+        cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleType != null" >
+        role_type = #{record.roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update f606
+    set id = #{record.id,jdbcType=BIGINT},
+      busi_num = #{record.busiNum,jdbcType=CHAR},
+      currency = #{record.currency,jdbcType=CHAR},
+      busi_serial_num = #{record.busiSerialNum,jdbcType=CHAR},
+      mem_num = #{record.memNum,jdbcType=CHAR},
+      acc_num = #{record.accNum,jdbcType=CHAR},
+      ammount = #{record.ammount,jdbcType=BIGINT},
+      time = #{record.time,jdbcType=CHAR},
+      is_crosss_line = #{record.isCrosssLine,jdbcType=CHAR},
+      fee_no = #{record.feeNo,jdbcType=CHAR},
+      fee = #{record.fee,jdbcType=BIGINT},
+      to_acc_num = #{record.toAccNum,jdbcType=CHAR},
+      fcs_serial_num = #{record.fcsSerialNum,jdbcType=CHAR},
+      ptcwh = #{record.ptcwh,jdbcType=VARCHAR},
+      cuowuxx = #{record.cuowuxx,jdbcType=VARCHAR},
+      role_type = #{record.roleType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.F606" >
+    update f606
+    <set >
+      <if test="busiNum != null" >
+        busi_num = #{busiNum,jdbcType=CHAR},
+      </if>
+      <if test="currency != null" >
+        currency = #{currency,jdbcType=CHAR},
+      </if>
+      <if test="busiSerialNum != null" >
+        busi_serial_num = #{busiSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="memNum != null" >
+        mem_num = #{memNum,jdbcType=CHAR},
+      </if>
+      <if test="accNum != null" >
+        acc_num = #{accNum,jdbcType=CHAR},
+      </if>
+      <if test="ammount != null" >
+        ammount = #{ammount,jdbcType=BIGINT},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=CHAR},
+      </if>
+      <if test="isCrosssLine != null" >
+        is_crosss_line = #{isCrosssLine,jdbcType=CHAR},
+      </if>
+      <if test="feeNo != null" >
+        fee_no = #{feeNo,jdbcType=CHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=BIGINT},
+      </if>
+      <if test="toAccNum != null" >
+        to_acc_num = #{toAccNum,jdbcType=CHAR},
+      </if>
+      <if test="fcsSerialNum != null" >
+        fcs_serial_num = #{fcsSerialNum,jdbcType=CHAR},
+      </if>
+      <if test="ptcwh != null" >
+        ptcwh = #{ptcwh,jdbcType=VARCHAR},
+      </if>
+      <if test="cuowuxx != null" >
+        cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      </if>
+      <if test="roleType != null" >
+        role_type = #{roleType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.F606" >
+    update f606
+    set busi_num = #{busiNum,jdbcType=CHAR},
+      currency = #{currency,jdbcType=CHAR},
+      busi_serial_num = #{busiSerialNum,jdbcType=CHAR},
+      mem_num = #{memNum,jdbcType=CHAR},
+      acc_num = #{accNum,jdbcType=CHAR},
+      ammount = #{ammount,jdbcType=BIGINT},
+      time = #{time,jdbcType=CHAR},
+      is_crosss_line = #{isCrosssLine,jdbcType=CHAR},
+      fee_no = #{feeNo,jdbcType=CHAR},
+      fee = #{fee,jdbcType=BIGINT},
+      to_acc_num = #{toAccNum,jdbcType=CHAR},
+      fcs_serial_num = #{fcsSerialNum,jdbcType=CHAR},
+      ptcwh = #{ptcwh,jdbcType=VARCHAR},
+      cuowuxx = #{cuowuxx,jdbcType=VARCHAR},
+      role_type = #{roleType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,60 @@
+package com.yonyou.scf.common.input;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+public class Mes1007Request {
+	// 手机号码
+	@NotBlank(message = "手机号码不能为空")
+	private String phone;
+	// 邮件
+	@NotBlank(message = "邮件不能为空")
+	private String mail;
+	// 资方名称
+	@NotBlank(message = "资方名称不能为空")
+	private String capitalName;
+	// 产品名称
+	@NotBlank(message = "产品名称不能为空")
+	private String productName;
+	// 平台Id
+	private String platformId;
+
+	public String getPlatformId() {
+		return platformId;
+	}
+
+	public void setPlatformId(String platformId) {
+		this.platformId = platformId;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getCapitalName() {
+		return capitalName;
+	}
+
+	public void setCapitalName(String capitalName) {
+		this.capitalName = capitalName;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+}

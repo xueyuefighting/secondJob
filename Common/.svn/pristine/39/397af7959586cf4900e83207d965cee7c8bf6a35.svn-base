@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yonyou.scf.common.mapper.auto.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.OrderInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="borrowing_business" jdbcType="BIGINT" property="borrowingBusiness" />
+    <result column="document_number" jdbcType="VARCHAR" property="documentNumber" />
+    <result column="core_business" jdbcType="BIGINT" property="coreBusiness" />
+    <result column="commodity_categories" jdbcType="VARCHAR" property="commodityCategories" />
+    <result column="financing" jdbcType="VARCHAR" property="financing" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="invalid" jdbcType="CHAR" property="invalid" />
+    <result column="borrowing_business_type" jdbcType="VARCHAR" property="borrowingBusinessType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, date, amount, borrowing_business, document_number, core_business, commodity_categories, 
+    financing, create_user, create_time, update_user, update_time, invalid, borrowing_business_type
+  </sql>
+  <select id="selectByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample">
+    delete from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    insert into order_info (id, code, date, 
+      amount, borrowing_business, document_number, 
+      core_business, commodity_categories, financing, 
+      create_user, create_time, update_user, 
+      update_time, invalid, borrowing_business_type
+      )
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=BIGINT}, #{borrowingBusiness,jdbcType=BIGINT}, #{documentNumber,jdbcType=VARCHAR}, 
+      #{coreBusiness,jdbcType=BIGINT}, #{commodityCategories,jdbcType=VARCHAR}, #{financing,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=VARCHAR}, #{invalid,jdbcType=CHAR}, #{borrowingBusinessType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="borrowingBusiness != null">
+        borrowing_business,
+      </if>
+      <if test="documentNumber != null">
+        document_number,
+      </if>
+      <if test="coreBusiness != null">
+        core_business,
+      </if>
+      <if test="commodityCategories != null">
+        commodity_categories,
+      </if>
+      <if test="financing != null">
+        financing,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="invalid != null">
+        invalid,
+      </if>
+      <if test="borrowingBusinessType != null">
+        borrowing_business_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="borrowingBusiness != null">
+        #{borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="documentNumber != null">
+        #{documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusiness != null">
+        #{coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="commodityCategories != null">
+        #{commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="financing != null">
+        #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null">
+        #{invalid,jdbcType=CHAR},
+      </if>
+      <if test="borrowingBusinessType != null">
+        #{borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample" resultType="java.lang.Integer">
+    select count(*) from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.borrowingBusiness != null">
+        borrowing_business = #{record.borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="record.documentNumber != null">
+        document_number = #{record.documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreBusiness != null">
+        core_business = #{record.coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="record.commodityCategories != null">
+        commodity_categories = #{record.commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financing != null">
+        financing = #{record.financing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalid != null">
+        invalid = #{record.invalid,jdbcType=CHAR},
+      </if>
+      <if test="record.borrowingBusinessType != null">
+        borrowing_business_type = #{record.borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order_info
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=BIGINT},
+      borrowing_business = #{record.borrowingBusiness,jdbcType=BIGINT},
+      document_number = #{record.documentNumber,jdbcType=VARCHAR},
+      core_business = #{record.coreBusiness,jdbcType=BIGINT},
+      commodity_categories = #{record.commodityCategories,jdbcType=VARCHAR},
+      financing = #{record.financing,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      invalid = #{record.invalid,jdbcType=CHAR},
+      borrowing_business_type = #{record.borrowingBusinessType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    update order_info
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="borrowingBusiness != null">
+        borrowing_business = #{borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="documentNumber != null">
+        document_number = #{documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusiness != null">
+        core_business = #{coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="commodityCategories != null">
+        commodity_categories = #{commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="financing != null">
+        financing = #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null">
+        invalid = #{invalid,jdbcType=CHAR},
+      </if>
+      <if test="borrowingBusinessType != null">
+        borrowing_business_type = #{borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    update order_info
+    set code = #{code,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      borrowing_business = #{borrowingBusiness,jdbcType=BIGINT},
+      document_number = #{documentNumber,jdbcType=VARCHAR},
+      core_business = #{coreBusiness,jdbcType=BIGINT},
+      commodity_categories = #{commodityCategories,jdbcType=VARCHAR},
+      financing = #{financing,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      invalid = #{invalid,jdbcType=CHAR},
+      borrowing_business_type = #{borrowingBusinessType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.OrderInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="amount" jdbcType="BIGINT" property="amount" />
+    <result column="borrowing_business" jdbcType="BIGINT" property="borrowingBusiness" />
+    <result column="document_number" jdbcType="VARCHAR" property="documentNumber" />
+    <result column="core_business" jdbcType="BIGINT" property="coreBusiness" />
+    <result column="commodity_categories" jdbcType="VARCHAR" property="commodityCategories" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="financing" jdbcType="VARCHAR" property="financing" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="invalid" jdbcType="CHAR" property="invalid" />
+    <result column="borrowing_business_type" jdbcType="VARCHAR" property="borrowingBusinessType" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, code, date, amount, borrowing_business, document_number, core_business, commodity_categories, 
+    status, financing, create_user, create_time, update_user, update_time, invalid, borrowing_business_type
+  </sql>
+  <select id="selectByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from order_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample">
+    delete from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    insert into order_info (id, code, date, 
+      amount, borrowing_business, document_number, 
+      core_business, commodity_categories, status, 
+      financing, create_user, create_time, 
+      update_user, update_time, invalid, 
+      borrowing_business_type)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=BIGINT}, #{borrowingBusiness,jdbcType=BIGINT}, #{documentNumber,jdbcType=VARCHAR}, 
+      #{coreBusiness,jdbcType=BIGINT}, #{commodityCategories,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{financing,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=BIGINT}, #{updateTime,jdbcType=VARCHAR}, #{invalid,jdbcType=CHAR}, 
+      #{borrowingBusinessType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="borrowingBusiness != null">
+        borrowing_business,
+      </if>
+      <if test="documentNumber != null">
+        document_number,
+      </if>
+      <if test="coreBusiness != null">
+        core_business,
+      </if>
+      <if test="commodityCategories != null">
+        commodity_categories,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="financing != null">
+        financing,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="invalid != null">
+        invalid,
+      </if>
+      <if test="borrowingBusinessType != null">
+        borrowing_business_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="borrowingBusiness != null">
+        #{borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="documentNumber != null">
+        #{documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusiness != null">
+        #{coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="commodityCategories != null">
+        #{commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="financing != null">
+        #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null">
+        #{invalid,jdbcType=CHAR},
+      </if>
+      <if test="borrowingBusinessType != null">
+        #{borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.OrderInfoExample" resultType="java.lang.Integer">
+    select count(*) from order_info
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update order_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=BIGINT},
+      </if>
+      <if test="record.borrowingBusiness != null">
+        borrowing_business = #{record.borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="record.documentNumber != null">
+        document_number = #{record.documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coreBusiness != null">
+        core_business = #{record.coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="record.commodityCategories != null">
+        commodity_categories = #{record.commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financing != null">
+        financing = #{record.financing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalid != null">
+        invalid = #{record.invalid,jdbcType=CHAR},
+      </if>
+      <if test="record.borrowingBusinessType != null">
+        borrowing_business_type = #{record.borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update order_info
+    set id = #{record.id,jdbcType=BIGINT},
+      code = #{record.code,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=BIGINT},
+      borrowing_business = #{record.borrowingBusiness,jdbcType=BIGINT},
+      document_number = #{record.documentNumber,jdbcType=VARCHAR},
+      core_business = #{record.coreBusiness,jdbcType=BIGINT},
+      commodity_categories = #{record.commodityCategories,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR},
+      financing = #{record.financing,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      invalid = #{record.invalid,jdbcType=CHAR},
+      borrowing_business_type = #{record.borrowingBusinessType,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    update order_info
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=BIGINT},
+      </if>
+      <if test="borrowingBusiness != null">
+        borrowing_business = #{borrowingBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="documentNumber != null">
+        document_number = #{documentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="coreBusiness != null">
+        core_business = #{coreBusiness,jdbcType=BIGINT},
+      </if>
+      <if test="commodityCategories != null">
+        commodity_categories = #{commodityCategories,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="financing != null">
+        financing = #{financing,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="invalid != null">
+        invalid = #{invalid,jdbcType=CHAR},
+      </if>
+      <if test="borrowingBusinessType != null">
+        borrowing_business_type = #{borrowingBusinessType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.OrderInfo">
+    update order_info
+    set code = #{code,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=BIGINT},
+      borrowing_business = #{borrowingBusiness,jdbcType=BIGINT},
+      document_number = #{documentNumber,jdbcType=VARCHAR},
+      core_business = #{coreBusiness,jdbcType=BIGINT},
+      commodity_categories = #{commodityCategories,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      financing = #{financing,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      invalid = #{invalid,jdbcType=CHAR},
+      borrowing_business_type = #{borrowingBusinessType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

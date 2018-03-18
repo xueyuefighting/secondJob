@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.contract.mapper.ContractUtilMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.File" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="file_id" property="fileId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="name_subfix" property="nameSubfix" jdbcType="VARCHAR" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="exclusive_no" property="exclusiveNo" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="VARCHAR" />
+    <result column="cre_user_id" property="creUserId" jdbcType="BIGINT" />
+    <result column="gmt_modified" property="gmtModified" jdbcType="VARCHAR" />
+    <result column="mod_user_id" property="modUserId" jdbcType="BIGINT" />
+  </resultMap>
+  
+     <insert id="insertBatchData" parameterType="java.util.List" useGeneratedKeys="false">
+  		insert into file (
+  		id,file_id, name, 
+        name_subfix, file_path, 
+        exclusive_no, FS_GROUP_NO, 
+        FS_CONCATER, gmt_create, 
+        cre_user_id, gmt_modified, 
+        mod_user_id) 
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+        	(#{item.id},#{item.fileId},#{item.name},#{item.nameSubfix},#{item.filePath},#{item.exclusiveNo},
+        	#{item.gmtCreate},#{item.creUserId},#{item.gmtModified},#{item.modUserId})
+        </foreach>
+ 	 </insert>
+     <insert id="insertBatchDataCredit" parameterType="java.util.List" useGeneratedKeys="false">
+  		insert into contract_credit (
+  		id,tct_id,
+  		credit_id, signer_no, 
+        signer_id, file_id, 
+        placeholder_no, sign_user_id, 
+        gmt_create, cre_user_id, 
+        gmt_modified,mod_user_id,order_no) 
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+        	(#{item.id},#{item.tctId},#{item.creditId},#{item.signerNo},#{item.signerId},#{item.fileId},
+        	#{item.signNo},#{item.signUserId},#{item.gmtCreate},#{item.creUserId},#{item.gmtModified},#{item.modUserId},#{item.order})
+        </foreach>
+ 	 </insert>
+     <update id="updateBatchDataCredit" parameterType="java.util.List" useGeneratedKeys="false">
+        <foreach collection="list" index="index" item="item" separator=";" open="" close="">
+	  		update contract_credit set
+                    tct_id = #{item.tctId,jdbcType=VARCHAR},signer_no = #{item.signerNo,jdbcType=VARCHAR},
+                    signer_id = #{item.signerId,jdbcType=VARCHAR},
+                    file_id = #{item.fileId,jdbcType=VARCHAR},
+                    placeholder_no = #{item.signNo,jdbcType=VARCHAR},
+                    sign_user_id = #{item.signUserId,jdbcType=VARCHAR},
+                    gmt_modified = #{item.gmtModified,jdbcType=VARCHAR},
+                    mod_user_id = #{item.modUserId,jdbcType=VARCHAR},
+                    order_no = #{item.orderNo,jdbcType=VARCHAR}
+	        	where id=#{item.id}
+        </foreach>
+ 	 </update>
+     <insert id="insertBatchDataFinance" parameterType="java.util.List" useGeneratedKeys="false">
+  		insert into contract_signer (
+  		id,tct_id, credit_id, 
+        application_id, signer_no, 
+        signer_id, file_no, 
+        file_id, sign_contract_id, 
+        sign_contract_no, sign_time, 
+        placeholder_no,is_signed,sign_user_id,gmt_create,
+        cre_user_id,gmt_modified,
+        mod_user_id,serial_num,order_no) 
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+        	(#{item.id},#{item.tctId},#{item.creditId},#{item.applicationId},#{item.signerNo},
+        	#{item.signerId},#{item.fileNo},#{item.fileId},#{item.signContractId},#{item.signContractNo},
+        	#{item.signTime},#{item.placeholderNo},#{item.isSigned},#{item.signUserId},
+        	#{item.gmtCreate},#{item.creUserId},#{item.gmtModified},#{item.modUserId},#{item.serialNum},#{item.orderNo})
+        </foreach>
+ 	 </insert>
+ 	 <select id="selectListForCrediCon" parameterType="java.util.Map" resultType="map">
+ 	 	select
+ 	 	
+ 	 	id,contract_name as contractName,
+ 	 	
+ 	 	(case is_special_company when 0 then '是' else '否' end) as isSpecial,
+ 	 	
+ 	 	fund_no as fundNo,placeholder_no as signNo,file_id as fileId,special_signers singers
+ 	 	
+ 	 	from contract_template 
+ 	 	
+ 	 	where capital_id = #{capitalId,jdbcType=BIGINT} and placeholder_no= #{signNo,jdbcType=VARCHAR}
+ 	 	
+ 	 	<if test='isSpecialCompany!=null'>
+ 	 		and is_special_company=#{isSpecialCompany,jdbcType=BIGINT} 
+ 	 	</if>
+ 	 	<if test="contractName!=null">
+ 	 		and contract_name like concat('%',#{contractName,jdbcType=VARCHAR},'%')
+ 	 	</if>
+ 	 	<if test='isSpecialCompnay=="1"'>
+ 	 		and (company_id=#{companyId,jdbcType=BIGINT} or is_special_company=1)
+ 	 	</if>
+ 	 	order by gmt_create desc
+ 	 </select>
+ 	 <select id="selectForSignCreditCon" parameterType="java.util.Map" resultType="map">
+ 	 	select
+ 	 	
+ 	 	ct.id,ct.serial_num as serialNum,ct.signer_id as signerId,signer_no as signerNo,ct.is_signed as isS
+ 	 	
+ 	 	(case ct.is_signed when 1 then '是' else '否' end) as isSigned,
+ 	 	
+ 	 	f.id as fileId,f.name as fileName, f.name_subfix as subfix,f.file_id as ftpFileId
+ 	 	
+ 	 	from contract_template ct,file f
+ 	 	
+ 	 	where ct.file_id = f.id 
+ 	 	
+ 	 	and placeholder_no= #{signNo,jdbcType=VARCHAR}
+ 	 	
+ 		and credit_id=#{creditId,jdbcType=BIGINT} 
+ 		
+ 	 	order by signer_no asc,order_no asc
+ 	 </select>
+ 	 <select id="selectForSignCredit" parameterType="java.util.Map" resultType="map">
+ 	 	select ct.id,ct.serial_num as serialNum,ct.signer_id signerId ,ci.company_name signerName, ct.sign_user_id as signerUserId,
+
+		o.name as signerUserName,signer_no as signerNo,ct.is_signed as isS, 
+		
+		(case ct.is_signed when 1 then '是' else '否' end) as isSigned,emp.contract_type contractType, 
+		
+		f.id as fileId,f.name as fileName, f.name_subfix as subfix,
+		
+		f.file_id as ftpFileId,ct.sign_time as signTime 
+		
+		from contract_signer ct left join file f on ct.file_id = f.id
+		
+		left join operator o on ct.sign_user_id=o.operator_id
+		
+		left join contract_template emp on emp.id=ct.tct_id
+		
+		left join company_info ci on ci.user_id=ct.signer_id
+ 	 	
+ 		 where ct.credit_id=#{creditId,jdbcType=BIGINT}
+ 		
+ 		 <if test="signNo!=null">
+ 	 		and ct.placeholder_no= #{signNo,jdbcType=VARCHAR}
+ 	 	</if>
+ 		<!--<if test="isSigned!=null">
+ 	 		and ct.is_signed = #{isSigned,jdbcType=INTEGER} 
+ 	 	</if>-->
+ 		<if test="signerNo!=null">
+ 	 		and ct.signer_no = #{signerNo,jdbcType=VARCHAR} 
+ 	 	</if> 
+ 		<if test="signerId!=null">
+ 	 		and ct.signer_id = #{signerId,jdbcType=BIGINT} 
+ 	 	</if> 
+ 	 	order by order_no asc,signerId asc
+ 	 </select>
+ 	 <select id="selectForSignFianceCon" parameterType="java.util.Map" resultType="map">
+ 	 	select ct.id,ct.serial_num as serialNum,ct.signer_id signerId ,ci.company_name signerName, ct.sign_user_id as signerUserId,
+
+		o.name as signerName,signer_no as signerNo,ct.is_signed as isS, 
+		
+		(case ct.is_signed when 1 then '是' else '否' end) as isSigned,emp.contract_type contractType, 
+		
+		f.id as fileId,f.name as fileName, f.name_subfix as subfix,
+		
+		f.file_id as ftpFileId,ct.sign_time as signTime 
+		
+		from contract_signer ct left join file f on ct.file_id = f.id
+		
+		left join operator o on ct.sign_user_id=o.operator_id
+		
+		left join contract_template emp on emp.id=ct.tct_id
+		
+		left join company_info ci on ci.user_id=ct.signer_id
+ 	 	
+ 		 where ct.application_id=#{financeId,jdbcType=BIGINT}
+ 		
+ 		<!-- <if test="signNo!=null">
+ 	 		and ct.placeholder_no= #{signNo,jdbcType=VARCHAR}
+ 	 	</if>
+ 		<if test="isSigned!=null">
+ 	 		and ct.is_signed = #{isSigned,jdbcType=INTEGER} 
+ 	 	</if>-->
+ 	 	<if test="signerNo!=null">
+ 	 		and ct.signer_no = #{signerNo,jdbcType=VARCHAR} 
+ 	 	</if> 
+ 		<if test="signerId!=null">
+ 	 		and ct.signer_id = #{signerId,jdbcType=BIGINT} 
+ 	 	</if> 
+ 	 	order by order_no asc,signerId asc
+ 	 </select>
+ 	 <select id="selectConWithoutSign" parameterType="java.util.Map" resultType="map">
+ 	 	select
+ 	 		ct.file_id fileId,f.name fileName, f.name_subfix subfix,emp.contract_type contractType
+ 	 	from contract_credit ct left join file f on ct.file_id = f.id
+ 	 	
+ 	 		left join contract_template emp on emp.id=ct.tct_id
+ 	 	
+ 	 	where 1=1
+ 	 	
+ 	 	and ct.placeholder_no= #{signNo,jdbcType=VARCHAR}
+ 	 	
+ 		<if test="signerNo!=null">
+ 	 		and ct.signer_no = #{signerNo,jdbcType=VARCHAR} 
+ 	 	</if>
+ 		<if test="creditId!=null">
+ 	 		and ct.credit_id = #{creditId,jdbcType=VARCHAR} 
+ 	 	</if>
+ 	 	order by order_no asc
+ 	 </select>
+ 	 <select id="ContractCredit" parameterType="java.util.Map" resultType="com.yonyou.scf.contract.utilEntity.ConstractInCreditEntity">
+ 	 	select
+ 	 		ct.id,ct.tct_id tctId,ct.credit_id as creditId,ct.signer_no roleId,urt.user_role_name roleName,
+ 	 		
+ 	 		ct.signer_id signerId,ui.user_name userName,(select user_style from user_role where user_id=ct.signer_id limit 1) userType,
+ 	 		
+ 	 		ct.placeholder_no signNo,ct.order_no as 'order',
+ 	 		
+ 	 		ct.file_id fileId,fi.name fileName, fi.name_subfix subfix,cp.contract_name contractName
+ 	 		
+ 	 	from contract_credit ct left join user_role_type urt on ct.signer_no=urt.id
+ 	 	
+ 	 	left join user_info ui on ui.user_id=ct.signer_id
+ 	 	
+ 	 	left join file fi on ct.file_id = fi.id
+ 	 	
+ 	 	left join contract_template cp on ct.tct_id=cp.id
+ 	 	
+ 	 	where 1=1
+ 	 	
+ 		<if test="creditId!=null">
+ 	 		and ct.credit_id =#{creditId,jdbcType=BIGINT}
+ 	 	</if>
+ 		
+ 	 	order by ct.signer_no,order_no asc
+ 	 </select>
+ 	 
+	<select id="selectConsByCreditId" parameterType="string"  resultType="com.yonyou.scf.common.input.SelectConsByCreditId">  
+	   select id fileId,name fileName,name_subfix subfix 
+	   
+	   from file 
+	   
+	   where id in 
+	   
+	   (select distinct f.id from contract_credit cc, file f where cc.file_id=f.id and cc.`credit_id` =#{creditId}) 
+</select>  
+</mapper>

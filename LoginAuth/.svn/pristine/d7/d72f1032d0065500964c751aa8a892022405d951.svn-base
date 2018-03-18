@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.userFace.mapper.Statistic4FinancingAmountHandMapper">
+
+	<!-- 客户名称获取 -->
+	<update id="addSignSuccesCnt" parameterType="String">
+		update fdd_file_upload
+		set sign_succes_cnt = sign_succes_cnt + 1
+		where contract_id = #{contract_id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getSignSuccesCnt" parameterType="String" resultType="Map">
+		select * from fdd_file_upload
+		where contract_id = #{contract_id,jdbcType=VARCHAR}
+	</select>
+    
+    
+    
+    
+    <!-- 查询累计放款、累计还款、全部待还 -->
+    <select id="getAlready" parameterType="Map" resultType="Map">
+       select sum(loan_amount) as lendingAmountAlreadyTotal,
+              sum(principal_already+interest_already+service_charge_already+rollover_interest_already+extension_service_fee_already+overdue_interest_already+overdue_service_fee_already+pre_repay_fee_already+extension_fee_already+other_fee_already) as repeymentAmountAlreadyTotal,
+              sum(principal+interest+service_charge+rollover_interest+extension_service_fee+overdue_interest+overdue_service_fee+pre_repay_fee+extension_fee+other_fee) as repaymentAmonutOughtToTotal
+
+        <if test='organizeRoleNo == "4"'><!-- 担保方，按借款方维度 -->
+            , invoice_billing.agency_id as agencyId
+        </if>
+        <if test='organizeRoleNo == "5"'><!-- 共借方。按借款方维度 -->
+            , invoice_billing.agency_id as agencyId
+        </if>
+        <if test='organizeRoleNo == "6"'><!-- 运营平台，按资方维度 -->
+            , product.capital_id as capitalId
+        </if>
+        
+         from invoice_billing
+  
+        <if test='organizeRoleNo == "1"'><!-- 核心企业 -->
+        where product_id in (select distinct product_id from product where company_id = #{organizeId,jdbcType=VARCHAR})
+        </if>
+        <if test='organizeRoleNo == "2"'><!-- 出借方 -->
+        where product_id in (select distinct product_id from product where capital_id = #{organizeId,jdbcType=VARCHAR})
+        </if>
+        <if test='organizeRoleNo == "3"'><!-- 借款方 -->
+        where agency_id = #{organizeId,jdbcType=VARCHAR} 
+        </if>
+        <if test='organizeRoleNo == "4"'><!-- 担保方，按借款方维度，累计放款额倒序 -->
+            , contract_signer
+        where contract_signer.application_id = invoice_billing.financing_application_no
+          and contract_signer.signer_id = #{organizeId,jdbcType=VARCHAR}
+          and contract_signer.signer_no = #{organizeRoleNo,jdbcType=VARCHAR}
+          and contract_signer.is_signed = '1'
+        group by agency_id
+        order by lendingAmountAlreadyTotal desc
+        </if>
+        <if test='organizeRoleNo == "5"'><!-- 共借方。按借款方维度，累计放款额倒序 -->
+            , contract_signer
+        where contract_signer.application_id = invoice_billing.financing_application_no
+          and contract_signer.signer_id = #{organizeId,jdbcType=VARCHAR}
+          and contract_signer.signer_no = #{organizeRoleNo,jdbcType=VARCHAR}
+          and contract_signer.is_signed = '1'
+        group by agency_id
+        order by lendingAmountAlreadyTotal desc
+        </if>
+        <if test='organizeRoleNo == "6"'><!-- 运营平台，按资方维度 -->
+            , product 
+        where invoice_billing.product_id = product.product_id 
+        group by product.capital_id
+        order by product.capital_id
+        </if>
+        
+    </select>
+    
+
+
+    <!-- 查询N天内待还，仅面向出借方2、担保方4、运营平台6 -->
+    <select id="getExpired" parameterType="Map" resultType="String">
+        <if test='organizeRoleNo == "2" || organizeRoleNo == "4" || organizeRoleNo == "6"'>
+           select sum(principal+interest+service_charge+rollover_interest+extension_service_fee+overdue_interest+overdue_service_fee+pre_repay_fee+extension_fee+other_fee) as repaymentAmonutOughtToTotal
+    
+             from invoice_billing 
+            
+            <if test='organizeRoleNo == "4"'><!-- 担保方，按借款方维度，累计放款额倒序 -->
+                , contract_signer 
+            </if> 
+            <if test='organizeRoleNo == "6"'><!-- 运营平台，按资方维度 -->
+                , product 
+            </if>
+
+            where ( (extend_end_date >= #{today,jdbcType=VARCHAR} and #{expiredDate,jdbcType=VARCHAR} >= extend_end_date) or (financing_end_date >= #{today,jdbcType=VARCHAR} and #{expiredDate,jdbcType=VARCHAR} >= financing_end_date) )
+
+            <if test='organizeRoleNo == "2"'><!-- 出借方 -->
+              and product_id in (select distinct product_id from product where capital_id = #{organizeId,jdbcType=VARCHAR})
+            </if>
+            <if test='organizeRoleNo == "4"'><!-- 担保方，按借款方维度，累计放款额倒序 -->
+              and contract_signer.application_id = invoice_billing.financing_application_no
+              and contract_signer.signer_no = #{organizeRoleNo,jdbcType=VARCHAR}
+              and contract_signer.signer_id = #{organizeId,jdbcType=VARCHAR}
+              and contract_signer.is_signed = '1'
+            <!-- group by agency_id 暂时不区分借款方维度 -->
+            </if>
+            <if test='organizeRoleNo == "6"'><!-- 运营平台 -->
+              and invoice_billing.product_id = product.product_id 
+            <!-- group by product.capital_id 暂时不区分资方维度 -->
+            </if>
+            order by repaymentAmonutOughtToTotal desc
+        </if>
+    </select>
+    
+    <insert id="insertBatch" useGeneratedKeys="false" parameterType="java.util.List">  
+        insert into authority (`id`,`role`,menu_id,`status`,create_time,create_user)  
+        values 
+        <foreach collection="list" item="item" index="index" separator="," > 
+            (#{item.id},#{item.role},#{item.menuId},#{item.status},#{item.createTime},#{item.createUser}) 
+        </foreach> 
+    </insert>
+</mapper>

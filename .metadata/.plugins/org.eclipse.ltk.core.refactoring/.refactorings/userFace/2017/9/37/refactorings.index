@@ -1,0 +1,15 @@
+1505217978153	Rename package 'com.yonyou.scf.contract'
+1505217991136	Rename package 'com.yonyou.scf.contract.config'
+1505218000114	Rename package 'com.yonyou.scf.contract.constant'
+1505218007107	Rename package 'com.yonyou.scf.contract.controller'
+1505218015109	Rename package 'com.yonyou.scf.contract.filter'
+1505218023110	Rename package 'com.yonyou.scf.contract.service'
+1505218031143	Rename package 'com.yonyou.scf.contract.template'
+1505271368682	Copy compilation unit
+1505271382786	Copy compilation units
+1505287178773	Rename type 'LFBankController'
+1505304508522	Extract method 'createToken'
+1505376636724	Copy compilation unit
+1505467489806	Rename type 'Controller'
+1505469864854	Rename package 'com.yonyou.scf.userFacecontroller'
+1505469881746	Delete element

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular JS + Spring MVC test</title>
+    <link href="../css/jquery-ui.css" rel="stylesheet">
+    <script src="../js/lib/me/jquery-3.1.1.min.js"></script>
+    <script src="../js/lib/me/jquery-ui.js"></script>
+    <script src="../js/lib/bootstrap/bootstrap.js"></script>
+    <script src="../js/lib/bootstrap/bootstrap.min.js"></script>
+   	<script src="../js/lib/me/sendPlatform.js"></script>
+    <style type="text/css">
+    	#submit{
+    		background-color: rgb(230, 61, 56);
+    		margin-left: 855px;
+    		margin-top: 20px;
+    		width: 200px;
+    		border-top-right-radius: 8px;
+    		border-top-left-radius: 8px;
+    		border-bottom-right-radius: 8px;
+    		border-bottom-left-radius: 8px;
+    		height: 40px;
+   		    color: white;
+   		    font-size: 17px;
+    	}
+    </style>
+</head>
+
+<body style="background-color: #fff;">
+<input name="platformId" type="hidden" value=""/>
+<input name="centerCompanyNo" type="hidden" value=""/>
+<input name="centerCompanyName" type="hidden" value=""/>
+<input name="gAId" type="hidden" value=""/>
+<div id="confirm-result" title="操作提示" style="display:none;">
+	 <p style="margin-left: 88px;">
+    	已提交成功！
+	 </p>
+	 <p>
+    	<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+  		跳转到列表页面
+  	</p>
+    <p> 
+    	<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+  		返回上一页面
+    </p>
+</div>
+<table style="width:386px;margin: auto;margin-top: 80px;background-color:rgba(24, 24, 29, 0.21);border-collapse:separate; border-spacing:43px;">   
+	<tr style="">
+		<td style="border: 1px solid balck;font-size: 2px;text-align:center;" colspan="2">
+			<img style="margin-top: 27px;margin-bottom: 55px;margin-top: 20px;" alt="" src="/resources/images/combine.png">
+			<br/>如果您有经营性融资需求，请填写以下信息，我们将会第一时间与您联络
+			<hr style="margin-top: 26px;"/>
+		</td>
+	</tr>
+	<tr>
+		<td style="width: 131px;text-align: right;">企业名称<span style="color:red">*</span>：</td>
+		<td style=""><input type="text" style="font-family: 微软雅黑;width: 98%;    height: 28px;" name="gACompanyName" value=""/></td>
+	</tr>
+	<tr>
+		<td style="width: 131px;text-align: right;">联系人姓名<span style="color:red">*</span>：</td>
+		<td style=""><input type="text" style="font-family: 微软雅黑;width: 98%;    height: 28px;" name="gAConcaterName" value=""/></td>
+	</tr>
+	<tr>
+		<td style="width: 131px;text-align: right;">联系人手机号<span style="color:red">*</span>：</td>
+		<td style=""><input type="text" style="font-family: 微软雅黑;width: 98%;    height: 28px;" name="gAConcaterTel" value=""/></td>
+	</tr>
+	<tr>
+		<td style="width: 131px;text-align: right;">邮箱地址：</td>
+		<td style=""><input type="text" style="font-family: 微软雅黑;width: 98%;    height: 28px;" name="gAConcaterEmail" value=""/></td>
+	</tr>
+</table>
+	<button id="submit">提&nbsp;&nbsp;&nbsp;&nbsp;交</button>
+</body>
+</html>

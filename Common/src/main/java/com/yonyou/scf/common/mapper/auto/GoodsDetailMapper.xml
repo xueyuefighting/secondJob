@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yonyou.scf.common.mapper.auto.GoodsDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.GoodsDetail" >
+    <id column="good_id" property="goodId" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="BIGINT" />
+    <result column="good_no" property="goodNo" jdbcType="VARCHAR" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="good_value" property="goodValue" jdbcType="BIGINT" />
+    <result column="good_num" property="goodNum" jdbcType="BIGINT" />
+    <result column="specification" property="specification" jdbcType="VARCHAR" />
+    <result column="charge_unit" property="chargeUnit" jdbcType="VARCHAR" />
+    <result column="all_value" property="allValue" jdbcType="BIGINT" />
+    <result column="warehouse" property="warehouse" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    good_id, order_id, good_no, good_name, good_value, good_num, specification, charge_unit, 
+    all_value, warehouse, create_time, create_user, update_time, update_user
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.yonyou.scf.common.entity.GoodsDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_detail
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from goods_detail
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.GoodsDetailExample" >
+    delete from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.GoodsDetail" >
+    insert into goods_detail (good_id, order_id, good_no, 
+      good_name, good_value, good_num, 
+      specification, charge_unit, all_value, 
+      warehouse, create_time, create_user, 
+      update_time, update_user)
+    values (#{goodId,jdbcType=BIGINT}, #{orderId,jdbcType=BIGINT}, #{goodNo,jdbcType=VARCHAR}, 
+      #{goodName,jdbcType=VARCHAR}, #{goodValue,jdbcType=BIGINT}, #{goodNum,jdbcType=BIGINT}, 
+      #{specification,jdbcType=VARCHAR}, #{chargeUnit,jdbcType=VARCHAR}, #{allValue,jdbcType=BIGINT}, 
+      #{warehouse,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{createUser,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=VARCHAR}, #{updateUser,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.GoodsDetail" >
+    insert into goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        good_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="goodNo != null" >
+        good_no,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="goodValue != null" >
+        good_value,
+      </if>
+      <if test="goodNum != null" >
+        good_num,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="chargeUnit != null" >
+        charge_unit,
+      </if>
+      <if test="allValue != null" >
+        all_value,
+      </if>
+      <if test="warehouse != null" >
+        warehouse,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodId != null" >
+        #{goodId,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodNo != null" >
+        #{goodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodValue != null" >
+        #{goodValue,jdbcType=BIGINT},
+      </if>
+      <if test="goodNum != null" >
+        #{goodNum,jdbcType=BIGINT},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeUnit != null" >
+        #{chargeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="allValue != null" >
+        #{allValue,jdbcType=BIGINT},
+      </if>
+      <if test="warehouse != null" >
+        #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.GoodsDetailExample" resultType="java.lang.Integer" >
+    select count(*) from goods_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update goods_detail
+    <set >
+      <if test="record.goodId != null" >
+        good_id = #{record.goodId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodNo != null" >
+        good_no = #{record.goodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodName != null" >
+        good_name = #{record.goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodValue != null" >
+        good_value = #{record.goodValue,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodNum != null" >
+        good_num = #{record.goodNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.specification != null" >
+        specification = #{record.specification,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chargeUnit != null" >
+        charge_unit = #{record.chargeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allValue != null" >
+        all_value = #{record.allValue,jdbcType=BIGINT},
+      </if>
+      <if test="record.warehouse != null" >
+        warehouse = #{record.warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null" >
+        update_user = #{record.updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update goods_detail
+    set good_id = #{record.goodId,jdbcType=BIGINT},
+      order_id = #{record.orderId,jdbcType=BIGINT},
+      good_no = #{record.goodNo,jdbcType=VARCHAR},
+      good_name = #{record.goodName,jdbcType=VARCHAR},
+      good_value = #{record.goodValue,jdbcType=BIGINT},
+      good_num = #{record.goodNum,jdbcType=BIGINT},
+      specification = #{record.specification,jdbcType=VARCHAR},
+      charge_unit = #{record.chargeUnit,jdbcType=VARCHAR},
+      all_value = #{record.allValue,jdbcType=BIGINT},
+      warehouse = #{record.warehouse,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      create_user = #{record.createUser,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=BIGINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.GoodsDetail" >
+    update goods_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodNo != null" >
+        good_no = #{goodNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodValue != null" >
+        good_value = #{goodValue,jdbcType=BIGINT},
+      </if>
+      <if test="goodNum != null" >
+        good_num = #{goodNum,jdbcType=BIGINT},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeUnit != null" >
+        charge_unit = #{chargeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="allValue != null" >
+        all_value = #{allValue,jdbcType=BIGINT},
+      </if>
+      <if test="warehouse != null" >
+        warehouse = #{warehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=BIGINT},
+      </if>
+    </set>
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.GoodsDetail" >
+    update goods_detail
+    set order_id = #{orderId,jdbcType=BIGINT},
+      good_no = #{goodNo,jdbcType=VARCHAR},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      good_value = #{goodValue,jdbcType=BIGINT},
+      good_num = #{goodNum,jdbcType=BIGINT},
+      specification = #{specification,jdbcType=VARCHAR},
+      charge_unit = #{chargeUnit,jdbcType=VARCHAR},
+      all_value = #{allValue,jdbcType=BIGINT},
+      warehouse = #{warehouse,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=BIGINT}
+    where good_id = #{goodId,jdbcType=BIGINT}
+  </update>
+</mapper>

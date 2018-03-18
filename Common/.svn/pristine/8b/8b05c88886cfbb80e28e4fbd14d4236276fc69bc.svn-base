@@ -1,0 +1,98 @@
+package com.yonyou.scf.common.util.lccb;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+/**
+ * @author wp
+ * @since 2016-12-26
+ * 生成随机数工具类
+ */
+public  class DMTRanDomUtils {
+	
+	static String [] arr ={"a","b","c","d","e","f","g","h","i","j",
+			"k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
+	
+	
+	
+
+	/**
+	 * @return
+	 * 6位字母 随机密码
+	 */
+	public static String  pwdRandom(){
+		
+		StringBuilder str=new StringBuilder();//定义变长字符串
+
+		Random random=new Random();
+//		//数字位数
+//		int a = random.nextInt(7)%7 + 1;
+//		
+//		//随机生成数字，并添加到字符串
+//		for(int i=0;i<a;i++){
+//		    str.append(random.nextInt(7));
+//		}
+		//随机生成字母
+		for(int i = 0;i<6;i++  ){
+			int b = random.nextInt(25)%25 + 1;
+			str.append(arr[b]);
+		}
+		return str.toString();
+	}
+	
+	/**
+	 * @return
+	 * 生成随机账号
+	 * sys+8位数字
+	 */
+	public static String accountRandom(){
+		
+		StringBuilder str=new StringBuilder();//定义变长字符串
+
+		Random random=new Random();
+		
+		//随机生成数字，并添加到字符串
+		for(int i=0;i<8;i++){
+		    str.append(random.nextInt(10));
+		}
+		
+		return "sys"+str.toString();
+	}
+	//生成多为随机数
+	public static String Random(int c){
+		
+		StringBuilder str=new StringBuilder();//定义变长字符串
+
+		Random random=new Random();
+		
+		//随机生成数字，并添加到字符串
+		for(int i=0;i<c;i++){
+		    str.append(random.nextInt(10));
+		}
+		
+		return str.toString();
+	}
+	
+	//生成合同编号
+	public static String hzNum(){
+		SimpleDateFormat sim = new SimpleDateFormat("SSS");
+		
+	String dt =	sim.format(new Date());
+		
+	return   "credit_lccb_"+ dt+Random(5);
+	}
+	
+	//生成签约单编号
+	public static String signNum(){
+		SimpleDateFormat sim = new SimpleDateFormat("SSS");
+			
+		String dt =	sim.format(new Date());
+			
+		return   "sign_lccb_"+ dt+Random(5);
+	}
+	public static void main(String [] arsg){
+		
+		System.out.println(Random(13));
+	}
+}

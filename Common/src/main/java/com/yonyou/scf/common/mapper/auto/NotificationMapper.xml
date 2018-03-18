@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yonyou.scf.common.mapper.auto.NotificationMapper">
+  <resultMap id="BaseResultMap" type="com.yonyou.scf.common.entity.Notification">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="communication_type" jdbcType="INTEGER" property="communicationType" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="notice_type" jdbcType="INTEGER" property="noticeType" />
+    <result column="last_send_time" jdbcType="VARCHAR" property="lastSendTime" />
+    <result column="notice_status" jdbcType="INTEGER" property="noticeStatus" />
+    <result column="send_count" jdbcType="INTEGER" property="sendCount" />
+    <result column="platform_id" jdbcType="VARCHAR" property="platformId" />
+    <result column="interface_no" jdbcType="VARCHAR" property="interfaceNo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, communication_type, url, message, notice_type, last_send_time, notice_status, 
+    send_count, platform_id, interface_no
+  </sql>
+  <select id="selectByExample" parameterType="com.yonyou.scf.common.entity.NotificationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from notification
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from notification
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yonyou.scf.common.entity.NotificationExample">
+    delete from notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yonyou.scf.common.entity.Notification">
+    insert into notification (id, communication_type, url, 
+      message, notice_type, last_send_time, 
+      notice_status, send_count, platform_id, 
+      interface_no)
+    values (#{id,jdbcType=BIGINT}, #{communicationType,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{message,jdbcType=VARCHAR}, #{noticeType,jdbcType=INTEGER}, #{lastSendTime,jdbcType=VARCHAR}, 
+      #{noticeStatus,jdbcType=INTEGER}, #{sendCount,jdbcType=INTEGER}, #{platformId,jdbcType=VARCHAR}, 
+      #{interfaceNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yonyou.scf.common.entity.Notification">
+    insert into notification
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="communicationType != null">
+        communication_type,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+      <if test="noticeType != null">
+        notice_type,
+      </if>
+      <if test="lastSendTime != null">
+        last_send_time,
+      </if>
+      <if test="noticeStatus != null">
+        notice_status,
+      </if>
+      <if test="sendCount != null">
+        send_count,
+      </if>
+      <if test="platformId != null">
+        platform_id,
+      </if>
+      <if test="interfaceNo != null">
+        interface_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="communicationType != null">
+        #{communicationType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null">
+        #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendTime != null">
+        #{lastSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeStatus != null">
+        #{noticeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sendCount != null">
+        #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null">
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceNo != null">
+        #{interfaceNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yonyou.scf.common.entity.NotificationExample" resultType="java.lang.Long">
+    select count(*) from notification
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update notification
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.communicationType != null">
+        communication_type = #{record.communicationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.message != null">
+        message = #{record.message,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noticeType != null">
+        notice_type = #{record.noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastSendTime != null">
+        last_send_time = #{record.lastSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noticeStatus != null">
+        notice_status = #{record.noticeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendCount != null">
+        send_count = #{record.sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformId != null">
+        platform_id = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interfaceNo != null">
+        interface_no = #{record.interfaceNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update notification
+    set id = #{record.id,jdbcType=BIGINT},
+      communication_type = #{record.communicationType,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      message = #{record.message,jdbcType=VARCHAR},
+      notice_type = #{record.noticeType,jdbcType=INTEGER},
+      last_send_time = #{record.lastSendTime,jdbcType=VARCHAR},
+      notice_status = #{record.noticeStatus,jdbcType=INTEGER},
+      send_count = #{record.sendCount,jdbcType=INTEGER},
+      platform_id = #{record.platformId,jdbcType=VARCHAR},
+      interface_no = #{record.interfaceNo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yonyou.scf.common.entity.Notification">
+    update notification
+    <set>
+      <if test="communicationType != null">
+        communication_type = #{communicationType,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null">
+        notice_type = #{noticeType,jdbcType=INTEGER},
+      </if>
+      <if test="lastSendTime != null">
+        last_send_time = #{lastSendTime,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeStatus != null">
+        notice_status = #{noticeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="sendCount != null">
+        send_count = #{sendCount,jdbcType=INTEGER},
+      </if>
+      <if test="platformId != null">
+        platform_id = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="interfaceNo != null">
+        interface_no = #{interfaceNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yonyou.scf.common.entity.Notification">
+    update notification
+    set communication_type = #{communicationType,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      message = #{message,jdbcType=VARCHAR},
+      notice_type = #{noticeType,jdbcType=INTEGER},
+      last_send_time = #{lastSendTime,jdbcType=VARCHAR},
+      notice_status = #{noticeStatus,jdbcType=INTEGER},
+      send_count = #{sendCount,jdbcType=INTEGER},
+      platform_id = #{platformId,jdbcType=VARCHAR},
+      interface_no = #{interfaceNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
