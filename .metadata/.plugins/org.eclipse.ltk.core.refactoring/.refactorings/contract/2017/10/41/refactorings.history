@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;LFBankController.java&apos; to &apos;contract/src/main/java/com.yonyou.scf.contract.controller&apos;&#x0A;- Original project: &apos;contract&apos;&#x0A;- Destination element: &apos;contract/src/main/java/com.yonyou.scf.contract.controller&apos;&#x0A;- Original element: &apos;com.yonyou.scf.contract.controller.LFBankController.java&apos;" description="Copy compilation unit" destination="/src\/main\/java&lt;com.yonyou.scf.contract.controller" element1="/src\/main\/java&lt;com.yonyou.scf.contract.controller{LFBankController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1507878292518" units="1" version="1.0"/>
-</session>

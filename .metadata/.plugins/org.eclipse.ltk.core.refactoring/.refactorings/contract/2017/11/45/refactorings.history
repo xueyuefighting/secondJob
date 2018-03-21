@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;7100-Contract/src/main/java/com.yonyou.scf.contract.util&apos;&#x0A;- Original project: &apos;contract&apos;&#x0A;- Destination element: &apos;7100-Contract/src/main/java/com.yonyou.scf.contract.util&apos;&#x0A;- Original elements:&#x0A;     com.yonyou.scf.contract.util.IContractTool.java&#x0A;     com.yonyou.scf.contract.util.TPNContractTools.java" description="Copy compilation units" destination="=7100-Contract/src\/main\/java&lt;com.yonyou.scf.contract.util" element1="/src\/main\/java&lt;com.yonyou.scf.contract.util{IContractTool.java" element2="/src\/main\/java&lt;com.yonyou.scf.contract.util{TPNContractTools.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1510146926583" units="2" version="1.0"/>
-</session>

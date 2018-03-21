@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename package &apos;com.yonyou.scf.gateway.userAction&apos; to &apos;com.yonyou.scf.gateway.userAct&apos;&#x0A;- Original project: &apos;3002-Gateway&apos;&#x0A;- Original element: &apos;3002-Gateway/src/main/java/com.yonyou.scf.gateway.userAction&apos;&#x0A;- Renamed element: &apos;3002-Gateway/src/main/java/com.yonyou.scf.gateway.userAct&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.yonyou.scf.gateway.userAction&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;com.yonyou.scf.gateway.userAction" name="com.yonyou.scf.gateway.userAct" qualified="false" references="true" stamp="1503042081136" textual="false" version="1.0"/>
-</session>

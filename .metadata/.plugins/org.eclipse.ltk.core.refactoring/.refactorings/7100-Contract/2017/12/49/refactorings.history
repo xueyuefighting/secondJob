@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy element &apos;MethodInter.java&apos; to &apos;7100-Contract/src/test/java/com.yonyou.scf.Gateway&apos;&#x0A;- Original project: &apos;7100-Contract&apos;&#x0A;- Destination element: &apos;7100-Contract/src/test/java/com.yonyou.scf.Gateway&apos;&#x0A;- Original element: &apos;com.yonyou.scf.Gateway.MethodInter.java&apos;" description="Copy compilation unit" destination="/src\/test\/java&lt;com.yonyou.scf.Gateway" element1="/src\/test\/java&lt;com.yonyou.scf.Gateway{MethodInter.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1512791053168" units="1" version="1.0"/>
-</session>

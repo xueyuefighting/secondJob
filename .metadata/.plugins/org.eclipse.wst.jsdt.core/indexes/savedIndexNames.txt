@@ -1,6 +1,0 @@
-INDEX VERSION 1.4+/Users/wyx/workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-542239857.index
-290622948.index
-3923553343.index
-616398897.index
-1924136935.index

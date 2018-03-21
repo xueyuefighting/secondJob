@@ -1,4 +1,0 @@
-1508640869594	Extract method 'obtainsNosByApplicationId'
-1508662860146	Extract method 'packCSigner'
-1508986900684	Extract method 'getUniqueConCredit'
-1508993185027	Extract method 'getConListWithoutSigned'

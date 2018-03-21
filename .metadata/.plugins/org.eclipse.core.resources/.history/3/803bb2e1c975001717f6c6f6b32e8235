@@ -1,7 +1,0 @@
-package ftp;
-
-import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
-
-public class FTPClientPoolB extends GenericKeyedObjectPool<FTPClientConfiguration, FTPClient>{
-
-}

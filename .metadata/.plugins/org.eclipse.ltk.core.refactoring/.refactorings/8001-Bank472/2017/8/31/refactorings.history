@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;8001-Bank472/src/main/resources/logback.xml&apos; to &apos;logback.xml_bak&apos;" description="Rename resource &apos;logback.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/logback.xml" name="logback.xml_bak" stamp="1501731288114" updateReferences="true"/>
-</session>

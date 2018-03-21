@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy 2 elements to &apos;1003-API/src/main/java/com.yonyou.scf.api.tx.gateway&apos;&#x0A;- Original project: &apos;1005-Common&apos;&#x0A;- Destination element: &apos;1003-API/src/main/java/com.yonyou.scf.api.tx.gateway&apos;&#x0A;- Original elements:&#x0A;     com.yonyou.scf.common.tx.notice.Scf1218NoticeResponse.java&#x0A;     com.yonyou.scf.common.tx.notice.Scf1218NoticeRequest.java" description="Copy compilation units" destination="=1003-API/src\/main\/java&lt;com.yonyou.scf.api.tx.gateway" element1="/src\/main\/java&lt;com.yonyou.scf.common.tx.notice{Scf1218NoticeResponse.java" element2="/src\/main\/java&lt;com.yonyou.scf.common.tx.notice{Scf1218NoticeRequest.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1500904916629" units="2" version="1.0"/>
-</session>
